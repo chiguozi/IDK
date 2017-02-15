@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public enum AssetCategory
 {
@@ -12,10 +13,21 @@ public enum AssetCategory
 	Scene,
 	Script,
 	Shader,
-	Txt,
+	Complete,
+	BundleByFolder,
 }
 
 public class BundleNameSetter
 {
-
+	public static void SetBundleName(string assetPath, string bundleName, string variantName = null)
+	{
+		AssetImporter ai = AssetImporter.GetAtPath(assetPath);
+		if(ai == null)
+			return;
+		if(bundleName == null)
+			bundleName = string.Empty;
+		ai.assetBundleName = bundleName;
+		if(!string.IsNullOrEmpty(bundleName) && variantName != null)
+			ai.assetBundleVariant = variantName;
+	}
 }

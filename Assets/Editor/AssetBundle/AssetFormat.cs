@@ -56,6 +56,9 @@ public class AssetFormat
 		{
 			type = _extension2AssetTypeMap[extension];
 		}
+		//动作fbx当做animation处理
+		if(type == AssetType.Fbx && path.Contains("@"))
+			type = AssetType.Anim;
 		return type;
 	}
 
