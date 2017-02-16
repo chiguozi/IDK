@@ -19,6 +19,8 @@ public enum AssetType
 	Bytes = 11,
 	Scene = 12,
 	Asset = 13,
+	Shader = 14,
+	
 }
 
 public class AssetFormat 
@@ -44,10 +46,11 @@ public class AssetFormat
 		{".bytes", AssetType.Bytes},
 		{".unity", AssetType.Scene},
 		{".asset", AssetType.Asset},
+		{".shader", AssetType.Shader},
 		
 	};
 
-	public static AssetType GetPathFomat(string path)
+	public static AssetType GetPathFormat(string path)
 	{
 		var extension = Path.GetExtension(path);
 		extension = extension.ToLower();
