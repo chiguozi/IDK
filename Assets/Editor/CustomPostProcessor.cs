@@ -9,11 +9,11 @@ public class CustomPostProcessor : AssetPostprocessor
 	static void OnPostprocessAllAssets(string[] importedAssets, string[] delAssets, string[] moveAssets, string movedFromAssetpaths)
 	{
 		List<string> changedAssets = new List<string>();
-		for(int i = 0; i < importedAssets; i++)
+		for(int i = 0; i < importedAssets.Length; i++)
 		{
 			changedAssets.Add(importedAssets[i]);
 		}
-		for(int i = 0; i < moveAssets; i++)
+		for(int i = 0; i < moveAssets.Length; i++)
 		{
 			changedAssets.Add(moveAssets[i]);
 		}

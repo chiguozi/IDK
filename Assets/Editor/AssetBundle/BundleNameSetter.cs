@@ -48,14 +48,14 @@ public class ABNameHandler
 
 public class BundleNameSetter
 {
-	static Dictionary<AssetCategory, ABNameHandler> _ABNameHandlerMap = new Action <string, bool, HashSet<AssetType>>();
+	static Dictionary<AssetCategory, ABNameHandler> _ABNameHandlerMap = new Dictionary<AssetCategory, ABNameHandler>();
 	
-	static Dictionary<string, AssetCategory> _path2AssetCategoryMap = new Action <string, bool, HashSet<AssetType>>()
+	static Dictionary<string, AssetCategory> _path2AssetCategoryMap = new Dictionary<string, AssetCategory>()
 	{
-		{EditorPath.PrefabPath, AssetCategory.Prefab},
+		{EditorPath.PrebfabPath, AssetCategory.Prefab},
 		{EditorPath.EffectPath, AssetCategory.Effect},
 		{EditorPath.ModelPath, AssetCategory.Model},
-		{EditorPath.Audio, AssetCategory.Audio},
+		{EditorPath.AudioPath, AssetCategory.Audio},
 		{EditorPath.ShaderPath, AssetCategory.Shader},
 		{EditorPath.CompletePath, AssetCategory.Complete},
 		{EditorPath.BundleByFolderPath, AssetCategory.BundleByFolder},
@@ -71,10 +71,10 @@ public class BundleNameSetter
 	{
 		if(CheckIgnoreExts(assetPath))
 			return;
-		if(!EditorPath.CheckValidPath())
+		if(!EditorPath.CheckValidPath(assetPath))
 			return;
 		var ac = GetAssetCategory(assetPath);
-		if(_ABNameHandlerMap[ac])
+		if(_ABNameHandlerMap.ContainsKey(ac))
 		{
 			_ABNameHandlerMap[ac].Handle(assetPath);
 		}
@@ -90,7 +90,7 @@ public class BundleNameSetter
 		_ABNameHandlerMap.Add(AssetCategory.Prefab, new ABNameHandler(true, PrefabBundleNameHandler, AssetType.Prefab));
 		_ABNameHandlerMap.Add(AssetCategory.Model, new ABNameHandler(true, DefaultBundleNameHandler, AssetType.Texture, AssetType.Material, AssetType.AnimControl));
 		_ABNameHandlerMap.Add(AssetCategory.Effect, new ABNameHandler(true, DefaultBundleNameHandler, AssetType.Texture, AssetType.Material));
-		_ABNameHandlerMap.Add(AssetCategory.Scene, new ABNameHandler(true, DefaultBundleNameHandler, AssetType.Texture, AssetType.Material, AssetFormat.LightMap, AssetFormat.Txt));
+		_ABNameHandlerMap.Add(AssetCategory.Scene, new ABNameHandler(true, DefaultBundleNameHandler, AssetType.Texture, AssetType.Material, AssetType.LightMap, AssetType.Txt));
 		_ABNameHandlerMap.Add(AssetCategory.Complete, new ABNameHandler(true, BundleWithoutFmtsHandler));
 		_ABNameHandlerMap.Add(AssetCategory.BundleByFolder, new ABNameHandler(false, BundleWithoutFmtsHandler));
 		_ABNameHandlerMap.Add(AssetCategory.Shader, new ABNameHandler(true, ShaderBundleNameHandler, AssetType.Shader));
@@ -154,7 +154,7 @@ public class BundleNameSetter
 	//UI预设暂不处理
 	static void PrefabBundleNameHandler(string assetPath, bool useFileName, HashSet<AssetType> fmts)
 	{
-		if(assetPath.StartsWith(EditorPath,UIPrefabPath))
+		if(assetPath.StartsWith(EditorPath.UIPrefabPath))
 		{
 			SetBundleNameNone(assetPath);
 		}
@@ -167,7 +167,7 @@ public class BundleNameSetter
 	static void BundleWithoutFmtsHandler(string assetPath, bool useFileName, HashSet<AssetType> fmts)
 	{
 		var fmt = AssetFormat.GetPathFormat(assetPath);
-		if(fmt != AssetFormat.None)
+		if(fmt != AssetType.None)
 		{
 			if(useFileName)
 			{
@@ -195,7 +195,7 @@ public class BundleNameSetter
 	
 	//----------------------------辅助函数----------------------------------------
 	
-	static void GetFormatBundkeRelativePath(string assetPath)
+	static string GetFormatBundkeRelativePath(string assetPath)
 	{
 		var bundleName = EditorPath.GetBundleRelativePath(assetPath);
 		bundleName = EditorPath.ToLower(bundleName);
@@ -205,7 +205,7 @@ public class BundleNameSetter
 	}
 	
 	// 移除后缀名
-	static bool CheckNeeRemoveExtension(string path)
+	static bool CheckNeedRemoveExtension(string path)
 	{
 		var fmt = AssetFormat.GetPathFormat(path);
 		if(fmt == AssetType.Prefab || fmt == AssetType.Font)

@@ -35,7 +35,7 @@ public class EditorPath
 	{
 		if(assetPath.StartsWith(ResourcePath))
 		{
-			assetPath = assetPath.Replace(ResourcePath, string.Empty));
+			assetPath = assetPath.Replace(ResourcePath, string.Empty);
 		}
 		else
 		{
@@ -51,7 +51,7 @@ public class EditorPath
 	
 	public static string GetFolderPath(string assetPath)
 	{
-		return Path.GetDirectoryName(path);
+		return Path.GetDirectoryName(assetPath);
 	}
 	
 	public static string RemoveExtension(string path)
@@ -61,7 +61,7 @@ public class EditorPath
 		var index = path.LastIndexOf(".");
 		if(index == -1)
 			return path;
-		path = path.SubString(0, index);
+		path = path.Substring(0, index);
 		return path;
 	}
 	
@@ -71,7 +71,7 @@ public class EditorPath
 	}
 	
 	//@todo  判断路径是否合法（中文，空格等检测）
-	public static bool CheckValidPaht(string path)
+	public static bool CheckValidPath(string path)
 	{
 		return true;
 	}

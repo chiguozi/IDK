@@ -49,6 +49,7 @@
      <Compile Include="Assets\Editor\AssetBundle\AssetFormat.cs" />
      <Compile Include="Assets\Editor\AssetBundle\BundleNameSetter.cs" />
      <Compile Include="Assets\Editor\AssetBundle\EditorPath.cs" />
+     <Compile Include="Assets\Editor\CustomPostProcessor.cs" />
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>
