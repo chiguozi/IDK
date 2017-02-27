@@ -11,6 +11,8 @@ public class AssetbundleInfo
 
 	public Dictionary<string, AssetbundleInfo> directDepMap = new Dictionary<string, AssetbundleInfo>();
 	public int loadRef = 0;
-	public int refCount = 0;
+	public int refCount = 0;  
+
+	public bool isDone = false;
 }
 
