@@ -6,17 +6,17 @@ using System;
 public class ResourceManager
 {
 	//ab名----》 直接依赖
-	Dictionary<string, List<string>> _dependenciesMap = new Dictionary<string, List<string>>();
+	static Dictionary<string, List<string>> _dependenciesMap = new Dictionary<string, List<string>>();
 	
 	public static void Init()
 	{
-		string abManifestPath = string.format("{0}/android/android", Application.steamingAssetsPath);
+		string abManifestPath = string.Format("{0}/android/android", Application.streamingAssetsPath);
 		var ab = LoadAssetSync(abManifestPath);
 		// 资源名称为AssetBundleManifest
-		abManifest = ab.LoadAssets<AssetBundleManifest>("AssetBundleManifest");
+		var abManifest = ab.LoadAsset<AssetBundleManifest>("AssetBundleManifest");
 		InitDependencies(abManifest);
 		//依赖记录完成后，可以卸载AssetBundleManifest  清楚NotSave下的AssetBundleManifest
-		ab.unload(true);
+		ab.Unload(true);
 	}
 	
 	// 收集所有依赖（直接依赖）
@@ -36,9 +36,9 @@ public class ResourceManager
 	
 	
 	// url 为绝对路径，不能包含file:///协议
-	public static void LoadAssetSync(url)
+	public static AssetBundle LoadAssetSync(string path)
 	{
-		return AssetBundle.LoadFromFile(url);
+		return AssetBundle.LoadFromFile(path);
 	}
 	
 	public static void Load(string url, Action<object> callback)
