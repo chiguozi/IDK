@@ -56,6 +56,7 @@
      <Compile Include="Assets\Script\MVC\ViewManager.cs" />
      <Compile Include="Assets\Script\Main.cs" />
      <Compile Include="Assets\Script\Manager\ResourceInfo.cs" />
+     <Compile Include="Assets\Script\Manager\ResourceLoadManager.cs" />
      <Compile Include="Assets\Script\Manager\ResourceManager.cs" />
      <Compile Include="Assets\Script\SystemConfig.cs" />
  <Reference Include="UnityEngine.UI">

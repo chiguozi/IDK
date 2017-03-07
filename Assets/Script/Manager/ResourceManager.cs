@@ -48,7 +48,12 @@ public class ResourceManager
 		var resourceInfo = new ResourceInfo(url);
 		if(_dependenciesMap.ContainsKey(url))
 		{
-			resourceInfo.allDepList = _dependenciesMap[url];
+			//resourceInfo.allDepList = _dependenciesMap[url];
+			for(int i = 0; i < _dependenciesMap[url].Count; i++)
+			{
+				var depResInfo = GetResourceInfo(_dependenciesMap[url][i]);
+				resourceInfo.allDepList.Add(depResInfo);
+			}
 		}
 		_resourceInfoMap.Add(url, resourceInfo);
 		return resourceInfo;

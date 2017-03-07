@@ -25,10 +25,15 @@ public class SystemConfig
 		}
 	}
 
+	public static int LoadingLine = 5;
+	public static int AssetbundleVersion = 1;
 	public static string GetBundleStreamPath(string bundleUrl)
 	{
 		return string.Format("file:///{0}/{1}", streamPath, bundleUrl);
 	}
+
+
+
 
 }
 

@@ -12,6 +12,12 @@ public enum AssetState
 	Unload,
 }
 
+public enum LoadType
+{
+	www,
+	downloadOrCache,
+}
+
 public class LoadCallbackInfo
 {
 	public string assetName;
@@ -37,6 +43,33 @@ public class ResourceInfo
 	public AssetState state = AssetState.Init;
 	public Object mainAsset;
 	public Dictionary<string, Object> assetMap;
+	public LoadType loadType = LoadType.www;
+	public bool needAsync = false;
+
+	public bool isDone
+	{
+		get {return state == AssetState.Loaded;}
+	}
+
+	public bool isInviald 
+	{
+		get {return state == AssetState.Inviald;}
+	}
+
+	public bool isDepLoaded 
+	{
+		get
+		{
+			if(state == AssetState.Loaded)
+				return true;
+			for(int i = 0; i < allDepList.Count; i++)
+			{
+				if(!isDone && !isInviald)
+					return false;
+			}
+			return true;
+		}	
+	}
 
 	public void AddRef(int relative)
 	{

@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class Main : MonoBehaviour 
 {
+	static Main _instance;
+	public static Main Instance {get {return _instance;}}
+
 	void Awake()
 	{
+		_instance = this;
 		Init();
 	}
 
