@@ -1,5 +1,5 @@
 using System;
-using System.collections.Generic;
+using System.Collections.Generic;
 
 
 public partial class EntityBase
@@ -10,7 +10,7 @@ public partial class EntityBase
 	{
 		var type = typeof(T);
 		if(_componentMap.ContainsKey(type))
-			return _componentMap[type];
+			return _componentMap[type] as T;
 		return null;
 	}
 	

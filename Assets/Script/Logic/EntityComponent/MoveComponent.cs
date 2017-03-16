@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collecttions.Generic;
+using System.Collections.Generic;
 
 public class MoveComponent : ComponentBase
 {

@@ -100,6 +100,21 @@ public class ResourceManager
 
 
 
+
+	static void OnRequiredResourceInfoLoaded(ResourceInfo info)
+	{
+		info.loadedOperation = null;
+		info.UnCompress();
+		info.state = AssetState.Loaded;
+		info.DoCallbacks();
+	}
+
+	static void OnDepResourceInfoLoaded(ResourceInfo info)
+	{
+		info.loadedOperation = null;
+		info.UnCompress();
+		info.state = AssetState.Loaded;
+	}
 	
 	// url 为绝对路径，不能包含file:///协议
 	public static AssetBundle LoadAssetSync(string path)

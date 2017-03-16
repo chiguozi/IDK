@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.collections.Generic;
+using System.Collections.Generic;
 
 
 public partial class EntityBase

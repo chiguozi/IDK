@@ -46,6 +46,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Script\Event\ComponentEventManager.cs" />
+     <Compile Include="Assets\Script\Event\ComponentEvets.cs" />
+     <Compile Include="Assets\Script\Event\EventManager.cs" />
+     <Compile Include="Assets\Script\Event\Events.cs" />
+     <Compile Include="Assets\Script\Logic\Entity\EntityBase.cs" />
+     <Compile Include="Assets\Script\Logic\Entity\EntityBaseComponent.cs" />
+     <Compile Include="Assets\Script\Logic\Entity\EntityBaseModel.cs" />
+     <Compile Include="Assets\Script\Logic\Entity\EntityBaseProperty.cs" />
+     <Compile Include="Assets\Script\Logic\EntityComponent\ActionComponent.cs" />
+     <Compile Include="Assets\Script\Logic\EntityComponent\ComponentBase.cs" />
+     <Compile Include="Assets\Script\Logic\EntityComponent\MoveComponent.cs" />
      <Compile Include="Assets\Script\Logic\StateMachine\UnitSMManager.cs" />
      <Compile Include="Assets\Script\MVC\ControlBase.cs" />
      <Compile Include="Assets\Script\MVC\ControlManager.cs" />

@@ -33,7 +33,7 @@ public class EventManager
 			var callbacks = _eventMap[eventType].GetInvocationList();
 			for(int i = 0; i < callbacks.Length; i++)
 			{
-				var callback = callbacks[i] as Action<Object>();
+				var callback = callbacks[i] as Action<Object>;
 				if(callback != null)
 				{
 					callback(obj);

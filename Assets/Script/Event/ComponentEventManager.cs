@@ -3,8 +3,8 @@ using System.Collections.Generic;
 
 public class ComponentEventManager
 {
-	static Dictionary<string, Action<Object>> _eventMap = new Dictionary<string, Action<Object>>();
-	public static void Regist(string eventType, Action<Object> callback)
+	Dictionary<string, Action<Object>> _eventMap = new Dictionary<string, Action<Object>>();
+	public void Regist(string eventType, Action<Object> callback)
 	{
 		if(_eventMap.ContainsKey(eventType))
 		{
@@ -16,7 +16,7 @@ public class ComponentEventManager
 		}
 	}
 	
-	public static void UnRegist(string eventType, Action<Object> callback)
+	public void UnRegist(string eventType, Action<Object> callback)
 	{
 		if(!_eventMap.ContainsKey(eventType))
 			return;
@@ -25,7 +25,7 @@ public class ComponentEventManager
 			_eventMap.Remove(eventType);
 	}
 	
-	public static void Send(string eventType, Object obj)
+	public void Send(string eventType, Object obj)
 	{
 		if(_eventMap.ContainsKey(eventType))
 		{
@@ -33,7 +33,7 @@ public class ComponentEventManager
 			var callbacks = _eventMap[eventType].GetInvocationList();
 			for(int i = 0; i < callbacks.Length; i++)
 			{
-				var callback = callbacks[i] as Action<Object>();
+				var callback = callbacks[i] as Action<Object>;
 				if(callback != null)
 				{
 					callback(obj);

@@ -18,6 +18,7 @@ public class ResourceLoadManager
 	//是否正在加载由外部判断
 	public static void LoadResourceInfo(ResourceInfo info)
 	{
+		info.state = AssetState.Loading;
 		_waitingLoadingList.Add(info);
 		_loadingOrWaitingSet.Add(info.url);
 		TryLoadNext();
@@ -56,6 +57,7 @@ public class ResourceLoadManager
 		_loadingList.Remove(info);
 
 		// onloaded
+		info.loadedOperation(info);
 		TryLoadNext();
 
 		w3.Dispose();

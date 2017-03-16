@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collecttions.Generic;
+using System.Collections.Generic;
 using Object = System.Object;
 
 public class AnimStateName
@@ -13,7 +13,7 @@ public class ActionComponent : ComponentBase
 	//url -> <name, len>  每个url对应的动画时间长度
 	static Dictionary<string, Dictionary<string, float>> _clipLengthMap = new Dictionary<string, Dictionary<string, float>>();
 	//name -> hash   动作名称对应的哈希值
-	static Dictionary<string, int> _clipNameToHashMap = new Dictionary<string, Dictionary<string, float>>();
+	static Dictionary<string, int> _clipNameToHashMap = new Dictionary<string, int>();
 	//url -> <name, hasState> 记录url对应的资源下有哪些动作   
 	//动作的名称和AnimationClip的名称可能不一样，所以分两个表分别存储
 	static Dictionary<string, Dictionary<string, bool>> _modelClipMap = new Dictionary<string, Dictionary<string, bool>>();
@@ -48,8 +48,8 @@ public class ActionComponent : ComponentBase
 	
 	protected override void RegistEvent()
 	{
-		Regist(ComonentEvents.OnModelLoaded, OnModelLoaded);
-		Regist(ComonentEvents.OnBeginLoad, OnBeginLoad);
+		Regist(ComponentEvents.OnModelLoaded, OnModelLoaded);
+		Regist(ComponentEvents.BeginLoadModel, OnBeginLoad);
 	}
 	
 	
@@ -66,8 +66,8 @@ public class ActionComponent : ComponentBase
 			var clip = runtimeAnimatorControler.animationClips[i];
 			//不需要时用baseLayer.name  全名 半名都支持
 			var clipName = clip.name;
-			var clipLength = clip.Length;
-			map.Add(clipName, clipName);
+			var clipLength = clip.length;
+			map.Add(clipName, clipLength);
 		}
 	}
 	
@@ -87,7 +87,7 @@ public class ActionComponent : ComponentBase
 	}
 	
 	//判断是否有动作，动态添加到缓存表中
-	void HasState(string clipName)
+	bool HasState(string clipName)
 	{
 		if(_modelClipMap.ContainsKey(_url))
 		{

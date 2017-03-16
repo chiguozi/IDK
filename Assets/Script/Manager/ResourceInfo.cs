@@ -42,9 +42,22 @@ public class ResourceInfo
 	public List<Action<float>> progressCallbackList = new List<Action<float>>();
 	public AssetState state = AssetState.Init;
 	public Object mainAsset;
-	public Dictionary<string, Object> assetMap;
+	public Dictionary<string, Object> assetMap = new Dictionary<string, Object>();
+	public Action<ResourceInfo> loadedOperation;
+
 	public LoadType loadType = LoadType.www;
 	public bool needAsync = false;
+
+	public void UnCompress()
+	{
+		var assets = assetbundle.LoadAllAssets();
+		for(int i = 0; i < assets.Length; i++)
+		{
+			if(i == 0)
+				mainAsset = assets[i];
+			assetMap.Add(assets[i].name, assets[i]);
+		}
+	}
 
 	public bool isDone
 	{
@@ -107,6 +120,21 @@ public class ResourceInfo
 		{
 			progressCallbackList.Add(progress);
 		}
+	}
+		
+
+	public void DoCallbacks()
+	{
+		for(int i = 0; i < callbackList.Count; i++)
+		{
+			callbackList[i].callback(GetAsset(callbackList[i].assetName));
+		}
+		callbackList.Clear();
+		for(int i = 0; i < progressCallbackList.Count; i++)
+		{
+			progressCallbackList[i](1);
+		}
+		progressCallbackList.Clear();
 	}
 
 	public ResourceInfo(string url)

@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.collections.Generic;
+using System.Collections.Generic;
 
 
 public partial class EntityBase
@@ -18,7 +18,7 @@ public partial class EntityBase
 	protected bool _hasLeaveWorld;
 	
 	public GameObject gameObject {get {return _gameObject;}}
-	public GameObject transform {get {return _transform;}}
+	public Transform transform {get {return _transform;}}
 	
 	public Vector3 scale {get {return _scale;}}
 	
@@ -26,20 +26,22 @@ public partial class EntityBase
 	{
 		get 
 		{
-			if(HasComponent<MoveComponent>())
-			{
-				return GetComponent<MoveComponent>().curPos;
-			}
+//			if(HasComponent<MoveComponent>())
+//			{
+//				return GetComponent<MoveComponent>().curPos;
+//			}
 			return _position;
 		}
 	}
 	
 	public Vector3 eulers 
 	{
-		if(HasComponent<MoveComponent>())
-			{
-				return GetComponent<MoveComponent>().curEulers;
-			}
+		get 
+		{
+//			if(HasComponent<MoveComponent>())
+//			{
+//				return GetComponent<MoveComponent>().curEulers;
+//			}
 			return _eulers;
 		}
 	}
