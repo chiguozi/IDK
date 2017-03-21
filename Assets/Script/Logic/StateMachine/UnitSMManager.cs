@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 	//状态机的类型
 	public enum UnitState
@@ -11,13 +12,18 @@ using UnityEngine;
 		Die,
 	}
 
+	
 	//触发状态改变的事件
+	[Flags]
 	public enum UnitStateEvent
 	{
-		None,
-		Move,
-		UseSkill,
-		ClearState,  //清除上一个状态
+		None = 0,
+		MoveByDir = 1,
+		MoveToPos = 1 << 2,
+		MoveByPosList = 1 << 3,
+		MoveByTarget = 1 << 4,
+		UseSkill = 1 << 5,
+		ClearState = 1 << 6,  //清除上一个状态
 	}
 
 	//状态切换时，处理方式
@@ -53,14 +59,20 @@ using UnityEngine;
 
 		public virtual void Exit()
 		{}
-
-		public void ProcessEvent(UnitStateEvent evt, object param)
+		
+		protected bool IsMoveEvt(UnitStateEvent evt)
+		{
+			return ((int)evt & 0xff) > 0;
+		}
+	
+		//状态切换的处理 设置切换方式以及下一个状态
+		public virtual void ProcessEvent(UnitStateEvent evt, object param)
 		{}
 
-		//状态切换的处理 设置切换方式以及下一个状态
-		public virtual void DoProcess(UnitStateEvent evt, object param)
-		{
-		}
+		
+		//public virtual void DoProcess(UnitStateEvent evt, object param)
+		//{
+		//}
 
 		public virtual void Dispose()
 		{

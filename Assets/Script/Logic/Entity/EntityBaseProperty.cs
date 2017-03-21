@@ -26,10 +26,10 @@ public partial class EntityBase
 	{
 		get 
 		{
-//			if(HasComponent<MoveComponent>())
-//			{
-//				return GetComponent<MoveComponent>().curPos;
-//			}
+			if(HasComponent<MoveComponent>())
+			{
+				return GetComponent<MoveComponent>().curPos;
+			}
 			return _position;
 		}
 	}
@@ -38,13 +38,25 @@ public partial class EntityBase
 	{
 		get 
 		{
-//			if(HasComponent<MoveComponent>())
-//			{
-//				return GetComponent<MoveComponent>().curEulers;
-//			}
+			if(HasComponent<MoveComponent>())
+			{
+				return GetComponent<MoveComponent>().curEulers;
+			}
 			return _eulers;
 		}
 	}
+	
+	public Vector3 forward
+	{
+		get
+		{
+			if(HasComponent<MoveComponent>())
+				return GetComponent<MoveComponent>().forward;
+			return _forward;
+		}
+	}
+	
+	//@todo  对于没有moveComponent的Vector3s 赋值
 	
 	
 	protected void SetPositionInternal()
