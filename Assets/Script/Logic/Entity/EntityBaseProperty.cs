@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 public partial class EntityBase
 {
-	//protected EntityBaseData _entityBaseData;
+	protected EntityBaseData _entityBaseData;
 	protected ComponentEventManager  _eventMgr;
 	protected Vector3 _position = Vector3.zero;
 	protected Vector3 _eulers = Vector3.zero;
@@ -21,6 +21,11 @@ public partial class EntityBase
 	public Transform transform {get {return _transform;}}
 	
 	public Vector3 scale {get {return _scale;}}
+	
+	public virtual void SetEntityBaseData(EntityBaseData data)
+	{
+		_entityBaseData = data;
+	}
 	
 	public Vector3 position 
 	{
