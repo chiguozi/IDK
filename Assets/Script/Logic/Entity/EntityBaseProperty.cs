@@ -16,6 +16,7 @@ public partial class EntityBase
 	protected Transform _transform;
 	
 	protected bool _hasLeaveWorld;
+	protected bool isDispose;
 	
 	public GameObject gameObject {get {return _gameObject;}}
 	public Transform transform {get {return _transform;}}

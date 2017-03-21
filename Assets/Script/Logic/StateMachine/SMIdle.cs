@@ -6,15 +6,15 @@ public class SMIdle : UnitSMBase
 	public override void Enter(UnitStateEvent evt, params object[] param)
 	{
 		base.Enter(evt, param);
-		target.CrossFade(AnimStateName.IDLE);
+		target.CrossFade(AnimStateName.IDLE, 1);
 	}
 	
-	protected override void ProcessEvent(UnitStateEvent evt, params object[] param)
+	public override void ProcessEvent(UnitStateEvent evt, params object[] param)
 	{
 		base.ProcessEvent(evt, param);
-		if(IsMoveEvt(evt)
+		if(IsMoveEvt(evt))
 		{
-			changeEvent = UnitStateChangeEvent.Enter;
+			change = UnitStateChangeEvent.Enter;
 			nextState = UnitState.Run;
 		}
 	}

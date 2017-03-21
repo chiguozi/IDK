@@ -10,7 +10,7 @@ public class WndBase
 		get
 		{
 			if(string.IsNullOrEmpty(_defalutPath))
-				_defalutPath = "Prebab/UI/" + GetType.Name;
+				_defalutPath = "Prebab/UI/" + GetType().Name;
 			return _defalutPath;
 		}
 	}
@@ -22,7 +22,7 @@ public class WndBase
 	public Transform transform {get {return _transform;}}
 	
 	RectTransform _rectTransform;
-	public RectTransform {get _rectTransform;}
+	public RectTransform rectTransform {get { return _rectTransform;}}
 	
 	protected string _uiLayer = UILayer.popupLayer;
 	public string uiLayer {get {return _uiLayer;}}
@@ -32,7 +32,7 @@ public class WndBase
 	bool _isVisible = false;
 	protected string _path = null;
 	
-	Canvas = _canvas;
+	Canvas _canvas;
 	GraphicRaycaster _raycaster;
 	
 	public bool IsVisible
@@ -75,7 +75,7 @@ public class WndBase
 		_canvas = _gameObject.AddComponent<Canvas>();
 		//部分面板可以不加？
 		_raycaster = _gameObject.AddComponent<GraphicRaycaster>();
-		EventManager.Send(Events.UIEvent.OnwWndLoaded, this);
+		EventManager.Send(Events.UIEvent.OnWndLoaded, this);
 		InitView();
 		DoShowOrHide();
 		_gameObject.SetActive(_isVisible);
@@ -130,13 +130,13 @@ public class WndBase
 	
 	protected RectTransform GetChildTransform(string path)
 	{
-		var tChild = _transform.FIndChild(path);
+		var tChild = _transform.FindChild(path);
 		return tChild as RectTransform;
 	}
 	
 	protected GameObject GetGameObject(string path)
 	{
 		Transform t = _transform.FindChild(path);
-		return (null == t?) null : t.gameObject;
+		return (null == t)? null : t.gameObject;
 	}
 }

@@ -38,10 +38,10 @@ using System;
 
 	public class UnitSMBase
 	{
-		public object target;   //状态机对象
+		public EntityBase target;   //状态机对象
 		public UnitStateChangeEvent change; //切换下一状态的方式
 		public UnitState nextState;   //下一个状态
-		public void Init(object target)
+		public void Init(EntityBase target)
 		{
 			this.target = target;
 			Init();
@@ -51,7 +51,7 @@ using System;
 		{}
 
 		//进入状态  
-		public virtual void Enter(UnitStateEvent evt, object param)
+		public virtual void Enter(UnitStateEvent evt, object[] param)
 		{
 			change = UnitStateChangeEvent.None;
 			nextState = UnitState.None;
@@ -66,7 +66,7 @@ using System;
 		}
 	
 		//状态切换的处理 设置切换方式以及下一个状态
-		public virtual void ProcessEvent(UnitStateEvent evt, object param)
+		public virtual void ProcessEvent(UnitStateEvent evt, object[] param)
 		{}
 
 		
@@ -82,7 +82,7 @@ using System;
 
 	public class UnitSMManager
 	{
-		object _target;
+		EntityBase _target;
 		Dictionary<UnitState, UnitSMBase> _stateMap = new Dictionary<UnitState, UnitSMBase>();
 		Dictionary<UnitSMBase, UnitState> _smMap = new Dictionary<UnitSMBase, UnitState>();
 		List<UnitSMBase> _smStackList = new List<UnitSMBase>();
@@ -122,7 +122,7 @@ using System;
 			}
 		}
 
-		public void ProcessEvent(UnitStateEvent evt, object param)
+		public void ProcessEvent(UnitStateEvent evt, object[] param)
 		{
 			var curSm = _smStackList[0];
 			curSm.ProcessEvent(evt, param);

@@ -8,7 +8,7 @@ public class SMRun : UnitSMBase
 	{
 		base.Enter(evt, param);
 		DoMove(evt, param);
-		target.CrossFade(AnimStateName.Run, 1);
+		target.CrossFade(AnimStateName.RUN, 1);
 	}
 	
 	void DoMove(UnitStateEvent evt, params object[] param)
@@ -54,7 +54,7 @@ public class SMRun : UnitSMBase
 		//‘› ±¥¶¿Ì
 		if(evt == UnitStateEvent.ClearState)
 		{
-			changeEvent = UnitStateChangeEvent.Clear;
+			change = UnitStateChangeEvent.Clear;
 		}
 	}
 }

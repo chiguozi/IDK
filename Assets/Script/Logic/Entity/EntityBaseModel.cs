@@ -5,7 +5,7 @@ using System.Collections.Generic;
 //模型相关
 public partial class EntityBase
 {
-	public virtual void ShowMode()
+	public virtual void ShowModel()
 	{
 		LoadModel();
 	}
@@ -34,6 +34,6 @@ public partial class EntityBase
 		SetPositionInternal();
 		SetEulerInternal();
 		SetScaleInternal();
-		_eventMgr.Send(ComponentEvnets.OnModelLoaded, model);
+		_eventMgr.Send(ComponentEvents.OnModelLoaded, model);
 	}
 }

@@ -20,13 +20,13 @@ public class World
 		}
 		else
 		{
-			_entitesMap.Add(entity)
+			_entitesMap.Add(data.uid, entity);
 		}
 		if(data.entityType == EntityType.Self)
 		{
 			ThePlayer = entity as EntitySelf;
 		}
-		eitity.OnEnterWorld();
+		entity.OnEnterWorld();
 		entity.ShowModel();
 	}
 	
@@ -42,13 +42,13 @@ public class World
 				entity = new EntityPlayer();
 				break;
 			case EntityType.Self:
-				eitity = new EntitySelf();
+				entity = new EntitySelf();
 				break;
 			case EntityType.Monster:
 				entity = new EntityMonster();
 				break;
 			default:
-				eitity = new EntityBase();
+				entity = new EntityBase();
 				break;
 		}
 		entity.SetEntityBaseData(data);

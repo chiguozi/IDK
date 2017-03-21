@@ -8,5 +8,5 @@ public class EntityBaseData
 	public Vector3 initEuler = Vector3.zero;
 	public string name;
 	public Vector3 initScale = Vector3.one;
-	public entityType = EntityType.Base;
+	public EntityType entityType = EntityType.Base;
 }

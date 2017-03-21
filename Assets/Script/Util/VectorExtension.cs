@@ -28,7 +28,7 @@ public static class VectorExtension
 	//Vector3是值类型，需要返回Vector3 否则修改无效
 	public static Vector3 CopyXZ(this Vector3 a, Vector3 b)
 	{
-		a.x = b.x
+		a.x = b.x;
 		a.z = b.z;
 		return a;
 	}

@@ -6,7 +6,7 @@ public class EntityPlayer : EntityBase
 {
 	protected UnitSMManager _smMgr;
 	
-	protected override void AddComponents()
+	protected virtual void AddComponents()
 	{
 		AddComponent<MoveComponent>();
 		AddComponent<ActionComponent>();
@@ -24,7 +24,7 @@ public class EntityPlayer : EntityBase
 	{
 		base.OnMoveEnd(obj);
 		//暂时处理
-		SendSMEvent(UnityStateEvent.ClearState);
+		SendSMEvent(UnitStateEvent.ClearState);
 	}
 	
 	protected virtual void InitStateMachine()

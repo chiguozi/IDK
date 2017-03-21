@@ -28,8 +28,8 @@ public class MoveComponent : ComponentBase
 	float _distance = 0;
 	float _angleOffset = 0;
 	float _angleSymbol = 1;
-	float _isMoving = false;
-	float _isRotating = false;
+	bool _isMoving = false;
+	bool _isRotating = false;
 	
 	List<Vector3> _wayPoints = new List<Vector3>();
 	public Vector3 curPos {get {return _curPos;}}
@@ -142,7 +142,7 @@ public class MoveComponent : ComponentBase
 	public void SetAngleByDir(float dirX, float dirZ)
 	{
 		_isRotating = false;
-		var angle = Mathf.Acos(Mathf.Clamp(Vector3.forward.x * x * Vector3.forward.z * z, -1, 1)) * Mathf.Rag2Deg;
+		var angle = Mathf.Acos(Mathf.Clamp(Vector3.forward.x * dirX * Vector3.forward.z * dirZ, -1, 1)) * Mathf.Rad2Deg;
 		if(dirX < 0)
 		{
 			angle = -angle;
@@ -186,7 +186,7 @@ public class MoveComponent : ComponentBase
 		{
 			//@todo 转向和移动合并
 			UpdateNextMovePos(nextPos.x, nextPos.z);
-			RotateByDirAndTime(_moveDir.x, _mvoeDir.z, 0.1f);
+			//RotateByDirAndTime(_moveDir.x, _mvoeDir.z, 0.1f);
 			_isMoving = true;
 		}
 	}
@@ -236,7 +236,7 @@ public class MoveComponent : ComponentBase
 		}
 		if(_moveType == MoveType.pos || _moveType == MoveType.dir)
 			UpdatePosByDstPos(true);
-		else if(_moveDir == MoveType.target)
+		else if(_moveType == MoveType.target)
 			UpdatePosByTarget();
 	}
 	
@@ -270,7 +270,7 @@ public class MoveComponent : ComponentBase
 		UpdatePosByDstPos(false);
 	}
 	
-	void RefreshTargetPos()
+	void RefeshTargetPos()
 	{
 		_checkTargetInterval -= Time.deltaTime;
 		if(_checkTargetInterval <= 0 )
@@ -280,13 +280,13 @@ public class MoveComponent : ComponentBase
 				return;
 			var nextPos = _target.position;
 			UpdateNextMovePos(nextPos.x, nextPos.z);
-			if(_distance M= _reachDistance)
+			if(_distance == _reachDistance)
 			{
 				_isMoving = false;
 				Send(ComponentEvents.OnMoveEnd);
 				return;
 			}
-			RotateByDirAndTime(_moveDir.x, _moveDir.z, _checkTargetInterval);
+			//RotateByDirAndTime(_moveDir.x, _moveDir.z, _checkTargetInterval);
 		}
 	}
 	

@@ -10,9 +10,7 @@ public partial class EntityBase
 		AddComponent();
 		RegistEvent();
 	}
-	
-	protected virtual void Init()
-	{}
+
 	
 	protected virtual void RegistEvent()
 	{
@@ -22,11 +20,11 @@ public partial class EntityBase
 		_eventMgr.Regist(ComponentEvents.UpdateAngle, OnUpdateAngle);
 	}
 	
-	protected virtual AddComponent()
+	protected virtual void AddComponent()
 	{
 	}
 	
-	protected virtual Init()
+	protected virtual void Init()
 	{
 		_eventMgr = new ComponentEventManager();
 	}
