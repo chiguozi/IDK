@@ -48,8 +48,8 @@ public class Scroll<T> : BaseUIView where T : BaseScrollItemView
 		_scrollHeight = _scrollRt.rect.height;
 		_gridRt = GetGameObject("grid").GetComponent<RectTransform>();
 		_dragListener = UIDragEventListener.Get(_scroll.gameObject);
-		_dragListener._onBeginDrag = OnBeginDrag;
-		_dragListener._onDragOut = OnDragOut;
+		_dragListener.onBeginDrag = OnBeginDrag;
+		_dragListener.onEndDrag = OnEndDrag;
 		_scroll.onValueChanged.AddListener(OnScrollValueChange);
 	}
 	
@@ -65,7 +65,7 @@ public class Scroll<T> : BaseUIView where T : BaseScrollItemView
 		}
 	}
 	
-	void OnDragOut(GameObject go)
+	void OnEndDrag(GameObject go)
 	{
 		_isDrag = false;
 		if(endDragCallback != null)
