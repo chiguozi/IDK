@@ -33,7 +33,7 @@ public class ShakeAction
 		_time = 0;
 	}
 	
-	public void Start(int count, float interval, float rotationY, float Vector3 offset, Vector3 ramdowOffset, float pow = 1f, float zoom = 0f, float intervalDecay = 1f)
+	public void Start(int count, float interval, float rotationY, Vector3 offset, Vector3 ramdowOffset, float pow = 1f, float zoom = 0f, float intervalDecay = 1f)
 	{
 		_count = count;
 		_interval = interval;
@@ -80,13 +80,13 @@ public class ShakeAction
 		
 		float v = Mathf.Cos(_time / _duration * PI);
 		
-		float pow = Mathf.Pow(_totalLeftTime / _totalTime, pow);
+		float pow = Mathf.Pow(_totalLeftTime / _totalTime, _pow);
 		
 		float decay = v * pow;
 		
 		float x = UnityEngine.Random.Range(-_randomOffset.x, _randomOffset.x) + _offset.x * decay;
-		float x = UnityEngine.Random.Range(-_randomOffset.y, _randomOffset.y) + _offset.y * decay;
-		float x = UnityEngine.Random.Range(-_randomOffset.z, _randomOffset.z) + (_offset.z + _zoom) * decay;
+		float y = UnityEngine.Random.Range(-_randomOffset.y, _randomOffset.y) + _offset.y * decay;
+		float z = UnityEngine.Random.Range(-_randomOffset.z, _randomOffset.z) + (_offset.z + _zoom) * decay;
 		return x * _right + y * _up + z * _forward;
 	}
 }

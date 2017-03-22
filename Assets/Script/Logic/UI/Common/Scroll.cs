@@ -15,15 +15,22 @@ public class Scroll<T> : BaseUIView where T : BaseScrollItemView
 	int _maxCount;
 	int _head;
 	int _tail;
+	float _scrollHeight;
 	
 	public int HeadIndex 
 	{
-		return _head;
+		get
+		{
+			return _head;
+		}
 	}
 	
 	public int TailIndex
 	{
-		return _tail;
+		get
+		{
+			return _tail;
+		}
 	}
 	
 	float _totalHeight;
@@ -58,7 +65,7 @@ public class Scroll<T> : BaseUIView where T : BaseScrollItemView
 	void OnBeginDrag(GameObject go)
 	{
 		_isDrag = true;
-		_pointData = _dragListener._pointData;
+		_pointData = _dragListener._pointEventData;
 		if(beginDragCallback != null)
 		{
 			beginDragCallback(_pointData);
@@ -92,9 +99,9 @@ public class Scroll<T> : BaseUIView where T : BaseScrollItemView
 	public void SetPosYAndHeight(float posY, float height)
 	{
 		_scrollRt.SetY(posY);
-		_scrollRt.SetHeight(height);
+		_scrollRt.SetH(height);
 		_scrollHeight = _scrollRt.Height();
-		_gridRt.SetHeight(height);
+		_gridRt.SetH(height);
 	}
 	
 	public void Clear()
@@ -104,7 +111,7 @@ public class Scroll<T> : BaseUIView where T : BaseScrollItemView
 		{
 			AddCache(0, false);
 		}
-		totalHeight = 0;
+		_totalHeight = 0;
 		//_scroll.onValueChanged.RemoveListener(OnScrollValueChange);
 		_scroll.StopMovement();
 		_gridRt.SetY(0);
@@ -114,17 +121,17 @@ public class Scroll<T> : BaseUIView where T : BaseScrollItemView
 	
 	public void Refresh(bool updateItem)
 	{
-		totalHeight = 0;
+		_totalHeight = 0;
 		for(int i = 0; i < _itemList.Count; i++)
 		{
-			if(updateItem && callback)
+			if(updateItem && callback != null)
 			{
-				callback(head + i, _itemList[i]);
+				callback(_head + i, _itemList[i]);
 			}
-			_itemList[i].SetY(-totalHeight);
+			_itemList[i].rectTransform.SetY(-_totalHeight);
 			_totalHeight += _itemList[i].GetHeight();
 		}
-		_gridRt.SetHeight(totalHeight);
+		_gridRt.SetH(_totalHeight);
 	}
 	
 	public void Refresh(int count, bool updateItem)
@@ -208,12 +215,12 @@ public class Scroll<T> : BaseUIView where T : BaseScrollItemView
 	{
 		if(_head <= 0)
 			return false;
-		head--;
+		_head--;
 		var item = GetItem();
 		if(callback != null)
-			callback(head, item);
+			callback(_head, item);
 		#if UNITY_EDITOR
-		item.gameObject.name = head.ToString();
+		item.gameObject.name = _head.ToString();
 		#endif
 		item.rectTransform.SetY(_itemList[0].rectTransform.anchoredPosition.y + item.GetHeight());
 		_itemList.Insert(0, item);
@@ -233,14 +240,14 @@ public class Scroll<T> : BaseUIView where T : BaseScrollItemView
 			lastItem = _itemList[_itemList.Count - 1];
 		}
 		var item = GetItem();
-		if(callback)
+		if(callback != null)
 			callback(_tail, item);
 		#if UNITY_EDITOR
 		item.gameObject.name = _tail.ToString();
 		#endif
 		_itemList.Add(item);
 		_totalHeight += item.GetHeight();
-		_gridRt.SetHeight(totalHeight);
+		_gridRt.SetH(_totalHeight);
 		
 		if(lastItem != null)
 		{
@@ -253,7 +260,7 @@ public class Scroll<T> : BaseUIView where T : BaseScrollItemView
 		_tail++;
 	}
 	
-	void RemoveFirst()
+	bool RemoveFirst()
 	{
 		if(_itemList.Count <= 0)
 			return false;
@@ -262,7 +269,7 @@ public class Scroll<T> : BaseUIView where T : BaseScrollItemView
 		if(_head < 0)
 			_head = 0;
 		_head ++;
-		return;
+		return true;
 	}	
 	
 	void RemoveLast()
@@ -271,7 +278,7 @@ public class Scroll<T> : BaseUIView where T : BaseScrollItemView
 			return;
 		var item = AddCache(_itemList.Count - 1, true);
 		_tail--;
-		totalHeight -= item.GetHeight();
+		_totalHeight -= item.GetHeight();
 	}
 	
 	T GetItem()
@@ -285,8 +292,8 @@ public class Scroll<T> : BaseUIView where T : BaseScrollItemView
 		else
 		{
 			item = Activator.CreateInstance<T>();
-			var go = UGUITools.AddChild(_gridRt.gameObject, itemGo);
-			item.gameObject = go;
+			//var go = UGUITools.AddChild(_gridRt.gameObject, itemGo);
+			//item.gameObject = go;
 		}
 		item.isActive = true;
 		return item;
@@ -310,11 +317,11 @@ public class Scroll<T> : BaseUIView where T : BaseScrollItemView
 			_itemList[i].rectTransform.SetY(-_totalHeight);
 			_totalHeight += _itemList[i].GetHeight();
 		}
-		_gridRt.SetHeight(_totalHeight);
+		_gridRt.SetH(_totalHeight);
 		var pos = _gridRt.anchoredPosition;
 		pos.y += _tmpHeight;
 		_gridRt.anchoredPosition = pos;
-		if(_tmpHeight <= -0.001 |\ _tmpHeight > 0.001)
+		if(_tmpHeight <= -0.001 || _tmpHeight > 0.001)
 		{
 			RestartDrag();
 		}

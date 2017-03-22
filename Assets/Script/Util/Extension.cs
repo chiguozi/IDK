@@ -91,12 +91,12 @@ public static class Extension
 		rt.sizeDelta = v2;
 	}
 	
-	static float void Height(this RectTransform rt)
+	static public float Height(this RectTransform rt)
 	{
 		return rt.rect.height;
 	}
 	
-	static float void Width(this RectTransform rt)
+	static public float Width(this RectTransform rt)
 	{
 		return rt.rect.width;
 	}

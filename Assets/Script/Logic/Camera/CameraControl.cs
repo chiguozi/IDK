@@ -14,7 +14,7 @@ public class CameraControl : SingleTon<CameraControl>
 	public void InitCamera()
 	{
 		_cameraMgr.SetCameraParams(45, CameraClearFlags.Depth, Color.black, false, 10);
-		_cameraMgr.SetParams(new Vectro3(55,0,0), new Vectro3(0, 3, -2), 18);
+		_cameraMgr.SetParams(new Vector3(55,0,0), new Vector3(0, 3, -2), 18);
 	}
 	
 	public void SetFocus(Transform target, float duration)

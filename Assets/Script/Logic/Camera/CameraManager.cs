@@ -32,7 +32,7 @@ public class CameraManager : MonoBehaviour
 		_gameObject = gameObject;
 		_transform = _gameObject.transform;
 		_camera = GetComponent<Camera>();
-		_camera.nearClipPlane = 5.5
+		_camera.nearClipPlane = 5.5f;
 		_camera.farClipPlane = 220;
 	}
 	
@@ -107,7 +107,7 @@ public class CameraManager : MonoBehaviour
 	void LateUpdate()
 	{
 		_isDirty = false;
-		var dt = Time.unscaleDeltaTime;
+		var dt = Time.unscaledDeltaTime;
 		if(_needTweenToDistance)
 		{
 			_isDirty = true;
@@ -119,12 +119,12 @@ public class CameraManager : MonoBehaviour
 			}
 			else
 			{
-				var v = Mahtf.Clamp01(_tweenDistanceLeftTime / _tweenDistanceDuration);
+				var v = Mathf.Clamp01(_tweenDistanceLeftTime / _tweenDistanceDuration);
 				_distance = v * _fromDistance + (1 - v) * _toDistance;
 			}
 			_destPoint = _to + _offsetPos * _distance;
 		}
-		if( null != target && _target.position != _to)
+		if( null != _target && _target.position != _to)
 		{
 			SetTarget(_target, _duration);
 		}
@@ -147,6 +147,6 @@ public class CameraManager : MonoBehaviour
 			}
 			if(_isDirty)
 				_transform.position = pos;
-	}
-	
+		}
+	}	
 }
