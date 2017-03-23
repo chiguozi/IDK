@@ -87,6 +87,18 @@ public class CameraManager : MonoBehaviour
 		MoveTo(_target.position);
 	}
 	
+	void MoveTo(Vector3 pos)
+	{
+		_to = pos;
+		_from = _transform.position;
+		_destPoint = _to + _offsetPos * _distance;
+		if(_isMoving)
+		{
+			_isMoving == true;
+			_timeTotal = _time = _duration;
+		}
+	}
+	
 	public void StartShake(int count, float interval, float rotationY, Vector3 offset, Vector3 randomOffset, float pow = 1f, float zoom = 0f, float intervalDecay = 1f)
 	{
 		if(_shakeAction == null)

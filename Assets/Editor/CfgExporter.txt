@@ -1,0 +1,376 @@
+using System;
+using NPOI.SS.UserModel;
+using NPOI.HSSF.UserModel;
+using System.IO;
+using System.Data;
+using System.Collections.Generic;
+using System.Text.RegularExperssions;
+using System.Text;
+using NPOI.HSSF.Util;
+
+public class CfgExporter
+{
+	static int Rgb2Int(ushort r, ushort g, ushort b)
+	{
+		return r << 16 | g << 8 | b;
+	}
+	
+	public enum FieldRule 
+	{
+		RULE_ERROR = 0,
+		RULE_COMMON,
+		RULE_SERVER,
+		RULE_CLIENT,
+		RULE_IGNORE,
+		RULE_FINISH,
+		RULE_CONTENT,
+	}
+	
+	static Dictionary<int, FieldRule> _colorRuleMap = new Dictionary<int, FieldRule>()
+	{
+		{Rgb2Int(0, 128, 0), FieldRule.RULE_COMMON},
+		{Rgb2Int(255, 204, 0), FieldRule.RULE_SERVER},
+		{Rgb2Int(0, 204, 205), FieldRule.RULE_CLIENT},
+		{Rgb2Int(150, 150, 150), FieldRule.RULE_IGNORE},
+		{Rgb2Int(0, 51, 102), FieldRule.RULE_FINISH},
+		{Rgb2Int(0, 0, 0), FieldRule.RULE_CONTENT},
+	}
+	
+	public FieldRule GetColorRule(int color)
+	{
+		if(_colorRuleMap.ContainsKey(color))
+			return _colorRuleMap[color];
+		return FieldRule.RULE_ERROR;
+	}
+	
+	struct HeadCol
+	{
+		public int index;
+		public FieldRule rule;
+		public string name;
+	}
+	
+	struct RecordCol
+	{
+		public int index;
+		public object val;
+		public CellType type;
+	}
+	
+	string _fileName;
+	string _exportName;
+	IWorkBook _workbook;
+	ISheet _sheet;
+	List<HeadCol> _headers;
+	List<Dictionary<string, RecordCol>> records;
+	
+	public CfgExporter(string fileName)
+	{
+		_headers = new List<HeadCol>();
+		_records = new List<Dictionary<string, RecordCol>>();
+		_fileName = fileName;
+		_exportName = fileName;
+	}
+	
+	void RemoveBlank(string str)
+	{
+		return str.Replace(" ", "").Replace("\t", "").Replace("\n", "");
+	}
+	
+	bool IsTable(string str)
+	{
+		str = RemoveBlank(str);
+		if(!str.StartsWith("{") || !str.EndsWith("}"))
+			return false;
+		return true;
+	}
+	
+	bool IsFunc(string str)
+	{
+		str = RemoveBlank(str);
+		if(str.Contains("(") && str.Contains(")"))
+			return true;
+		return false;
+	}
+	
+	bool IsSkipRow(IRow row)
+	{
+		if(row == null)
+			return true;
+		ICell cell = row.GetCell(0);
+		CellType type;
+		object obj = GetValueType(cell, out type);
+		if(obj == null)
+			return true;
+		IColor color = cell.CellStyle.FillForegroundColorColor;
+		FieldRule rule = GetColorRule(color);
+		if(rule == FieldRule.RULE_ERROR)
+			return true;
+		return false;
+	}
+	
+	bool IsFinishRow(IRow row)
+	{
+		if(row == null)
+			return false;
+		ICell cell = row.GetCell(0);
+		if(cell == null)
+		{
+			return false;
+		}
+		IColor color = cell.CellStyle.FillForegroundColorColor;
+		return GetColorRule(color) == FieldRule.RULE_FINISH;
+	}
+	
+	string PreProcessTable(string str)
+	{
+		int lbraceCount = Regex.Matches(str,  @"{").Count;
+		int rbraceCount = Regex.Matches(str, @"}").Count;
+		if(lbraceCount != rbraceCount)
+		{
+			Console.Write("大括号数目不匹配\r\n" + str)；
+			throw new Exception("大括号数目不匹配\r\n" + str)
+		}
+		str = RemoveBlank(str).Replace(", }", "}");
+		if(!str.StartsWith("{") || !str.EndsWith("}"))
+		{
+			Console.Write("LuaTable 必须使用{}\r\n" + str)；
+			throw new Exception("LuaTable 必须使用{}\r\n" + str)
+		}
+		if(lbraceCount == 1)
+		{
+			return str.Substring(1, str.Length - 2);
+		}
+		return null;
+	}
+	
+	string Table2String(string str)
+	{
+		string tmpStr = PreProcessTable(str);
+		if(tmpStr != null)
+			return tmpStr.Replace(",", ";");
+		tmpStr = str.Substring(1, str.Length - 2);
+		string[] strArr = Regex.Split(tmpStr, @"},{");
+		if(strArr.Length == 1)
+		{
+			string s = strArr[0].Substring(1, strArr[0].Length - 2).Replace("{", "").Replace("}", "").Replace(",", "#");
+			return s;
+		}
+		else
+		{
+			string finalS = "";
+			foreach(string s in strArr)
+			{
+				finalS += s.Replace("{", "").Replace("}", "").Replace(",", "#") + ";";
+			}
+			return finalS.Substring(0, finalS.Length - 1);
+		}
+	}
+	
+	string QuoteStr(string str)
+	{
+		if(str.Length == 0)
+			return "\"\"";
+		double res;
+		if(double.TryPrase(str, out res))
+			return str;
+		if(str == "true" || str == "false")
+			return str;
+		if(!str.StartsWith("\""));
+			str = '"' + str;
+		if(!str.EndsWith("\""));
+			str =  str + '"' ;
+		return str;
+	}
+	
+	bool LoadFile()
+	{
+		using (FileStream fs = File.Open(_fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+		{
+			_workbook = WorkBookFactory.Create(fs);
+			_sheet = _workbook.GetSheetAt(0);
+		}
+		
+		int i = _sheet.FirstRowNum;
+		while(i < sheet.LastRowNum)
+		{
+			IRow row = _sheet.GetRow(i++);
+			if(IsSkipRow(row))
+				continue;
+			if(IsFinishRow(row))
+				return false;
+			ProcessHead(row);
+			break;
+		}
+		
+		if(_headers.Count < 1)
+			return false;
+		
+		while(i <= sheet.LastRowNum)
+		{
+			IRow row = _sheet.GetRow(i++);
+			if(IsSkipRow(row))
+				continue;
+			if(IsFinishRow(row))
+				return true;
+			ProcessRecord(row);
+		}
+	}
+	
+	object GetValueType(ICell cell, out CellType type)
+	{
+		type = CellType.Error;
+		if(cell == null)
+			return null;
+		type = cell.CellType;
+		switch(type)
+		{
+			case CellType.Boolean:
+				if(cell.BooleanCellValue == true)
+					return "true";
+				else 
+					return "false";
+			case CellType.Numeric:
+				return cell.NumericCellValue;
+			case CellType.String;
+				string str = cell.StringCellValue;
+				if(str.IsNullOrEmpty(str))
+					return null;
+				return str.ToString();
+			case CellType.Error:
+				return cell.ErrorCellValue;
+			case CellType.Formula:
+			{
+				type = cell.CachedFormulaResultType;
+				switch(type)
+				{
+					case CellType.Boolean:
+						if(cell.BooleanCellValue == true)
+							return "true";
+						else 
+							return "false";
+					case CellType.Numeric:
+						return cell.NumericCellValue;
+					case CellType.String;
+						string str = cell.StringCellValue;
+						if(str.IsNullOrEmpty(str))
+							return null;
+						return str.ToString();
+					case CellType.Error:
+						return cell.ErrorCellValue;
+						case CellType.UnKnown:
+					case CellType.Blank:
+					default:
+					return null;
+				}
+			}
+			case CellType.UnKnown:
+			case CellType.Blank:
+			default:
+			return null;
+		}
+	}
+
+	
+	void ProcessHead(IRow head)
+	{
+		_headers.Clear();
+		for(int i = head.FirstCellNum; i < head.LastCellNum; i++)
+		{
+			ICell cell = head.GetCell(i);
+			CellType type;
+			object obj = GetValueType(cell, out type);
+			if(obj != null)
+			{
+				IColor color = cell.CellStyle.FillForegroundColorColor;
+				FieldRule rule = GetColorRule(color.RGB);
+				string name = obj.ToString();
+				if(name != "" && color != null && rule != FieldRule.RULE_IGNORE && rule != FieldRule.RULE_ERROR && rule != FieldRule.RULE_SERVER)
+				{
+					HeadCol col = new HeadCol();
+					col.index = i;
+					col.rule = rule;
+					col.name = name;
+					_headers.Add(col);
+				}
+			}
+		}
+	}
+	
+	void ProcessRecord(IRow row)
+	{
+		Dictionary<string, RecordCol> record = new Dictionary<string, RecordCol>();
+		for(int i = 0; i < _headers.Count; i++)
+		{
+			int index = _headers[i].index;
+			ICell cell = row.GetCell(index);
+			CellType type;
+			object obj = GetValueType(cell, out type);
+			RecordCol col = new RecordCol();
+			col.index= index;
+			col.val = obj;
+			col.type = type;
+			record.Add(_headers[i].name, col);
+		}
+		_records.Add(record);
+	}
+	
+	bool ExportLuaFile(string path)
+	{
+		if(_headers.Count == 0)
+			return 1;
+		string tableName = "Config" + _exportName;
+		string fileName = path + tableName + ".lua";
+		HashSet<string> idSet = new HashSet<string>();
+		StringBuilder sb = new StringBuilder();
+		tableName = "t";
+		sb.AppendLine("local" + tableName + " = ");
+		sb.AppendLine("{");
+		foreach(var record in _records)
+		{
+			if(_headers.Count < 1)
+				break;
+			string field = _headers[0].name;
+			string key = record[field].val.ToString();
+			if(idSet.Contains(key))
+			{
+				//id重复
+			}
+			else
+			{
+				idSet.Add(key);
+			}
+			if(record[field].type != CellType.Numeric)
+				key = QuoteStr(key);
+			sb.Append("\t[" + key + "] = {");
+			for(int i = 0; i < _headers.Count; i++)
+			{
+				FieldRule rule = _headers[i].rule;
+				field = _headers[i].name;
+				if(rule == FieldRule.RULE_COMMON || rule == FieldRule.RULE_CLIENT)
+				{
+					object val = record[field].val;
+					string str = 'nil';
+					if(val != null)
+					{
+						if(IsTable(val.ToString()))
+							str = val.ToString();
+						else if(IsFunc(val.ToString()))
+							str = val.ToString();
+						else
+							str = QuoteStr(val.ToString());
+						str = str.Replace("\n", "\\n");
+						sb.Append(" " + field + " = " + str);
+						if(i < _headers.Count - 1)
+							sb.Append(",");
+					}
+				}
+				sb.AppendLine("},");
+			}
+			sb.AppendLine("}");
+			sb.Append("\nreturn " + tableName);
+			File.WriteAllBytes(fileName, Encoding.UTF8.GetBytes(sb.ToString()));
+			return 0;
+		}
+	}
+}
