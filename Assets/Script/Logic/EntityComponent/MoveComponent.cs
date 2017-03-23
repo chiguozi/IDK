@@ -139,6 +139,18 @@ public class MoveComponent : ComponentBase
 		_isRotating = true;
 	}
 	
+	public void RotateByDirAndTime(float x, float z, float time)
+	{
+		if(Mathf.Abs(angleSpeed - _angleSpeed) <= 0.01 && Mathf.Abs(x - _dstDir.x) <= 0.01 
+			&& Mathf.Abs(z - _dstDir.z) <= 0.01)
+			return;
+		_dstDir.x = x;
+		_dstDir.z = z;
+		CaculateAngleOffsetAndSymbol(x,z);
+		_angleSpeed = _angleOffset / time;
+		_isRotating = true;
+	}
+	
 	public void SetAngleByDir(float dirX, float dirZ)
 	{
 		_isRotating = false;
