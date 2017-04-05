@@ -94,7 +94,7 @@ public class CameraManager : MonoBehaviour
 		_destPoint = _to + _offsetPos * _distance;
 		if(_isMoving)
 		{
-			_isMoving == true;
+			_isMoving = true;
 			_timeTotal = _time = _duration;
 		}
 	}
