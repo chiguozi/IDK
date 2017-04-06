@@ -72,6 +72,8 @@ public class SVNUtil
                 path += "*";
             }
         }
+        if (path == string.Empty)
+            path = Application.dataPath;
         return path;
     }
 
