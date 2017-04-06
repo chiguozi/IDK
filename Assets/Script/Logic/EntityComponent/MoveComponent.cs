@@ -69,7 +69,7 @@ public class MoveComponent : ComponentBase
 	public void MoveByPosAndSpeed(float x, float z, float speed)
 	{
 		StopMove();
-		_speed = _speed;
+		_speed = speed;
 		_reachDistance = 0;
 		UpdateNextMovePos(x, z);
 		_moveType = MoveType.pos;
@@ -141,8 +141,7 @@ public class MoveComponent : ComponentBase
 	
 	public void RotateByDirAndTime(float x, float z, float time)
 	{
-		if(Mathf.Abs(angleSpeed - _angleSpeed) <= 0.01 && Mathf.Abs(x - _dstDir.x) <= 0.01 
-			&& Mathf.Abs(z - _dstDir.z) <= 0.01)
+		if(Mathf.Abs(x - _dstDir.x) <= 0.01 && Mathf.Abs(z - _dstDir.z) <= 0.01)
 			return;
 		_dstDir.x = x;
 		_dstDir.z = z;

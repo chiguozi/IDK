@@ -33,7 +33,7 @@ public class ShakeAction
 		_time = 0;
 	}
 	
-	public void Start(int count, float interval, float rotationY, Vector3 offset, Vector3 ramdowOffset, float pow = 1f, float zoom = 0f, float intervalDecay = 1f)
+	public void Start(int count, float interval, float rotationY, Vector3 offset, Vector3 ramdomOffset, float pow = 1f, float zoom = 0f, float intervalDecay = 1f)
 	{
 		_count = count;
 		_interval = interval;
@@ -42,7 +42,7 @@ public class ShakeAction
 		_forward = qua * Vector3.forward;
 		_right = qua * Vector3.right;
 		_offset = offset;
-		_randomOffset = _randomOffset;
+		_randomOffset = ramdomOffset;
 		_pow = pow;
 		_zoom = zoom;
 		Reset();

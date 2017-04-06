@@ -1,9 +1,9 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{9C9510E8-5BEB-2369-341B-9C869C83AD15}") = "IDK", "Assembly-CSharp.csproj", "{BA3ED333-338B-16B1-D75B-0E7A20B0267F}"
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDK", "Assembly-CSharp.csproj", "{BA3ED333-338B-16B1-D75B-0E7A20B0267F}"
 EndProject
-Project("{9C9510E8-5BEB-2369-341B-9C869C83AD15}") = "IDK", "Assembly-CSharp-Editor.csproj", "{89503CEA-FE95-E304-27B2-6936E76EBA29}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IDK", "Assembly-CSharp-Editor.csproj", "{89503CEA-FE95-E304-27B2-6936E76EBA29}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
