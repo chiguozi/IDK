@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: hero003
+  m_Shader: {fileID: 4800000, guid: 516415893a5d1934d868619cbd0ce75c, type: 3}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: c138337220c323b4fba552d6fab559c5, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _HighLightTex
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _LightIntensity
+        second: 2.30999994
+      data:
+        first:
+          name: _DIRLightIntensity
+        second: .720000029
+      data:
+        first:
+          name: _Ambient
+        second: 1
+      data:
+        first:
+          name: _RimIntensity
+        second: .400000006
+      data:
+        first:
+          name: _RimFalloff
+        second: 8
+      data:
+        first:
+          name: _HLIntensity
+        second: 1
+    m_Colors:
+      data:
+        first:
+          name: _LightPos
+        second: {r: 1, g: -7.5999999, b: 1, a: 0}
+      data:
+        first:
+          name: _LightColor
+        second: {r: .952941179, g: .972549021, b: .823529422, a: 1}
+      data:
+        first:
+          name: _Color
+        second: {r: .588235319, g: .588235319, b: .588235319, a: 1}
+      data:
+        first:
+          name: _DIRLightColor
+        second: {r: .827450991, g: .784313738, b: .607843161, a: 1}
+      data:
+        first:
+          name: _RimColor
+        second: {r: .309803933, g: .337254912, b: .568627477, a: 1}

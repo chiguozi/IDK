@@ -90,7 +90,14 @@
      <Compile Include="Assets\Script\Util\EnumDefine.cs" />
      <Compile Include="Assets\Script\Util\Extension.cs" />
      <Compile Include="Assets\Script\Util\Util.cs" />
+     <None Include="Assets\T4M\Shaders\ShaderModel2\Unified\T4M 3 TexturesUnified.shader" />
+     <None Include="Assets\Resources\Shader\TransparentDiffuseLightmap.shader" />
+     <None Include="Assets\Resources\Font\nums.fnt" />
+     <None Include="Assets\Resources\Shader\X1-Particle-Add.shader" />
+     <None Include="Assets\Resources\Shader\Mobile-Lightmap-Unlit.shader" />
      <None Include="Assets\Editor\CfgExporter.txt" />
+     <None Include="Assets\Resources\Shader\TransparentDetailCharacter.shader" />
+     <None Include="Assets\Resources\Shader\DiffuseLightmap.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>D:/Program Files/Unity/Unity5.6/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

@@ -1,0 +1,126 @@
+fileFormatVersion: 2
+guid: 5218a9fecb910304fb3292a8aa60074c
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: shilianzhidi1_tengtiao_002
+    100002: shilianzhidi1_tengtiao_075
+    100004: shilianzhidi1_tengtiao_076
+    100006: shilianzhidi1_tengtiao_077
+    100008: shilianzhidi1_tengtiao_078
+    100010: shilianzhidi1_tengtiao_079
+    100012: shilianzhidi1_tengtiao_080
+    100014: shilianzhidi1_tengtiao_081
+    100016: shilianzhidi1_tengtiao_082
+    100018: shilianzhidi1_tengtiao_083
+    100020: shilianzhidi1_tengtiao_084
+    100022: //RootNode
+    100024: shilianzhidi_tengtiao_007
+    100026: shilianzhidi_tengtiao_009
+    400000: shilianzhidi1_tengtiao_002
+    400002: shilianzhidi1_tengtiao_075
+    400004: shilianzhidi1_tengtiao_076
+    400006: shilianzhidi1_tengtiao_077
+    400008: shilianzhidi1_tengtiao_078
+    400010: shilianzhidi1_tengtiao_079
+    400012: shilianzhidi1_tengtiao_080
+    400014: shilianzhidi1_tengtiao_081
+    400016: shilianzhidi1_tengtiao_082
+    400018: shilianzhidi1_tengtiao_083
+    400020: shilianzhidi1_tengtiao_084
+    400022: //RootNode
+    400024: shilianzhidi_tengtiao_007
+    400026: shilianzhidi_tengtiao_009
+    2300000: shilianzhidi1_tengtiao_002
+    2300002: shilianzhidi1_tengtiao_075
+    2300004: shilianzhidi1_tengtiao_076
+    2300006: shilianzhidi1_tengtiao_077
+    2300008: shilianzhidi1_tengtiao_078
+    2300010: shilianzhidi1_tengtiao_079
+    2300012: shilianzhidi1_tengtiao_080
+    2300014: shilianzhidi1_tengtiao_081
+    2300016: shilianzhidi1_tengtiao_082
+    2300018: shilianzhidi1_tengtiao_083
+    2300020: shilianzhidi1_tengtiao_084
+    2300022: shilianzhidi_tengtiao_007
+    2300024: shilianzhidi_tengtiao_009
+    3300000: shilianzhidi1_tengtiao_002
+    3300002: shilianzhidi1_tengtiao_075
+    3300004: shilianzhidi1_tengtiao_076
+    3300006: shilianzhidi1_tengtiao_077
+    3300008: shilianzhidi1_tengtiao_078
+    3300010: shilianzhidi1_tengtiao_079
+    3300012: shilianzhidi1_tengtiao_080
+    3300014: shilianzhidi1_tengtiao_081
+    3300016: shilianzhidi1_tengtiao_082
+    3300018: shilianzhidi1_tengtiao_083
+    3300020: shilianzhidi1_tengtiao_084
+    3300022: shilianzhidi_tengtiao_007
+    3300024: shilianzhidi_tengtiao_009
+    4300000: shilianzhidi1_tengtiao_002
+    4300002: shilianzhidi_tengtiao_007
+    4300004: shilianzhidi1_tengtiao_075
+    4300006: shilianzhidi1_tengtiao_076
+    4300008: shilianzhidi1_tengtiao_077
+    4300010: shilianzhidi1_tengtiao_078
+    4300012: shilianzhidi1_tengtiao_079
+    4300014: shilianzhidi1_tengtiao_080
+    4300016: shilianzhidi1_tengtiao_081
+    4300018: shilianzhidi1_tengtiao_082
+    4300020: shilianzhidi1_tengtiao_083
+    4300022: shilianzhidi1_tengtiao_084
+    4300024: shilianzhidi_tengtiao_009
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: lingmupai_shui_002
+  m_Shader: {fileID: 4800000, guid: 812ec612a1043c94d8a54c2a212f7eb1, type: 3}
+  m_ShaderKeywords: []
+  m_CustomRenderQueue: -1
+  m_SavedProperties:
+    serializedVersion: 2
+    m_TexEnvs:
+      data:
+        first:
+          name: _MainTex
+        second:
+          m_Texture: {fileID: 2800000, guid: 9859ec1ea9d38d04ca66b5b3b8ba0020, type: 3}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+    m_Floats:
+      data:
+        first:
+          name: _Control
+        second: .800000012
+    m_Colors:
+      data:
+        first:
+          name: _Color
+        second: {r: .258823544, g: .258823544, b: .258823544, a: .258823544}

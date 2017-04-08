@@ -1,0 +1,146 @@
+fileFormatVersion: 2
+guid: 88677d47d6338354fbb66368b420b560
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: shilianzhidi1_tengtiao_003
+    100002: shilianzhidi1_tengtiao_017
+    100004: shilianzhidi1_tengtiao_062
+    100006: shilianzhidi1_tengtiao_063
+    100008: shilianzhidi1_tengtiao_064
+    100010: shilianzhidi1_tengtiao_065
+    100012: shilianzhidi1_tengtiao_066
+    100014: shilianzhidi1_tengtiao_067
+    100016: shilianzhidi1_tengtiao_068
+    100018: shilianzhidi1_tengtiao_069
+    100020: shilianzhidi1_tengtiao_070
+    100022: shilianzhidi1_tengtiao_071
+    100024: shilianzhidi1_tengtiao_072
+    100026: shilianzhidi1_tengtiao_073
+    100028: shilianzhidi1_tengtiao_074
+    100030: //RootNode
+    100032: shilianzhidi_tengtiao_006
+    100034: shilianzhidi_tengtiao_010
+    400000: shilianzhidi1_tengtiao_003
+    400002: shilianzhidi1_tengtiao_017
+    400004: shilianzhidi1_tengtiao_062
+    400006: shilianzhidi1_tengtiao_063
+    400008: shilianzhidi1_tengtiao_064
+    400010: shilianzhidi1_tengtiao_065
+    400012: shilianzhidi1_tengtiao_066
+    400014: shilianzhidi1_tengtiao_067
+    400016: shilianzhidi1_tengtiao_068
+    400018: shilianzhidi1_tengtiao_069
+    400020: shilianzhidi1_tengtiao_070
+    400022: shilianzhidi1_tengtiao_071
+    400024: shilianzhidi1_tengtiao_072
+    400026: shilianzhidi1_tengtiao_073
+    400028: shilianzhidi1_tengtiao_074
+    400030: //RootNode
+    400032: shilianzhidi_tengtiao_006
+    400034: shilianzhidi_tengtiao_010
+    2300000: shilianzhidi1_tengtiao_003
+    2300002: shilianzhidi1_tengtiao_017
+    2300004: shilianzhidi1_tengtiao_062
+    2300006: shilianzhidi1_tengtiao_063
+    2300008: shilianzhidi1_tengtiao_064
+    2300010: shilianzhidi1_tengtiao_065
+    2300012: shilianzhidi1_tengtiao_066
+    2300014: shilianzhidi1_tengtiao_067
+    2300016: shilianzhidi1_tengtiao_068
+    2300018: shilianzhidi1_tengtiao_069
+    2300020: shilianzhidi1_tengtiao_070
+    2300022: shilianzhidi1_tengtiao_071
+    2300024: shilianzhidi1_tengtiao_072
+    2300026: shilianzhidi1_tengtiao_073
+    2300028: shilianzhidi1_tengtiao_074
+    2300030: shilianzhidi_tengtiao_006
+    2300032: shilianzhidi_tengtiao_010
+    3300000: shilianzhidi1_tengtiao_003
+    3300002: shilianzhidi1_tengtiao_017
+    3300004: shilianzhidi1_tengtiao_062
+    3300006: shilianzhidi1_tengtiao_063
+    3300008: shilianzhidi1_tengtiao_064
+    3300010: shilianzhidi1_tengtiao_065
+    3300012: shilianzhidi1_tengtiao_066
+    3300014: shilianzhidi1_tengtiao_067
+    3300016: shilianzhidi1_tengtiao_068
+    3300018: shilianzhidi1_tengtiao_069
+    3300020: shilianzhidi1_tengtiao_070
+    3300022: shilianzhidi1_tengtiao_071
+    3300024: shilianzhidi1_tengtiao_072
+    3300026: shilianzhidi1_tengtiao_073
+    3300028: shilianzhidi1_tengtiao_074
+    3300030: shilianzhidi_tengtiao_006
+    3300032: shilianzhidi_tengtiao_010
+    4300000: shilianzhidi1_tengtiao_003
+    4300002: shilianzhidi_tengtiao_006
+    4300004: shilianzhidi1_tengtiao_017
+    4300006: shilianzhidi1_tengtiao_062
+    4300008: shilianzhidi1_tengtiao_063
+    4300010: shilianzhidi1_tengtiao_064
+    4300012: shilianzhidi1_tengtiao_065
+    4300014: shilianzhidi1_tengtiao_066
+    4300016: shilianzhidi1_tengtiao_067
+    4300018: shilianzhidi1_tengtiao_068
+    4300020: shilianzhidi1_tengtiao_069
+    4300022: shilianzhidi1_tengtiao_070
+    4300024: shilianzhidi1_tengtiao_071
+    4300026: shilianzhidi1_tengtiao_072
+    4300028: shilianzhidi1_tengtiao_073
+    4300030: shilianzhidi1_tengtiao_074
+    4300032: shilianzhidi_tengtiao_010
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 

@@ -1,0 +1,122 @@
+fileFormatVersion: 2
+guid: a6c2c123520753a4eae2025e76b14619
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: shilianzhidi03_yiji_001
+    100004: shilianzhidi03_yiji_002
+    100006: shilianzhidi03_yiji_003
+    100008: shilianzhidi03_yiji_004
+    100010: shilianzhidi03_yiji_005
+    100012: shilianzhidi03_yiji_006
+    100014: shilianzhidi03_yiji_007
+    100016: shilianzhidi03_yiji_008
+    100018: shilianzhidi03_yiji_009
+    100020: shilianzhidi03_yiji_010
+    100022: shilianzhidi03_yiji_011
+    100024: test_001
+    400000: //RootNode
+    400002: shilianzhidi03_yiji_001
+    400004: shilianzhidi03_yiji_002
+    400006: shilianzhidi03_yiji_003
+    400008: shilianzhidi03_yiji_004
+    400010: shilianzhidi03_yiji_005
+    400012: shilianzhidi03_yiji_006
+    400014: shilianzhidi03_yiji_007
+    400016: shilianzhidi03_yiji_008
+    400018: shilianzhidi03_yiji_009
+    400020: shilianzhidi03_yiji_010
+    400022: shilianzhidi03_yiji_011
+    400024: test_001
+    2300000: //RootNode
+    2300002: shilianzhidi03_yiji_001
+    2300004: shilianzhidi03_yiji_002
+    2300006: shilianzhidi03_yiji_003
+    2300008: shilianzhidi03_yiji_004
+    2300010: shilianzhidi03_yiji_005
+    2300012: shilianzhidi03_yiji_006
+    2300014: shilianzhidi03_yiji_007
+    2300016: shilianzhidi03_yiji_008
+    2300018: shilianzhidi03_yiji_009
+    2300020: shilianzhidi03_yiji_010
+    2300022: shilianzhidi03_yiji_011
+    3300000: //RootNode
+    3300002: shilianzhidi03_yiji_001
+    3300004: shilianzhidi03_yiji_002
+    3300006: shilianzhidi03_yiji_003
+    3300008: shilianzhidi03_yiji_004
+    3300010: shilianzhidi03_yiji_005
+    3300012: shilianzhidi03_yiji_006
+    3300014: shilianzhidi03_yiji_007
+    3300016: shilianzhidi03_yiji_008
+    3300018: shilianzhidi03_yiji_009
+    3300020: shilianzhidi03_yiji_010
+    3300022: shilianzhidi03_yiji_011
+    4300000: test_001_001
+    4300002: shilianzhidi03_yiji_001
+    4300004: shilianzhidi03_yiji_002
+    4300006: shilianzhidi03_yiji_003
+    4300008: shilianzhidi03_yiji_004
+    4300010: shilianzhidi03_yiji_005
+    4300012: shilianzhidi03_yiji_006
+    4300014: shilianzhidi03_yiji_007
+    4300016: shilianzhidi03_yiji_008
+    4300018: shilianzhidi03_yiji_009
+    4300020: shilianzhidi03_yiji_010
+    4300022: shilianzhidi03_yiji_011
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 

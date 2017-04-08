@@ -1,0 +1,116 @@
+fileFormatVersion: 2
+guid: 69b7028023bb86e46962c5c48d54b138
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: shilianzhidi1_tengtiao_001
+    100002: shilianzhidi1_tengtiao_085
+    100004: shilianzhidi1_tengtiao_086
+    100006: shilianzhidi1_tengtiao_087
+    100008: shilianzhidi1_tengtiao_088
+    100010: shilianzhidi1_tengtiao_089
+    100012: shilianzhidi1_tengtiao_090
+    100014: shilianzhidi1_tengtiao_091
+    100016: shilianzhidi1_tengtiao_092
+    100018: shilianzhidi1_tengtiao_093
+    100020: //RootNode
+    100022: shilianzhidi_tengtiao_008
+    400000: shilianzhidi1_tengtiao_001
+    400002: shilianzhidi1_tengtiao_085
+    400004: shilianzhidi1_tengtiao_086
+    400006: shilianzhidi1_tengtiao_087
+    400008: shilianzhidi1_tengtiao_088
+    400010: shilianzhidi1_tengtiao_089
+    400012: shilianzhidi1_tengtiao_090
+    400014: shilianzhidi1_tengtiao_091
+    400016: shilianzhidi1_tengtiao_092
+    400018: shilianzhidi1_tengtiao_093
+    400020: //RootNode
+    400022: shilianzhidi_tengtiao_008
+    2300000: shilianzhidi1_tengtiao_001
+    2300002: shilianzhidi1_tengtiao_085
+    2300004: shilianzhidi1_tengtiao_086
+    2300006: shilianzhidi1_tengtiao_087
+    2300008: shilianzhidi1_tengtiao_088
+    2300010: shilianzhidi1_tengtiao_089
+    2300012: shilianzhidi1_tengtiao_090
+    2300014: shilianzhidi1_tengtiao_091
+    2300016: shilianzhidi1_tengtiao_092
+    2300018: shilianzhidi1_tengtiao_093
+    2300020: shilianzhidi_tengtiao_008
+    3300000: shilianzhidi1_tengtiao_001
+    3300002: shilianzhidi1_tengtiao_085
+    3300004: shilianzhidi1_tengtiao_086
+    3300006: shilianzhidi1_tengtiao_087
+    3300008: shilianzhidi1_tengtiao_088
+    3300010: shilianzhidi1_tengtiao_089
+    3300012: shilianzhidi1_tengtiao_090
+    3300014: shilianzhidi1_tengtiao_091
+    3300016: shilianzhidi1_tengtiao_092
+    3300018: shilianzhidi1_tengtiao_093
+    3300020: shilianzhidi_tengtiao_008
+    4300000: shilianzhidi1_tengtiao_001
+    4300002: shilianzhidi_tengtiao_008
+    4300004: shilianzhidi1_tengtiao_085
+    4300006: shilianzhidi1_tengtiao_086
+    4300008: shilianzhidi1_tengtiao_087
+    4300010: shilianzhidi1_tengtiao_088
+    4300012: shilianzhidi1_tengtiao_089
+    4300014: shilianzhidi1_tengtiao_090
+    4300016: shilianzhidi1_tengtiao_091
+    4300018: shilianzhidi1_tengtiao_092
+    4300020: shilianzhidi1_tengtiao_093
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
