@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "git", "git.csproj", "{F4234D3C-7715-3A07-FA39-D49D0E0602D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "git.Editor", "git.Editor.csproj", "{1347E969-5168-36F3-ECA4-7CD4DA748153}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F4234D3C-7715-3A07-FA39-D49D0E0602D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4234D3C-7715-3A07-FA39-D49D0E0602D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4234D3C-7715-3A07-FA39-D49D0E0602D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4234D3C-7715-3A07-FA39-D49D0E0602D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1347E969-5168-36F3-ECA4-7CD4DA748153}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1347E969-5168-36F3-ECA4-7CD4DA748153}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1347E969-5168-36F3-ECA4-7CD4DA748153}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1347E969-5168-36F3-ECA4-7CD4DA748153}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
