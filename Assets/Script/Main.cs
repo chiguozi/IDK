@@ -16,6 +16,7 @@ public class Main : MonoBehaviour
 	void Init()
 	{
 		InitMVC();
+        UIManager.Instance.Init();
 	}
 
 	void InitMVC()
