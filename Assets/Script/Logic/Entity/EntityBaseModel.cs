@@ -13,8 +13,9 @@ public partial class EntityBase
 	protected void LoadModel()
 	{
 		//@todo  缓存池
-		//_eventMgr.Send(ComponentEvents.BeginLoadModel, _entityData.url);
-		//AssetBundleManager.Load(_entityData.url, "", OnModelLoaded);
+		_eventMgr.Send(ComponentEvents.BeginLoadModel, _entityBaseData.url);
+        //AssetBundleManager.Load(_entityData.url, "", OnModelLoaded);
+        ResourceManager.LoadResAsset(_entityBaseData.url, OnModelLoaded);
 	}
 	
 	protected virtual void OnModelLoaded(Object model)

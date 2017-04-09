@@ -17,6 +17,7 @@ public class Main : MonoBehaviour
 	{
 		InitMVC();
         UIManager.Instance.Init();
+        World.Test();
 	}
 
 	void InitMVC()
@@ -31,5 +32,8 @@ public class Main : MonoBehaviour
 	{
 		ControlManager.Update();
 		ViewManager.Update();
+        if (Input.inputString == "@")
+            World.ThePlayer.MoveByPos(10, 10, 1);
+        World.Update();
 	}
 }

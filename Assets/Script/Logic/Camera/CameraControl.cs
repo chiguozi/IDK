@@ -21,4 +21,5 @@ public class CameraControl : SingleTon<CameraControl>
 	{
 		_cameraMgr.SetTarget(target, duration);
 	}
+
 }

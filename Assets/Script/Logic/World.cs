@@ -70,4 +70,16 @@ public class World
 		_globalUid++;
 		return _globalUid;
 	}
+
+
+    public static void Test()
+    {
+        EntityBaseData data = new EntityBaseData();
+        data.url = "Prefab/Model/hero003";
+        data.entityType = EntityType.Self;
+        AddEntityToWorld(data);
+        CameraControl.Instance.Init();
+        CameraControl.Instance.InitCamera();
+        CameraControl.Instance.SetFocus(World.ThePlayer.transform, 0.1f);
+    }
 }

@@ -130,6 +130,12 @@ public class ResourceManager
 			callback(obj);
 		}
 	}
-	
+
+
+    public static void LoadResAsset(string url, Action<Object> callback)
+    {
+        var obj = Resources.Load(url);
+        callback(obj);
+    }
 	
 }

@@ -6,7 +6,7 @@ public class EntityPlayer : EntityBase
 {
 	protected UnitSMManager _smMgr;
 	
-	protected virtual void AddComponents()
+	protected override void AddComponent()
 	{
 		AddComponent<MoveComponent>();
 		AddComponent<ActionComponent>();
