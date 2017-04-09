@@ -148,12 +148,19 @@
     <Compile Include="Assets\Editor\BMFont\ByteReader.cs" />
     <Compile Include="Assets\Editor\CustomPostProcessor.cs" />
     <Compile Include="Assets\Editor\FontTool.cs" />
+    <Compile Include="Assets\Editor\ModelTool\ModelTool.cs" />
     <Compile Include="Assets\Editor\SVNUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Editor\CfgExporter.txt" />
     <None Include="Assets\Editor\Lib\NPOI.XML" />
     <None Include="Assets\Resources\Font\nums.fnt" />
+    <None Include="Assets\Resources\Shader\DiffuseLightmap.shader" />
+    <None Include="Assets\Resources\Shader\Mobile-Lightmap-Unlit.shader" />
+    <None Include="Assets\Resources\Shader\TransparentDetailCharacter.shader" />
+    <None Include="Assets\Resources\Shader\TransparentDiffuseLightmap.shader" />
+    <None Include="Assets\Resources\Shader\X1-Particle-Add.shader" />
+    <None Include="Assets\T4M\Shaders\ShaderModel2\Unified\T4M 3 TexturesUnified.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

@@ -6,7 +6,7 @@ using UnityEngine;
 public class EditorPath 
 {
 	public static string AssetPath = "Assets/";
-	public static string ResourcePath = AssetPath + "RosourceLib/";
+	public static string ResourcePath = AssetPath + "Resources/";
 	public static string PrebfabPath = ResourcePath + "Prefab/";
 	public static string UIPrefabPath = PrebfabPath + "UI/";
 	public static string ModelPath = ResourcePath + "Model/";
@@ -19,6 +19,11 @@ public class EditorPath
 	public static string UIShaderPath = ResourcePath + "Shader/CustomUI";
 	
 	static string ABExt = ".ab";
+    public static string FBXExt = ".FBX";
+    public static string AnimExt = ".anim";
+    public static string PrefabExt = ".prefab";
+
+    public static string AnimationFolderPath = "/Animation";
 	
 	public static string GetFullBundleName(string bundleName)
 	{
@@ -64,7 +69,11 @@ public class EditorPath
 		path = path.Substring(0, index);
 		return path;
 	}
-	
+
+    public static string GetFileName(string path)
+    {
+        return Path.GetFileNameWithoutExtension(path);
+    }
 	public static string GetPathExt(string path)
 	{
 		return Path.GetExtension(path);
@@ -75,5 +84,32 @@ public class EditorPath
 	{
 		return true;
 	}
+
+    public static string AssetPathToFullPath(string unityPath)
+    {
+        return Application.dataPath + unityPath.Replace("Assets", "");
+    }
+
+    public static string FullPathToAssetPath(string fullPath)
+    {
+        return fullPath.Replace(Application.dataPath, "Assets");
+    }
+
+    //model相关
+    public static bool CheckIsModelPath(string assetPath)
+    {
+        return assetPath.StartsWith(ModelPath);
+    }
+
+    public static string GetAnimationFilePath(string path, string fileName)
+    {
+        return path + AnimationFolderPath + "/" + fileName + AnimExt;
+    }
+
+    public static string GetModelPrefabPath(string assetPath)
+    {
+        string fileName = GetFileName(assetPath);
+        return PrebfabPath + "Model/" + fileName + PrefabExt;
+    }
 }
 
