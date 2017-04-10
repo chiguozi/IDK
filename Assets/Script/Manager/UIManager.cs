@@ -49,6 +49,15 @@ public class UIManager : SingleTon<UIManager>
 		var wnd = obj as WndBase;
 		wnd.transform.SetParent(_layerMap[wnd.uiLayer], false);
 	}
+
+    public void Update()
+    {
+        var iter = _wndMap.GetEnumerator();
+        while (iter.MoveNext())
+        {
+            iter.Current.Value.Update();
+        }
+    }
 	
 	void InitLayer()
 	{

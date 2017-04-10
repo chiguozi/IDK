@@ -108,7 +108,12 @@ public class WndBase
 	{
 		IsVisible = false;
 	}
-	
+
+    public virtual void Update()
+    {
+
+    }
+
 	public WndBase()
 	{
 		Init();

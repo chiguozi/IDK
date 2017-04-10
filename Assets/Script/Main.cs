@@ -32,6 +32,7 @@ public class Main : MonoBehaviour
 	{
 		ControlManager.Update();
 		ViewManager.Update();
+        UIManager.Instance.Update();
         if (Input.inputString == "@")
             World.ThePlayer.MoveByPos(10, 10, 1);
         World.Update();
