@@ -93,6 +93,7 @@
     <Compile Include="Assets\Script\Logic\EntityComponent\ComponentBase.cs" />
     <Compile Include="Assets\Script\Logic\EntityComponent\MoveComponent.cs" />
     <Compile Include="Assets\Script\Logic\EntityDatas\EntityBaseData.cs" />
+    <Compile Include="Assets\Script\Logic\PlayerOptionController.cs" />
     <Compile Include="Assets\Script\Logic\StateMachine\SMIdle.cs" />
     <Compile Include="Assets\Script\Logic\StateMachine\SMRun.cs" />
     <Compile Include="Assets\Script\Logic\StateMachine\UnitSMManager.cs" />
@@ -101,6 +102,8 @@
     <Compile Include="Assets\Script\Logic\UI\Base\WndBase.cs" />
     <Compile Include="Assets\Script\Logic\UI\Common\Scroll.cs" />
     <Compile Include="Assets\Script\Logic\UI\Common\UIDragEventListener.cs" />
+    <Compile Include="Assets\Script\Logic\UI\Common\UIEventListener.cs" />
+    <Compile Include="Assets\Script\Logic\UI\JoyStick\WndJoyStick.cs" />
     <Compile Include="Assets\Script\Logic\World.cs" />
     <Compile Include="Assets\Script\MVC\ControlBase.cs" />
     <Compile Include="Assets\Script\MVC\ControlManager.cs" />

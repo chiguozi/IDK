@@ -7,6 +7,7 @@ public class ComponentBase
 	public virtual void Init(ComponentEventManager eventMgr)
 	{
 		_eventMgr = eventMgr;
+        RegistEvent();
 	}
 	
 	protected virtual void RegistEvent()

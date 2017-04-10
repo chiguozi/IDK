@@ -5,8 +5,14 @@ using System.Collections.Generic;
 public class EntityPlayer : EntityBase
 {
 	protected UnitSMManager _smMgr;
-	
-	protected override void AddComponent()
+
+    protected override void Init()
+    {
+        base.Init();
+        InitStateMachine();
+    }
+
+    protected override void AddComponent()
 	{
 		AddComponent<MoveComponent>();
 		AddComponent<ActionComponent>();
@@ -29,7 +35,7 @@ public class EntityPlayer : EntityBase
 	
 	protected virtual void InitStateMachine()
 	{
-		_smMgr = new UnitSMManager();
+		_smMgr = new UnitSMManager(this);
 		_smMgr.InitState(UnitState.Idle, new SMIdle());
 		_smMgr.RegistState(UnitState.Run, new SMRun());
 	}

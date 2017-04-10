@@ -20,26 +20,26 @@ public class UIDragEventListener : MonoBehaviour, IBeginDragHandler, IDragHandle
 	public VectorDelegate onDrag;
 	public VoidDelegate onEndDrag;
 	
-	public object _param;
-	public PointerEventData _pointEventData;
+	public object param;
+	public PointerEventData pointEventData;
 	
 	public void OnBeginDrag(PointerEventData eventData)
 	{
-		_pointEventData = eventData;
+		pointEventData = eventData;
 		if(onBeginDrag != null)
 			onBeginDrag(gameObject);
 	}
 	
 	public void OnDrag(PointerEventData eventData)
 	{
-		_pointEventData = eventData;
+		pointEventData = eventData;
 		if(onDrag != null)
 			onDrag(gameObject, eventData.delta);
 	}
 	
 	public void OnEndDrag(PointerEventData eventData)
 	{
-		_pointEventData = eventData;
+		pointEventData = eventData;
 		if(onEndDrag != null)
 			onEndDrag(gameObject);
 	}

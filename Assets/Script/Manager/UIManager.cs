@@ -35,7 +35,9 @@ public class UIManager : SingleTon<UIManager>
 		_uiCamera = GameObject.Find("UI/UICamera").GetComponent<Camera>();
 		InitLayer();
 		RegistEvent();
-	}
+
+        Open<WndJoyStick>();
+    }
 	
 	void RegistEvent()
 	{
@@ -67,6 +69,7 @@ public class UIManager : SingleTon<UIManager>
 		rt.offsetMax = new Vector2(0,0);
 		rt.offsetMin = new Vector2(0,0);
 		_layerMap.Add(name, rt);
+
 	}
 	
 	public void Open<T>(params object[] param) where T : WndBase

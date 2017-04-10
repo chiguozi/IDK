@@ -89,7 +89,7 @@ public class ActionComponent : ComponentBase
 	//判断是否有动作，动态添加到缓存表中
 	bool HasState(string clipName)
 	{
-		if(_modelClipMap.ContainsKey(_url))
+		if(!_modelClipMap.ContainsKey(_url))
 		{
 			_modelClipMap.Add(_url, new Dictionary<string, bool>());
 		}
@@ -98,7 +98,7 @@ public class ActionComponent : ComponentBase
 		{
 			if(_animator == null)
 				return false;
-			if(_clipNameToHashMap.ContainsKey(clipName))
+			if(!_clipNameToHashMap.ContainsKey(clipName))
 				_clipNameToHashMap.Add(clipName, Animator.StringToHash(clipName));
 			clipMap.Add(clipName, _animator.HasState(0, _clipNameToHashMap[clipName]));
 		}

@@ -65,7 +65,7 @@ public class Scroll<T> : BaseUIView where T : BaseScrollItemView
 	void OnBeginDrag(GameObject go)
 	{
 		_isDrag = true;
-		_pointData = _dragListener._pointEventData;
+		_pointData = _dragListener.pointEventData;
 		if(beginDragCallback != null)
 		{
 			beginDragCallback(_pointData);

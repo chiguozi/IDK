@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
-public class CustomPostProcessor :  AssetPostprocessor 
+public class BundlePostprocessor :  AssetPostprocessor 
 {
 	//OnPostprocessAllAssets 必须声明为Static
 	// moveAssets 和 movedFromAssetpaths 两个内容相同
@@ -27,5 +27,4 @@ public class CustomPostProcessor :  AssetPostprocessor
 			BundleNameSetter.HandleAssetBundleName(changedAssets[i]);
 		}
 	}
-
 }

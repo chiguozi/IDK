@@ -18,7 +18,16 @@ public class SMRun : UnitSMBase
 			var entity = target as EntitySelf;
 			if(entity == null)
 				return;
-			entity.MoveByDirAndSpeedImmediately(Convert.ToSingle(param[0]), Convert.ToSingle(param[1]),Convert.ToSingle(param[2]));
+            float x = Convert.ToSingle(param[0]);
+            float z = Convert.ToSingle(param[1]);
+            float speed = Convert.ToSingle(param[2]);
+            if (x == 0 && z == 0)
+            {
+                change = UnitStateChangeEvent.Exit;
+                return;
+            }
+			entity.MoveByDirAndSpeedImmediately(x, z, speed);
+            entity.SetAngleByDir(x, z);
 		}
 		else if(evt == UnitStateEvent.MoveToPos)
 		{

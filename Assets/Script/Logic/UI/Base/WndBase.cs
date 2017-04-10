@@ -10,7 +10,7 @@ public class WndBase
 		get
 		{
 			if(string.IsNullOrEmpty(_defalutPath))
-				_defalutPath = "Prebab/UI/" + GetType().Name;
+				_defalutPath = "Prefab/UI/" + GetType().Name;
 			return _defalutPath;
 		}
 	}
@@ -55,7 +55,8 @@ public class WndBase
 				if(string.IsNullOrEmpty(_path))
 					_path = defaultPath;
 				//@todo 依赖加载
-				//AssetBundleManager.ResLoad(_path, OnWndLoaded);
+				ResourceManager.LoadResAsset(_path, OnWndLoaded);
+                return;
 			}
 			else
 			{
@@ -70,7 +71,7 @@ public class WndBase
 		if(obj == null || _gameObject != null)
 			return;
 		_gameObject = GameObject.Instantiate(obj as GameObject) as GameObject;
-		_rectTransform = _gameObject.AddComponent<RectTransform>();
+		_rectTransform = _gameObject.GetComponent<RectTransform>();
 		_transform = _gameObject.transform;
 		_canvas = _gameObject.AddComponent<Canvas>();
 		//部分面板可以不加？

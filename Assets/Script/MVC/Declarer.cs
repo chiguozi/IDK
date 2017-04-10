@@ -19,6 +19,6 @@ public class ControlDeclarer
 {
 	public static void Regist()
 	{
-		
+        new PlayerOptionController();
 	}
 }

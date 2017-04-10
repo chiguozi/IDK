@@ -17,6 +17,8 @@ public class EditorPath
 	public static string BundleByFolderPath = ResourcePath + "BundleByFolder/";
 	public static string AudioPath = ResourcePath + "Audio/";
 	public static string UIShaderPath = ResourcePath + "Shader/CustomUI";
+
+    public static string UIResPath = AssetPath + "UI/";
 	
 	static string ABExt = ".ab";
     public static string FBXExt = ".FBX";
@@ -110,6 +112,11 @@ public class EditorPath
     {
         string fileName = GetFileName(assetPath);
         return PrebfabPath + "Model/" + fileName + PrefabExt;
+    }
+
+    public static bool IsUIResPath(string assetPath)
+    {
+        return assetPath.StartsWith(UIResPath);
     }
 }
 

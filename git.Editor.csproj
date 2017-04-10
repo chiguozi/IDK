@@ -147,6 +147,8 @@
     <Compile Include="Assets\Editor\BMFont\BetterList.cs" />
     <Compile Include="Assets\Editor\BMFont\ByteReader.cs" />
     <Compile Include="Assets\Editor\CustomPostProcessor.cs" />
+    <Compile Include="Assets\Editor\CustomPostprocesser\BundlePostprocessor.cs" />
+    <Compile Include="Assets\Editor\CustomPostprocesser\TexturePostprocessor.cs" />
     <Compile Include="Assets\Editor\FontTool.cs" />
     <Compile Include="Assets\Editor\ModelTool\ModelTool.cs" />
     <Compile Include="Assets\Editor\SVNUtil.cs" />

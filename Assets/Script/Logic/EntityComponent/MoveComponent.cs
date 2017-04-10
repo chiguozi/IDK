@@ -153,7 +153,7 @@ public class MoveComponent : ComponentBase
 	public void SetAngleByDir(float dirX, float dirZ)
 	{
 		_isRotating = false;
-		var angle = Mathf.Acos(Mathf.Clamp(Vector3.forward.x * dirX * Vector3.forward.z * dirZ, -1, 1)) * Mathf.Rad2Deg;
+		var angle = Mathf.Acos(Mathf.Clamp(Vector3.forward.x * dirX  + Vector3.forward.z * dirZ, -1, 1)) * Mathf.Rad2Deg;
 		if(dirX < 0)
 		{
 			angle = -angle;

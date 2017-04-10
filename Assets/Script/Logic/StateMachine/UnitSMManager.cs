@@ -87,6 +87,11 @@ using System;
 		Dictionary<UnitSMBase, UnitState> _smMap = new Dictionary<UnitSMBase, UnitState>();
 		List<UnitSMBase> _smStackList = new List<UnitSMBase>();
 
+        public UnitSMManager(EntityBase target)
+        {
+            _target = target;
+        }
+        
 		public void InitState(UnitState state, UnitSMBase sm)
 		{
 			sm.Init(_target);
@@ -134,7 +139,7 @@ using System;
 				{
 					var nextSM = _stateMap[nextState];
 					curSm.Exit();
-					_smStackList.Insert(0, curSm);
+					_smStackList.Insert(0, nextSM);
 					_smStackList[0].Enter(evt, param);
 					break;
 				}
