@@ -5,3 +5,9 @@ public enum EntityType
 	Self,
 	Monster,
 }
+
+public enum SceneType
+{
+    City = 1,  // 主城
+    Battle = 2, // 战斗场景
+}

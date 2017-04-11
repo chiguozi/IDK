@@ -26,6 +26,10 @@ public partial class EntityBase
 	public virtual void SetEntityBaseData(EntityBaseData data)
 	{
 		_entityBaseData = data;
+        _position = data.initPos;
+        if (HasComponent<MoveComponent>())
+            GetComponent<MoveComponent>().InitData(data);
+
 	}
 	
 	public Vector3 position 

@@ -94,6 +94,8 @@
     <Compile Include="Assets\Script\Logic\EntityComponent\MoveComponent.cs" />
     <Compile Include="Assets\Script\Logic\EntityDatas\EntityBaseData.cs" />
     <Compile Include="Assets\Script\Logic\PlayerOptionController.cs" />
+    <Compile Include="Assets\Script\Logic\Scene\SceneBase.cs" />
+    <Compile Include="Assets\Script\Logic\Scene\SceneControl.cs" />
     <Compile Include="Assets\Script\Logic\StateMachine\SMIdle.cs" />
     <Compile Include="Assets\Script\Logic\StateMachine\SMRun.cs" />
     <Compile Include="Assets\Script\Logic\StateMachine\UnitSMManager.cs" />

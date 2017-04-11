@@ -42,6 +42,13 @@ public class MoveComponent : ComponentBase
 	float _reachDistance = 0;
 	float _checkTargetInterval = 0;
 	float _checkTargetTime = 0;
+
+    //@todo 组件初始化流程 
+    public void InitData(EntityBaseData data)
+    {
+        _curPos = data.initPos;
+        SetDirByAngle(data.initEuler.y);
+    }
 	
 	public void StopMove()
 	{
@@ -213,7 +220,7 @@ public class MoveComponent : ComponentBase
 		_angleOffset = Mathf.DeltaAngle(_curEulers.y, angle);
 		if(_angleOffset < 0)
 		{
-			_angleOffset = _angleOffset;
+			_angleOffset = -_angleOffset;
 			_angleSymbol = -1;
 		}
 		else

@@ -18,5 +18,14 @@ public static class Events
 		public const string OnWndLoaded = "OnWndLoaded";
 		public const string OnWndHide = "OnWndHide";
 	}
+
+    static public class SceneEvent
+    {
+        public const string EnterScene = "EnterScene";
+        public const string ExitScene = "ExitScene";
+        public const string OnBeginLoadScene = "OnBeginLoadScene";
+        public const string OnSceneLoaded = "OnSceneLoaded";
+    }
+
 	
 }

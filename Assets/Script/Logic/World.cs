@@ -77,6 +77,7 @@ public class World
         EntityBaseData data = new EntityBaseData();
         data.url = "Prefab/Model/hero003";
         data.entityType = EntityType.Self;
+        data.initPos = new Vector3(-44, 0, -14);
         AddEntityToWorld(data);
         CameraControl.Instance.Init();
         CameraControl.Instance.InitCamera();
