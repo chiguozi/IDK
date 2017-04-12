@@ -47,11 +47,11 @@ public class CameraManager : MonoBehaviour
 		_camera.orthographicSize = orthographicSize;
 	}
 	
-	public void SetParams(Vector3 rotation, Vector3 offsetPos, float distance)
+	public void SetParams(Vector3 rotation, Vector3 offsetDir, float distance)
 	{
 		_transform.rotation = Quaternion.Euler(rotation);
-		offsetPos.Normalize();
-		_offsetPos = Quaternion.Euler(0, rotation.y, 0) * offsetPos;
+		offsetDir.Normalize();
+		_offsetPos = Quaternion.Euler(0, rotation.y, 0) * offsetDir;
 		
 		_distance = distance;
 		_toDistance = _distance;
@@ -141,7 +141,7 @@ public class CameraManager : MonoBehaviour
 			SetTarget(_target, _duration);
 		}
 		Vector3 pos = _destPoint;
-		if(_isMoving)
+        if (_isMoving)
 		{
 			_isDirty = true;
 			_time -= dt;
@@ -157,8 +157,10 @@ public class CameraManager : MonoBehaviour
 				Vector3 shakeOffset = _shakeAction.Update();
 				pos += shakeOffset;
 			}
-			if(_isDirty)
-				_transform.position = pos;
+            if (_isDirty)
+            {
+                _transform.position = pos;
+            }
 		}
 	}	
 }

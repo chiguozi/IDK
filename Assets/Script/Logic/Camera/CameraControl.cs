@@ -21,7 +21,7 @@ public class CameraControl : SingleTon<CameraControl>
 	
 	public void InitCamera()
 	{
-		_cameraMgr.SetCameraParams(45, CameraClearFlags.Depth, Color.black, false, 10);
+		_cameraMgr.SetCameraParams(45, CameraClearFlags.Skybox, Color.black, false, 10);
 		_cameraMgr.SetParams(new Vector3(55,90,0), new Vector3(0, 3, -2), 18);
 	}
 	

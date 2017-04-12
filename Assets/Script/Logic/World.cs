@@ -81,6 +81,6 @@ public class World
         AddEntityToWorld(data);
         CameraControl.Instance.Init();
         CameraControl.Instance.InitCamera();
-        CameraControl.Instance.SetFocus(World.ThePlayer.transform, 0.1f);
+        CameraControl.Instance.SetFocus(World.ThePlayer.transform, 0);
     }
 }

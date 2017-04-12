@@ -120,6 +120,8 @@
     <Compile Include="Assets\Script\Manager\ResourceManager.cs" />
     <Compile Include="Assets\Script\Manager\SingleTon.cs" />
     <Compile Include="Assets\Script\Manager\UIManager.cs" />
+    <Compile Include="Assets\Script\Pool\GameObjectPool.cs" />
+    <Compile Include="Assets\Script\Pool\PoolManager.cs" />
     <Compile Include="Assets\Script\SystemConfig.cs" />
     <Compile Include="Assets\Script\Util\EnumDefine.cs" />
     <Compile Include="Assets\Script\Util\Extension.cs" />

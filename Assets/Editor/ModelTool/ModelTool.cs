@@ -184,7 +184,7 @@ public class ModelTool
             (s, n) =>
             {
                 string path = EditorPath.FullPathToAssetPath(s);
-                var clip = AssetDatabase.LoadAssetAtPath<AnimationClip>(EditorPath.FullPathToAssetPath(s));
+                var clip = AssetDatabase.LoadAssetAtPath<AnimationClip>(path);
                 clipList.Add(clip);
             }
             , FileWalkOption.File);

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class WndJoyStick : WndBase
 {
     const int MOVE_DISTANCE = 100;
-    const float CHECK_INTERVAL = 0.1f;
+    const float CHECK_INTERVAL = 0.001f;
     RectTransform _bgRt;
     RectTransform _stickRt;
     UIDragEventListener _listener;
