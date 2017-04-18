@@ -1,0 +1,109 @@
+fileFormatVersion: 2
+guid: fcc10ce9f24feee438f0a66e2770814d
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: bbrd.Zguangquan01
+    100004: pian01_1201_hero001_002
+    100006: pian01_1201_hero001_003
+    100008: pian01_1201_hero001_004
+    100010: pian01_1201_hero001_005
+    100012: pian01_1201_hero001_01
+    100014: pian01_1201_hero001_006
+    100016: pian01_1201_hero001_007
+    100018: pian01_1201_hero001_008
+    400000: //RootNode
+    400002: bbrd.Zguangquan01
+    400004: pian01_1201_hero001_002
+    400006: pian01_1201_hero001_003
+    400008: pian01_1201_hero001_004
+    400010: pian01_1201_hero001_005
+    400012: pian01_1201_hero001_01
+    400014: pian01_1201_hero001_006
+    400016: pian01_1201_hero001_007
+    400018: pian01_1201_hero001_008
+    2300000: //RootNode
+    2300002: bbrd.Zguangquan01
+    2300004: pian01_1201_hero001_002
+    2300006: pian01_1201_hero001_003
+    2300008: pian01_1201_hero001_004
+    2300010: pian01_1201_hero001_005
+    2300012: pian01_1201_hero001_01
+    2300014: pian01_1201_hero001_006
+    2300016: pian01_1201_hero001_007
+    2300018: pian01_1201_hero001_008
+    3300000: //RootNode
+    3300002: bbrd.Zguangquan01
+    3300004: pian01_1201_hero001_002
+    3300006: pian01_1201_hero001_003
+    3300008: pian01_1201_hero001_004
+    3300010: pian01_1201_hero001_005
+    3300012: pian01_1201_hero001_01
+    3300014: pian01_1201_hero001_006
+    3300016: pian01_1201_hero001_007
+    3300018: pian01_1201_hero001_008
+    4300000: bbrd.Zguangquan01
+    4300002: pian01_1201_hero001_01
+    4300004: pian01_1201_hero001_002
+    4300006: pian01_1201_hero001_003
+    4300008: pian01_1201_hero001_004
+    4300010: pian01_1201_hero001_005
+    4300012: pian01_1201_hero001_006
+    4300014: pian01_1201_hero001_007
+    4300016: pian01_1201_hero001_008
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 0
+  userData: 
