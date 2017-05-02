@@ -149,6 +149,8 @@
     <Compile Include="Assets\Editor\CustomPostProcessor.cs" />
     <Compile Include="Assets\Editor\CustomPostprocesser\BundlePostprocessor.cs" />
     <Compile Include="Assets\Editor\CustomPostprocesser\TexturePostprocessor.cs" />
+    <Compile Include="Assets\Editor\DataExporter\DataExporterWindow.cs" />
+    <Compile Include="Assets\Editor\DataExporter\Excel.cs" />
     <Compile Include="Assets\Editor\FontTool.cs" />
     <Compile Include="Assets\Editor\ModelTool\ModelTool.cs" />
     <Compile Include="Assets\Editor\SVNUtil.cs" />
@@ -162,6 +164,7 @@
     <None Include="Assets\Resources\Shader\TransparentDetailCharacter.shader" />
     <None Include="Assets\Resources\Shader\TransparentDiffuseLightmap.shader" />
     <None Include="Assets\Resources\Shader\X1-Particle-Add.shader" />
+    <None Include="Assets\Resources\Shader\X1-Particle-Alpha.shader" />
     <None Include="Assets\T4M\Shaders\ShaderModel2\Unified\T4M 3 TexturesUnified.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -61,9 +61,9 @@ public class SVNUtil
     static string GetSelectObjectPath()
     {
         string path = string.Empty;
-        for (int i = 0; i < Selection.objects.Length; i++) 
+        for (int i = 0; i < Selection.assetGUIDs.Length; i++) 
         {
-            string assetPath = AssetDatabase.GetAssetPath(Selection.objects[i]);
+            string assetPath = AssetDatabase.GUIDToAssetPath(Selection.assetGUIDs[i]);
             path += AssetsPathToFilePath(assetPath);
             path += "*";
             if(!Directory.Exists(assetPath)) 
