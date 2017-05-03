@@ -16,6 +16,7 @@ public class EntityPlayer : EntityBase
 	{
 		AddComponent<MoveComponent>();
 		AddComponent<ActionComponent>();
+        AddComponent<SkillControlComponent>();
 	}
 	
 	public void SendSMEvent(UnitStateEvent evt, params object[] param)

@@ -9,4 +9,9 @@ public class SubSkill
     public List<int> skillActionInfoList = new List<int>();
 
 
+    public void Update()
+    {
+
+    }
+
 }

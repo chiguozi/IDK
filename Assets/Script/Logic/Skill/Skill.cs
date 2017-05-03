@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillInfo
+public class Skill
 {
     //configSkill
     public int skillId;
@@ -16,4 +16,13 @@ public class SkillInfo
 
     public List<SubSkill> subSkillInfoList = new List<SubSkill>();
 
+    public void Init()
+    {
+
+    }
+
+    public void RefreshCd(float deltime)
+    {
+
+    }
 }

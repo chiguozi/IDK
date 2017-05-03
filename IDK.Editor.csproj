@@ -155,6 +155,8 @@
     <Compile Include="Assets\Editor\CustomPostProcessor.cs" />
     <Compile Include="Assets\Editor\CustomPostprocesser\BundlePostprocessor.cs" />
     <Compile Include="Assets\Editor\CustomPostprocesser\TexturePostprocessor.cs" />
+    <Compile Include="Assets\Editor\DataExporter\DataExporterWindow.cs" />
+    <Compile Include="Assets\Editor\DataExporter\Excel.cs" />
     <Compile Include="Assets\Editor\FontTool.cs" />
     <Compile Include="Assets\Editor\ModelTool\ModelTool.cs" />
     <Compile Include="Assets\Editor\SVNUtil.cs" />
