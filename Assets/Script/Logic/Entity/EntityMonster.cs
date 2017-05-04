@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 
-public class EntityMonster : EntityBase
+public class EntityMonster : EntitySprite
 {
 	
 }

@@ -23,14 +23,19 @@ public partial class EntityBase
 	
 	public Vector3 scale {get {return _scale;}}
 	
-	public virtual void SetEntityBaseData(EntityBaseData data)
+	public virtual void InitEntityBaseData(EntityBaseData data)
 	{
 		_entityBaseData = data;
         _position = data.initPos;
+        InitDatas();
         if (HasComponent<MoveComponent>())
             GetComponent<MoveComponent>().InitData(data);
-
 	}
+
+    public virtual void InitDatas()
+    {
+
+    }
 	
 	public Vector3 position 
 	{

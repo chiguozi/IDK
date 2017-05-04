@@ -14,6 +14,8 @@ public class Skill
     public float skillCd;
     public float currentCd;
 
+    public float freezeTime;  //冻结时间
+
     public List<SubSkill> subSkillInfoList = new List<SubSkill>();
 
     public void Init()

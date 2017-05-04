@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 
 
-public class EntityPlayer : EntityBase
+public class EntityPlayer : EntitySprite
 {
 	protected UnitSMManager _smMgr;
 
@@ -14,9 +14,7 @@ public class EntityPlayer : EntityBase
 
     protected override void AddComponent()
 	{
-		AddComponent<MoveComponent>();
-		AddComponent<ActionComponent>();
-        AddComponent<SkillControlComponent>();
+		
 	}
 	
 	public void SendSMEvent(UnitStateEvent evt, params object[] param)

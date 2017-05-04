@@ -51,7 +51,7 @@ public class World
 				entity = new EntityBase();
 				break;
 		}
-		entity.SetEntityBaseData(data);
+		entity.InitEntityBaseData(data);
 		return entity;
 	}
 	
