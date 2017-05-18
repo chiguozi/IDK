@@ -14,7 +14,7 @@ public class Skill
     public float skillCd;
     public float currentCd;
 
-    public float freezeTime;  //冻结时间
+    public float lifeTime;  //技能时长  暂时还没想到好的方法
 
     public List<SubSkill> subSkillInfoList = new List<SubSkill>();
 

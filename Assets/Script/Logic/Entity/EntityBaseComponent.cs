@@ -28,12 +28,12 @@ public partial class EntityBase
 		_componentMap.Add(type, com);
 	}
 	
-	protected void UpdateComponents()
+	protected void UpdateComponents(float delTime)
 	{
 		var iter = _componentMap.GetEnumerator();
 		while(iter.MoveNext())
 		{
-			iter.Current.Value.Update();
+			iter.Current.Value.Update(delTime);
 		}
 	}
 	

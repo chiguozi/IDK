@@ -28,7 +28,7 @@ public class ComponentBase
 		_eventMgr.Send(eventType, obj);
 	}
 	
-	public virtual void Update()
+	public virtual void Update(float delTime)
 	{
 		
 	}

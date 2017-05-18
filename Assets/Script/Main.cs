@@ -36,6 +36,6 @@ public class Main : MonoBehaviour
         UIManager.Instance.Update();
         if (Input.inputString == "@")
             World.ThePlayer.MoveByPos(10, 10, 1);
-        World.Update();
+        World.Update(Time.deltaTime);
 	}
 }

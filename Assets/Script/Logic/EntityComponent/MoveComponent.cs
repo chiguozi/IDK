@@ -246,21 +246,21 @@ public class MoveComponent : ComponentBase
 		_right = _right.CopyXZ(right);
 	}
 	
-	public override void Update()
+	public override void Update(float delTime)
 	{
 		if(!_isMoving)
 		{
 			return;
 		}
 		if(_moveType == MoveType.pos || _moveType == MoveType.dir)
-			UpdatePosByDstPos(true);
+			UpdatePosByDstPos(true, delTime);
 		else if(_moveType == MoveType.target)
-			UpdatePosByTarget();
+			UpdatePosByTarget(delTime);
 	}
 	
-	void UpdatePosByDstPos(bool checkWayPoints)
+	void UpdatePosByDstPos(bool checkWayPoints, float delTime)
 	{
-		var moveOffset = _speed * Time.deltaTime;
+		var moveOffset = _speed * delTime;
 		if(moveOffset > _distance)
 			moveOffset = _distance;
 		_distance -= moveOffset;
@@ -282,15 +282,15 @@ public class MoveComponent : ComponentBase
 		}
 	}
 	
-	void UpdatePosByTarget()
+	void UpdatePosByTarget(float delTime)
 	{
-		RefeshTargetPos();
-		UpdatePosByDstPos(false);
+		RefeshTargetPos(delTime);
+		UpdatePosByDstPos(false, delTime);
 	}
 	
-	void RefeshTargetPos()
+	void RefeshTargetPos(float delTime)
 	{
-		_checkTargetInterval -= Time.deltaTime;
+		_checkTargetInterval -= delTime;
 		if(_checkTargetInterval <= 0 )
 		{
 			_checkTargetTime = _checkTargetInterval;
@@ -307,12 +307,12 @@ public class MoveComponent : ComponentBase
 			//RotateByDirAndTime(_moveDir.x, _moveDir.z, _checkTargetInterval);
 		}
 	}
-	
-	void UpdateAngle()
+
+    void UpdateAngle(float delTime)
 	{
 		if(!_isRotating)
 			return;
-		var positiveAngleOffset = _angleOffset * Time.deltaTime;
+		var positiveAngleOffset = _angleOffset * delTime;
 		if(_angleOffset < positiveAngleOffset)
 		{
 			_angleOffset = positiveAngleOffset;

@@ -103,6 +103,7 @@
     <Compile Include="Assets\Script\Logic\Scene\SceneBase.cs" />
     <Compile Include="Assets\Script\Logic\Scene\SceneControl.cs" />
     <Compile Include="Assets\Script\Logic\Skill\Skill.cs" />
+    <Compile Include="Assets\Script\Logic\Skill\SkillActionBase.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SkillUtil.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SubSkill.cs" />
     <Compile Include="Assets\Script\Logic\StateMachine\SMIdle.cs" />

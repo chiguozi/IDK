@@ -24,8 +24,25 @@ public class SkillControlComponent : ComponentBase
 
     public void UseSkill(int skillId)
     {
+        //技能检测放在外面
+        Skill skill;
+        if(!skillMap.TryGetValue(skillId, out skill))
+        {
+            Debug.LogErrorFormat("找不到技能id: {0}", skillId);
+            return;
+        }
+        if (currentSkill != null)
+            StopSkill();
+        //选择目标 朝向
 
+        currentSkill = skill;
+        currentSubSkillList = skill.subSkillInfoList;  
     }
+
+    public void StopSkill()
+    { }
+
+
 
     bool CheckState()
     {
@@ -37,9 +54,14 @@ public class SkillControlComponent : ComponentBase
         return true;
     }
 
-    public override void Update()
+    public override void Update(float delTime)
     {
-        base.Update();
-
+        if(currentSkill != null && currentSubSkillList.Count > 0)
+        {
+            for(int i = 0; i < currentSubSkillList.Count; i++)
+            {
+                currentSubSkillList[i].Update(delTime);
+            }
+        }
     }
 }

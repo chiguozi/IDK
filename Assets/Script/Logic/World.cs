@@ -54,13 +54,13 @@ public class World
 		entity.InitEntityBaseData(data);
 		return entity;
 	}
-	
-	public static void Update()
+
+    public static void Update(float delTime)
 	{
 		var iter = _entitesMap.GetEnumerator();
 		while(iter.MoveNext())
 		{
-			iter.Current.Value.Update();
+			iter.Current.Value.Update(delTime);
 		}
 	}
 	

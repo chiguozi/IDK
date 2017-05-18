@@ -79,9 +79,9 @@ public partial class EntityBase
 		}
 	}
 	
-	public virtual void Update()
+	public virtual void Update(float delTime)
 	{
-		UpdateComponents();
+		UpdateComponents(delTime);
 	}
 	
 	protected virtual void OnUpdatePos(object obj)
