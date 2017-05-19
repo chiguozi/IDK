@@ -13,7 +13,12 @@ public class SkillControlComponent : ComponentBase
 
     public void SetSkillList(List<int> skillList)
     {
-
+        var skill = new Skill();
+        skill.lifeTime = 0.5f;
+        var subSkill = new SubSkill();
+        subSkill.Init(_eventMgr);
+        skill.subSkillInfoList.Add(subSkill);
+        skillMap.Add(1, skill);
     }
 
     protected override void RegistEvent()
@@ -42,6 +47,10 @@ public class SkillControlComponent : ComponentBase
     public void StopSkill()
     { }
 
+    public bool CheckCanUseSkill(int skillId)
+    {
+        return true;
+    }
 
 
     bool CheckState()
@@ -56,12 +65,15 @@ public class SkillControlComponent : ComponentBase
 
     public override void Update(float delTime)
     {
-        if(currentSkill != null && currentSubSkillList.Count > 0)
+        if (currentSkill == null)
+            return;
+        currentSkill.Update(delTime);  
+        currentSkill.lifeTime -= delTime;
+        if(currentSkill.lifeTime <= 0)
         {
-            for(int i = 0; i < currentSubSkillList.Count; i++)
-            {
-                currentSubSkillList[i].Update(delTime);
-            }
+            currentSkill.Release();
+            currentSkill = null;
+            Send(ComponentEvents.OnSkillEnd);
         }
     }
 }

@@ -25,6 +25,7 @@ public class ActionComponent : ComponentBase
 	
 	public string curClipName {get {return _curClipName;}}
 	public float curSpeed {get {return _curSpeed;}}
+
 	
 	public void CrossFade(string clipName, float speed = 1, float duration = 0.1f, bool force = false, float normalizeTime = 0)
 	{
@@ -39,6 +40,7 @@ public class ActionComponent : ComponentBase
 			ChangeAnimatorSpeed(speed);
 			if(HasState(clipName))
 			{
+                Debug.LogErrorFormat("speed {0}, duration {1} , normalize {2} ", _curSpeed, duration, normalizeTime);
 				_animator.CrossFade(_clipNameToHashMap[clipName], duration, 0, normalizeTime);
 			}
 		}
@@ -50,8 +52,14 @@ public class ActionComponent : ComponentBase
 	{
 		Regist(ComponentEvents.OnModelLoaded, OnModelLoaded);
 		Regist(ComponentEvents.BeginLoadModel, OnBeginLoad);
+        Regist(ComponentEvents.CrossFade, OnCrossFade);
 	}
 	
+    void OnCrossFade(Object obj)
+    {
+        var param = obj as EventParams;
+        CrossFade(param.sParam1, param.fParam1, param.fParam2, param.bParam1, param.fParam3);
+    }
 	
 	void InitClipsLength()
 	{

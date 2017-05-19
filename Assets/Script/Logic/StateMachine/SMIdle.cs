@@ -17,5 +17,10 @@ public class SMIdle : UnitSMBase
 			change = UnitStateChangeEvent.Enter;
 			nextState = UnitState.Run;
 		}
+        if(evt == UnitStateEvent.UseSkill)
+        {
+            change = UnitStateChangeEvent.Enter;
+            nextState = UnitState.Skill;
+        }
 	}
 }

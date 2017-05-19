@@ -11,11 +11,10 @@ public class EntitySelf : EntityPlayer
 			GetComponent<MoveComponent>().MoveByDirAndSpeedImmediately(dirX, dirZ, speed);
 		}
 	}
-	
-	protected override void InitModel(GameObject model)
+
+    protected override void InitModel(GameObject model)
 	{
 		base.InitModel(model);
 		EventManager.Send(Events.GameEvent.OnSelfModelLoaded, model);
 	}
-
 }

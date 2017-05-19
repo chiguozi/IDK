@@ -2,7 +2,7 @@ using System;
 
 public class ComponentBase
 {
-	ComponentEventManager _eventMgr;
+	protected ComponentEventManager _eventMgr;
 	
 	public virtual void Init(ComponentEventManager eventMgr)
 	{

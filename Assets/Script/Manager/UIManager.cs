@@ -62,24 +62,25 @@ public class UIManager : SingleTon<UIManager>
 	void InitLayer()
 	{
 		AddLayer(UILayer.nameLayer);
-		AddLayer(UILayer.mainUILayer);
-		AddLayer(UILayer.popupLayer);
-		AddLayer(UILayer.loadingLayer);
-		AddLayer(UILayer.topLayer);
-	}
+        AddLayer(UILayer.mainUILayer);
+        AddLayer(UILayer.popupLayer);
+        AddLayer(UILayer.loadingLayer);
+        AddLayer(UILayer.topLayer);
+    }
 	
 	void AddLayer(string name)
 	{
-		GameObject layer = new GameObject(name);
+		GameObject layer = new GameObject(name, typeof(RectTransform));
+        layer.layer = LayerMask.NameToLayer("UI");
 		layer.transform.SetParent(_canvasTransform, false);
-		RectTransform rt = layer.AddComponent<RectTransform>();
-		rt.anchorMax = new Vector2(1,1);
-		rt.anchorMin = new Vector2(0,0);
-		rt.offsetMax = new Vector2(0,0);
-		rt.offsetMin = new Vector2(0,0);
-		_layerMap.Add(name, rt);
+        RectTransform rt = layer.GetComponent<RectTransform>();
+        rt.anchorMax = new Vector2(1, 1);
+        rt.anchorMin = new Vector2(0, 0);
+        rt.offsetMax = new Vector2(0, 0);
+        rt.offsetMin = new Vector2(0, 0);
+        _layerMap.Add(name, rt);
 
-	}
+    }
 	
 	public void Open<T>(params object[] param) where T : WndBase
 	{

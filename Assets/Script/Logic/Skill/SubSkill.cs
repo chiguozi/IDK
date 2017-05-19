@@ -6,20 +6,29 @@ public class SubSkill
 {
     public int id;
     public float delay;
-    public List<SkillActionBase> skillActionList = new List<SkillActionBase>();
+    public List<SkillBehaviourBase> skillActionList = new List<SkillBehaviourBase>();
 
     public bool hasTriggered = false;
 
-    public List<SkillActionBase> updateActionList = new List<SkillActionBase>();
+    public List<SkillBehaviourBase> updateActionList = new List<SkillBehaviourBase>();
 
-    public void Init()
+
+    //存储skillaction的公共属性
+
+    public void Init(ComponentEventManager eventMgr)
     {
+        delay = 0;
+        var skillAction = new SkillAnimationBehaviour();
+        skillAction.SetEventManager(eventMgr);
+        skillAction.clipName = "atk_1";
+        skillAction.duration = 0.1f;
+        skillActionList.Add(skillAction);
         //初始化SkillAction
     }
 
     public void Update(float delTime)
     {
-        if(!hasTriggered && delay > 0)
+        if(!hasTriggered && delay >= 0)
         {
             delay -= delTime;
             if(delay <= 0)
@@ -38,8 +47,8 @@ public class SubSkill
     {
         updateActionList.Clear();
         hasTriggered = false;
-        skillActionList.Clear();
-        delay = 0;
+        //skillActionList.Clear();
+        delay = 1;
         id = 0;
     }
 

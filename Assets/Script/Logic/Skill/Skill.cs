@@ -27,4 +27,23 @@ public class Skill
     {
 
     }
+
+    public void Release()
+    {
+        for(int i = 0; i < subSkillInfoList.Count; i++)
+        {
+            subSkillInfoList[i].Release();
+        }
+        lifeTime = 1.3f;
+    }
+    public void Update(float delTime)
+    {
+        if (subSkillInfoList.Count > 0)
+        {
+            for (int i = 0; i < subSkillInfoList.Count; i++)
+            {
+                subSkillInfoList[i].Update(delTime);
+            }
+        }
+    }
 }
