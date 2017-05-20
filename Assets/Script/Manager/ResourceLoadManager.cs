@@ -44,7 +44,7 @@ public class ResourceLoadManager
 		if(nextLoadinfo != null)
 		{
 			_loadingList.Add(nextLoadinfo);
-			Main.Instance.StartCoroutine(Load(nextLoadinfo));
+			//Main.Instance.StartCoroutine(Load(nextLoadinfo));
 		}
 	}
 

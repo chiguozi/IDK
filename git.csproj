@@ -76,8 +76,31 @@
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Assets\Plugins\UnityPackages\JsonNet\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="git.Plugins.csproj">
+      <Project>{FC995B3C-A9C1-28E6-045D-309698E7F3A0}</Project>
+      <Name>git.Plugins</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Script\Data\Base\CfgScriptableObjectContainer.cs" />
+    <Compile Include="Assets\Script\Data\Base\ConfigBinaryBase.cs" />
+    <Compile Include="Assets\Script\Data\Base\ConfigBinaryContainer.cs" />
+    <Compile Include="Assets\Script\Data\Base\ConfigBinaryManager.cs" />
+    <Compile Include="Assets\Script\Data\Base\ConfigFactory.cs" />
+    <Compile Include="Assets\Script\Data\Base\ConfigJsonBase.cs" />
+    <Compile Include="Assets\Script\Data\Base\ConfigJsonContainer.cs" />
+    <Compile Include="Assets\Script\Data\Base\ConfigJsonManager.cs" />
+    <Compile Include="Assets\Script\Data\Base\ConfigSOManager.cs" />
+    <Compile Include="Assets\Script\Data\Base\ConfigSoBase.cs" />
+    <Compile Include="Assets\Script\Data\Base\ConfigTextBase.cs" />
+    <Compile Include="Assets\Script\Data\Base\ConfigTextManager.cs" />
+    <Compile Include="Assets\Script\Data\CfgTest.cs" />
+    <Compile Include="Assets\Script\Data\CfgTest1.cs" />
     <Compile Include="Assets\Script\Event\ComponentEventManager.cs" />
     <Compile Include="Assets\Script\Event\ComponentEvets.cs" />
     <Compile Include="Assets\Script\Event\EventManager.cs" />
@@ -138,11 +161,15 @@
     <Compile Include="Assets\Script\Util\EnumDefine.cs" />
     <Compile Include="Assets\Script\Util\Extension.cs" />
     <Compile Include="Assets\Script\Util\FileUtil.cs" />
+    <Compile Include="Assets\Script\Util\JsonConverter\Vector3Converter.cs" />
+    <Compile Include="Assets\Script\Util\StringUtil.cs" />
     <Compile Include="Assets\Script\Util\Util.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Editor\CfgExporter.txt" />
+    <None Include="Assets\Editor\Lib\EPP\EPPlus.XML" />
     <None Include="Assets\Editor\Lib\NPOI.XML" />
+    <None Include="Assets\Editor\Lib\NPOI\EPPlus.XML" />
     <None Include="Assets\Resources\Font\nums.fnt" />
     <None Include="Assets\Resources\Shader\DiffuseLightmap.shader" />
     <None Include="Assets\Resources\Shader\Mobile-Lightmap-Unlit.shader" />
