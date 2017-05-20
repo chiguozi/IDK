@@ -35,7 +35,11 @@ public class Main : MonoBehaviour
 		ViewManager.Update();
         UIManager.Instance.Update();
         if (Input.inputString == "@")
-            World.ThePlayer.MoveByPos(10, 10, 1);
+        {
+            World.ThePlayer.UseSkill();
+            Effect.CreateEffect("Prefab/Effect/hero001@atk_1_sfx", World.ThePlayer.position, World.ThePlayer.eulers, 3);
+        }
+        EffectManager.Instance.Update(Time.deltaTime);
         World.Update(Time.deltaTime);
 	}
 }

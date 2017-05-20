@@ -14,7 +14,6 @@ public enum SceneType
 
 public enum RecycleType
 {
-    ByUser,
     ByTime,
     ByChangeScene
 }

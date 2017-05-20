@@ -64,18 +64,13 @@ public class World
 		}
 	}
 	
-	static uint _globalUid = 0;
-	static uint GetClientUid()
-	{
-		_globalUid++;
-		return _globalUid;
-	}
+
 
 
     public static void Test()
     {
         EntityBaseData data = new EntityBaseData();
-        data.url = "Prefab/Model/hero003";
+        data.url = "Prefab/Model/hero001";
         data.entityType = EntityType.Self;
         data.initPos = new Vector3(-44, 0, -14);
         AddEntityToWorld(data);

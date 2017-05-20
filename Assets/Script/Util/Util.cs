@@ -21,4 +21,11 @@ public class Util
 		}
 #endif
 	}
+
+    static uint _globalUid = 0;
+    public static uint GetClientUid()
+    {
+        _globalUid++;
+        return _globalUid;
+    }
 }

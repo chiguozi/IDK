@@ -40,7 +40,6 @@ public class ActionComponent : ComponentBase
 			ChangeAnimatorSpeed(speed);
 			if(HasState(clipName))
 			{
-                Debug.LogErrorFormat("speed {0}, duration {1} , normalize {2} ", _curSpeed, duration, normalizeTime);
 				_animator.CrossFade(_clipNameToHashMap[clipName], duration, 0, normalizeTime);
 			}
 		}

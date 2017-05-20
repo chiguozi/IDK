@@ -24,6 +24,7 @@ public class SkillControlComponent : ComponentBase
     protected override void RegistEvent()
     {
         base.RegistEvent();
+        SetSkillList(null);
     }
 
 

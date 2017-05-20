@@ -44,3 +44,22 @@ public class SkillAnimationBehaviour : SkillBehaviourBase
         _comEventMgr.Send(ComponentEvents.CrossFade, param);
     }
 }
+
+public class SkillEffectBehaviour : SkillBehaviourBase
+{
+    public string url;
+    public Vector3 posOffset;
+    public Vector3 eulersOffset;
+    public string bonePath;
+    public float lifeTime;
+    public EffectType effectType = EffectType.Normal;
+
+
+    public override void Trigger()
+    {
+        base.Trigger();
+    }
+}
+
+
+

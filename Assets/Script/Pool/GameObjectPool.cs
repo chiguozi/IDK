@@ -31,6 +31,7 @@ public class GameObjectPool
     Action<GameObject> _actionOnRelease;   //销毁时回调
     Action<GameObject> _actionOnReuse;    //重新使用
     RecycleType _recycleType = RecycleType.ByChangeScene;
+    public RecycleType recycleType { get { return _recycleType; } }
 
     public void Init(RecycleType type, Action<GameObject> recycle, Action<GameObject> reuse, Action<GameObject> release)
     {
@@ -55,6 +56,22 @@ public class GameObjectPool
         _goPoolItemList.Add(poolItem);
     }
 
+   public GameObject Reuse()
+    {
+        if(_goPoolItemList.Count > 0)
+        {
+            var poolItem = _goPoolItemList[_goPoolItemList.Count - 1];
+            _goPoolItemList.Remove(poolItem);
+            var go = poolItem.obj;
+            poolItem.Reset();
+            _goPoolCacheStack.Push(poolItem);
+            if (_actionOnReuse != null)
+                _actionOnReuse(go);
+            return go;
+        }
+        return null;
+    }
+
     public void ReleaseAll()
     {
         for (int i = _goPoolItemList.Count - 1; i >= 0; i--)
@@ -74,6 +91,7 @@ public class GameObjectPool
             item.recycleTime -= Time.unscaledDeltaTime;
             if(item.recycleTime <= 0)
             {
+                Debug.LogError("release");
                 Release(item);
             }
         }

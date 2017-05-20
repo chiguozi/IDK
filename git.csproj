@@ -109,6 +109,8 @@
     <Compile Include="Assets\Script\Logic\Camera\CameraControl.cs" />
     <Compile Include="Assets\Script\Logic\Camera\CameraManager.cs" />
     <Compile Include="Assets\Script\Logic\Camera\ShakeAction.cs" />
+    <Compile Include="Assets\Script\Logic\Effect\Effect.cs" />
+    <Compile Include="Assets\Script\Logic\Effect\EffectManager.cs" />
     <Compile Include="Assets\Script\Logic\Entity\EntityBase.cs" />
     <Compile Include="Assets\Script\Logic\Entity\EntityBaseComponent.cs" />
     <Compile Include="Assets\Script\Logic\Entity\EntityBaseModel.cs" />

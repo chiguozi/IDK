@@ -49,44 +49,45 @@ public class ExcelExporterUtil
     public static string GetClientClassOutputPath()
     {
         string subPath = "";
-        switch(exportType)
-        {
-            case ExcelDataExportType.Text:
-                subPath = "";
-                break;
-            case ExcelDataExportType.Json:
-                subPath = "";
-                break;
-            case ExcelDataExportType.Bytes:
-                subPath = "";
-                break;
-            case ExcelDataExportType.ScriptObject:
-                subPath = "";
-                break;
-        }
-        return ClientScriptOutputPath + "/" + subPath;
+       return ClientScriptOutputPath + "/" + subPath;
+        //switch (exportType)
+        //{
+        //    case ExcelDataExportType.Text:
+        //        subPath = "";
+        //        break;
+        //    case ExcelDataExportType.Json:
+        //        subPath = "";
+        //        break;
+        //    case ExcelDataExportType.Bytes:
+        //        subPath = "";
+        //        break;
+        //    case ExcelDataExportType.ScriptObject:
+        //        subPath = "";
+        //        break;
+        //}
+        //return ClientScriptOutputPath + "/" + subPath;
     }
 
     public static string GetClientDataOutputPath()
     {
         string subPath = "";
         return ClientDataOutputPath + "/" +subPath;
-        switch (exportType)
-        {
-            case ExcelDataExportType.Text:
-                subPath = "/Data/";
-                break;
-            case ExcelDataExportType.Json:
-                subPath = "/Data/";
-                break;
-            case ExcelDataExportType.Bytes:
-                subPath = "/Data/";
-                break;
-            case ExcelDataExportType.ScriptObject:
-                subPath = "/Data/";
-                break;
-        }
-        return ClientDataOutputPath + subPath;
+        //switch (exportType)
+        //{
+        //    case ExcelDataExportType.Text:
+        //        subPath = "/Data/";
+        //        break;
+        //    case ExcelDataExportType.Json:
+        //        subPath = "/Data/";
+        //        break;
+        //    case ExcelDataExportType.Bytes:
+        //        subPath = "/Data/";
+        //        break;
+        //    case ExcelDataExportType.ScriptObject:
+        //        subPath = "/Data/";
+        //        break;
+        //}
+        //return ClientDataOutputPath + subPath;
     }
 
     public static string GetRelativePath(string fullPath)

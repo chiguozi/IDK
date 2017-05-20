@@ -6,11 +6,14 @@ public class SubSkill
 {
     public int id;
     public float delay;
+    public uint ownerId;
     public List<SkillBehaviourBase> skillActionList = new List<SkillBehaviourBase>();
 
     public bool hasTriggered = false;
 
     public List<SkillBehaviourBase> updateActionList = new List<SkillBehaviourBase>();
+
+
 
 
     //存储skillaction的公共属性
@@ -48,7 +51,7 @@ public class SubSkill
         updateActionList.Clear();
         hasTriggered = false;
         //skillActionList.Clear();
-        delay = 1;
+        delay = 0;
         id = 0;
     }
 

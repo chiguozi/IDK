@@ -21,31 +21,51 @@ public class PoolManager : MonoBehaviour {
 
     Dictionary<string, GameObjectPool> _poolMap = new Dictionary<string, GameObjectPool>();
 
-    public GameObjectPool CreateGameObjectPool(string key, RecycleType type, Action<GameObject> actionRecycle, Action<GameObject>actionReuse,Action<GameObject> actionRelease = null)
+    public GameObjectPool GetGameObjectPool(string key, RecycleType type, Action<GameObject> actionRecycle, Action<GameObject>actionReuse,Action<GameObject> actionRelease = null)
     {
         GameObjectPool pool;
         if (!_poolMap.TryGetValue(key, out pool))
         {
             pool = new GameObjectPool();
+            _poolMap.Add(key, pool);
         }
         else
         {
-#if UNITY_EDITOR
-            Debug.LogError("创建重复Key  ----> " + key);
-#endif
+            if(pool.recycleType != type)
+                pool.ReleaseAll();
         }
         pool.Init(type, actionRecycle, actionReuse, actionRelease);
         return pool;
     }
 
+
+
     public void RecycleGameObject(string key, GameObject go, float recycleTime)
     {
         if (!_poolMap.ContainsKey(key))
         {
-            Debug.LogError("没找到key:" + key + "先调用CreateGameObjectPool");
-            return;
+            GetGameObjectPool(key, RecycleType.ByTime, null, null, null);
         }
         _poolMap[key].Recycle(go, recycleTime);
+    }
+
+    public void RecycleGameObject(string key, GameObject go, float recycleTime, Action<GameObject> actionRecycle, Action<GameObject> actionReuse, Action<GameObject> actionRelease = null)
+    {
+        if (!_poolMap.ContainsKey(key))
+        {
+            GetGameObjectPool(key, RecycleType.ByTime, actionRecycle, actionReuse, actionRelease);
+        }
+        _poolMap[key].Recycle(go, recycleTime);
+    }
+
+
+    public GameObject ReuseGameObject(string key)
+    {
+        if(_poolMap.ContainsKey(key))
+        {
+            return _poolMap[key].Reuse();
+        }
+        return null;
     }
 
     public void ReleaseGameObjectPool(string key)
@@ -53,7 +73,6 @@ public class PoolManager : MonoBehaviour {
         if (_poolMap.ContainsKey(key))
             _poolMap[key].ReleaseAll();
     }
-
 
     public void ReleaseAll()
     {
