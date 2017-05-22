@@ -16,7 +16,7 @@ public class SkillControlComponent : ComponentBase
         var skill = new Skill();
         skill.lifeTime = 0.5f;
         var subSkill = new SubSkill();
-        subSkill.Init(_eventCtrl);
+        subSkill.Init(_eventCtrl, _ownerId);
         skill.subSkillInfoList.Add(subSkill);
         skillMap.Add(1, skill);
     }

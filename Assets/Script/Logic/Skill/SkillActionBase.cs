@@ -22,6 +22,11 @@ public class SkillBehaviourBase
     public virtual void Update()
     {
     }
+
+    protected EntitySprite GetOwner()
+    {
+        return World.entites[subSkill.ownerId] as EntitySprite;
+    }
 }
 
 public class SkillAnimationBehaviour : SkillBehaviourBase
@@ -54,6 +59,27 @@ public class SkillEffectBehaviour : SkillBehaviourBase
     public override void Trigger()
     {
         base.Trigger();
+        var owner = GetOwner();
+        Vector3 pos = posOffset;
+        Vector3 euler = eulersOffset;
+        Transform bone = null;
+        if(string.IsNullOrEmpty(bonePath) || owner.GetBone(bonePath) == null)
+        {
+            pos += owner.position;
+            euler += owner.eulers;
+        }
+        else
+        {
+            bone = owner.GetBone(bonePath);
+        }
+        var effect = Effect.CreateEffect(url, pos, euler, owner.uid, lifeTime, bone);
+        effect.OnEffectEnd = OnEffectRelease;
+        _comEventCtrl.Send(ComponentEvents.OnAddRoleEffect, effect.uid);
+    }
+
+    void OnEffectRelease(Effect effect)
+    {
+        _comEventCtrl.Send(ComponentEvents.OnRemoveRoleEffect, effect.uid);
     }
 }
 

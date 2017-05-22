@@ -18,13 +18,21 @@ public class SubSkill
 
     //存储skillaction的公共属性
 
-    public void Init(EventController eventMgr)
+    public void Init(EventController eventMgr, uint playerId)
     {
+        ownerId = playerId;
         delay = 0;
         var skillAction = new SkillAnimationBehaviour();
+        skillAction.subSkill = this;
         skillAction.SetEventController(eventMgr);
         skillAction.clipName = "atk_1";
         //skillAction.duration = 0.1f;
+        skillActionList.Add(skillAction);
+
+        var skilleffAction = new SkillEffectBehaviour();
+        skilleffAction.url = "Prefab/Effect/hero001@atk_1_sfx";
+        skilleffAction.SetEventController(eventMgr);
+        skilleffAction.lifeTime = 3;
         skillActionList.Add(skillAction);
         //初始化SkillAction
     }

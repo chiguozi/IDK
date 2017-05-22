@@ -3,9 +3,11 @@ using System;
 public class ComponentBase
 {
 	protected EventController _eventCtrl;
+    protected uint _ownerId;
 	
-	public virtual void Init(EventController eventMgr)
+	public virtual void Init(EventController eventMgr, uint uid)
 	{
+        _ownerId = uid;
 		_eventCtrl = eventMgr;
         RegistEvent();
 	}

@@ -26,8 +26,17 @@ public partial class EntityBase
 	{
 		_eventCtrl = new EventController();
 	}
-	
-	public virtual void OnEnterWorld(){}
+
+    public virtual void InitEntityBaseData(EntityBaseData data)
+    {
+        _entityBaseData = data;
+        _position = data.initPos;
+        InitDatas();
+        if (HasComponent<MoveComponent>())
+            GetComponent<MoveComponent>().InitData(data);
+    }
+
+    public virtual void OnEnterWorld(){}
 	public virtual void OnLeaveWorld(){}
 	
 	public void CrossFade(string clipName, float speed = 1,  bool force = true, float normalizeTime = 0, float duration = 0.1f)

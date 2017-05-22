@@ -22,15 +22,18 @@ public partial class EntityBase
 	public Transform transform {get {return _transform;}}
 	
 	public Vector3 scale {get {return _scale;}}
+
+    public uint uid
+    {
+        get
+        {
+            if (_entityBaseData == null)
+                return 0;
+            return _entityBaseData.uid;
+        }
+    }
 	
-	public virtual void InitEntityBaseData(EntityBaseData data)
-	{
-		_entityBaseData = data;
-        _position = data.initPos;
-        InitDatas();
-        if (HasComponent<MoveComponent>())
-            GetComponent<MoveComponent>().InitData(data);
-	}
+
 
     public virtual void InitDatas()
     {

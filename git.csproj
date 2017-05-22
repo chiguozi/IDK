@@ -121,6 +121,7 @@
     <Compile Include="Assets\Script\Logic\Entity\EntitySprite.cs" />
     <Compile Include="Assets\Script\Logic\EntityComponent\ActionComponent.cs" />
     <Compile Include="Assets\Script\Logic\EntityComponent\ComponentBase.cs" />
+    <Compile Include="Assets\Script\Logic\EntityComponent\EffectComponent.cs" />
     <Compile Include="Assets\Script\Logic\EntityComponent\MoveComponent.cs" />
     <Compile Include="Assets\Script\Logic\EntityComponent\SkillControlComponent.cs" />
     <Compile Include="Assets\Script\Logic\EntityDatas\EntityBaseData.cs" />

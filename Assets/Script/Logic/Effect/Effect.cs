@@ -19,8 +19,15 @@ public class Effect
     Vector3 _pos;
     Vector3 _scale = Vector3.zero;
     Vector3 _eulers;
+    uint _ownerId;
 
-    public Action<Effect> onRelease;
+    //@todo 判断人物死亡后需不需要立即销毁特效
+    public uint ownerId { get { return _ownerId; } }
+
+
+    public Action<Effect> OnEffectEnd;
+
+
 
     public float lifeTime
     {
@@ -32,6 +39,12 @@ public class Effect
 
     public virtual void Release()
     {
+        if(OnEffectEnd != null)
+        {
+            OnEffectEnd(this);
+            OnEffectEnd = null;
+        }
+
         if (_gameObject != null)
         {
             if (_bone != null)
@@ -95,12 +108,13 @@ public class Effect
         InitGameObject(go);
     }
 
-    public static Effect CreateEffect(string url,  Vector3 pos, Vector3 eulers, float lifeTime = -1, Transform bone = null)
+    public static Effect CreateEffect(string url,  Vector3 pos, Vector3 eulers, uint ownerId, float lifeTime = -1, Transform bone = null)
     {
         Effect effect = new Effect();
         effect.uid = Util.GetClientUid();
         effect._url = url;
         effect._lifeTime = lifeTime;
+        effect._ownerId = ownerId;
         effect._pos = pos;
         effect._eulers = eulers;
         effect._bone = bone;

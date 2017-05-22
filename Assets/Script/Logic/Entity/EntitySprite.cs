@@ -20,6 +20,7 @@ public class EntitySprite : EntityBase
         AddComponent<MoveComponent>();
         AddComponent<ActionComponent>();
         AddComponent<SkillControlComponent>();
+        AddComponent<EffectComponent>();
     }
 
     protected override void RegistEvent()
@@ -33,6 +34,11 @@ public class EntitySprite : EntityBase
     {
         base.InitDatas();
         attributeData = new EntityFightAttributeData();
+    }
+
+    public Transform GetBone(string bone)
+    {
+        return _transform.Find(bone);
     }
 
 
