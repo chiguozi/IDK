@@ -36,22 +36,21 @@ public class World
 		switch(data.entityType)
 		{
 			case EntityType.Base:
-				entity = new EntityBase();
+				entity = new EntityBase(data);
 				break;
 			case EntityType.Player:
-				entity = new EntityPlayer();
+				entity = new EntityPlayer(data);
 				break;
 			case EntityType.Self:
-				entity = new EntitySelf();
+				entity = new EntitySelf(data);
 				break;
 			case EntityType.Monster:
-				entity = new EntityMonster();
+				entity = new EntityMonster(data);
 				break;
 			default:
-				entity = new EntityBase();
+				entity = new EntityBase(data);
 				break;
 		}
-		entity.InitEntityBaseData(data);
 		return entity;
 	}
 

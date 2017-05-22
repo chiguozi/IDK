@@ -5,16 +5,16 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{6F1F8FC8-2E78-ED35-6046-90762708D798}</ProjectGuid>
+    <ProjectGuid>{A31A44DB-4CBD-4F54-330C-9557696C5257}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
+    <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <TargetFrameworkIdentifier>.NETFramework</TargetFrameworkIdentifier>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Unity Full v3.5</TargetFrameworkProfile>
+    <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
     <CompilerResponseFile></CompilerResponseFile>
-    <UnityProjectType>Editor:5</UnityProjectType>
+    <UnityProjectType>GamePlugins:3</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>5.6.0f3</UnityVersion>
     <RootNamespace></RootNamespace>
@@ -52,26 +52,11 @@
     <Reference Include="UnityEngine">
       <HintPath>Library\UnityAssemblies\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor">
-      <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.Advertisements">
-      <HintPath>Library\UnityAssemblies\UnityEditor.Advertisements.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.UI">
-      <HintPath>Library\UnityAssemblies\UnityEditor.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEditor.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.TestRunner">
-      <HintPath>Library\UnityAssemblies\UnityEditor.TestRunner.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.TestRunner">
       <HintPath>Library\UnityAssemblies\UnityEngine.TestRunner.dll</HintPath>
@@ -79,123 +64,27 @@
     <Reference Include="nunit.framework">
       <HintPath>Library\UnityAssemblies\nunit.framework.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.TreeEditor">
-      <HintPath>Library\UnityAssemblies\UnityEditor.TreeEditor.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.Analytics">
       <HintPath>Library\UnityAssemblies\UnityEngine.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.Analytics">
-      <HintPath>Library\UnityAssemblies\UnityEditor.Analytics.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.HoloLens">
-      <HintPath>Library\UnityAssemblies\UnityEditor.HoloLens.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>Library\UnityAssemblies\UnityEngine.HoloLens.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.Purchasing">
-      <HintPath>Library\UnityAssemblies\UnityEditor.Purchasing.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.VR">
-      <HintPath>Library\UnityAssemblies\UnityEditor.VR.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEngine.VR">
       <HintPath>Library\UnityAssemblies\UnityEngine.VR.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.Graphs">
-      <HintPath>Library\UnityAssemblies\UnityEditor.Graphs.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.Android.Extensions">
-      <HintPath>Library\UnityAssemblies\UnityEditor.Android.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.WSA.Extensions">
-      <HintPath>Library\UnityAssemblies\UnityEditor.WSA.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
-      <HintPath>Library\UnityAssemblies\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
-      <HintPath>Library\UnityAssemblies\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
+    <Reference Include="UnityEditor">
+      <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
     <Reference Include="Mono.Cecil">
       <HintPath>Library\UnityAssemblies\Mono.Cecil.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSharpCode.SharpZipLib">
-      <HintPath>Assets\Editor\Lib\ICSharpCode.SharpZipLib.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI">
-      <HintPath>Assets\Editor\Lib\NPOI.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI.OOXML">
-      <HintPath>Assets\Editor\Lib\NPOI.OOXML.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI.OpenXml4Net">
-      <HintPath>Assets\Editor\Lib\NPOI.OpenXml4Net.dll</HintPath>
-    </Reference>
-    <Reference Include="NPOI.OpenXmlFormats">
-      <HintPath>Assets\Editor\Lib\NPOI.OpenXmlFormats.dll</HintPath>
-    </Reference>
-    <Reference Include="EPPlus">
-      <HintPath>Assets\Editor\Lib\EPP\EPPlus.dll</HintPath>
-    </Reference>
-    <Reference Include="EPPlus">
-      <HintPath>Assets\Editor\Lib\NPOI\EPPlus.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Assets\Plugins\UnityPackages\JsonNet\Newtonsoft.Json.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="IDK.Plugins.csproj">
-      <Project>{A31A44DB-4CBD-4F54-330C-9557696C5257}</Project>
-      <Name>IDK.Plugins</Name>
-    </ProjectReference>
-    <ProjectReference Include="IDK.csproj">
-      <Project>{ED146945-A55D-451D-2A86-459E1219BDCA}</Project>
-      <Name>IDK</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Assets\Editor\AssetBundle\AssetFormat.cs" />
-    <Compile Include="Assets\Editor\AssetBundle\BundleNameSetter.cs" />
-    <Compile Include="Assets\Editor\AssetBundle\EditorPath.cs" />
-    <Compile Include="Assets\Editor\BMFont\BMFont.cs" />
-    <Compile Include="Assets\Editor\BMFont\BMFontReader.cs" />
-    <Compile Include="Assets\Editor\BMFont\BMGlyph.cs" />
-    <Compile Include="Assets\Editor\BMFont\BetterList.cs" />
-    <Compile Include="Assets\Editor\BMFont\ByteReader.cs" />
-    <Compile Include="Assets\Editor\CustomPostProcessor.cs" />
-    <Compile Include="Assets\Editor\CustomPostprocesser\BundlePostprocessor.cs" />
-    <Compile Include="Assets\Editor\CustomPostprocesser\TexturePostprocessor.cs" />
-    <Compile Include="Assets\Editor\DataExporter\Data\Excel.cs" />
-    <Compile Include="Assets\Editor\DataExporter\Data\ExcelData.cs" />
-    <Compile Include="Assets\Editor\DataExporter\Data\ExcelGameData.cs" />
-    <Compile Include="Assets\Editor\DataExporter\DataExporterWindow.cs" />
-    <Compile Include="Assets\Editor\DataExporter\ExcelEditorWindow.cs" />
-    <Compile Include="Assets\Editor\DataExporter\ExcelLoader\NPOILoader.cs" />
-    <Compile Include="Assets\Editor\DataExporter\ExcelWriter\EppWriter.cs" />
-    <Compile Include="Assets\Editor\DataExporter\ExcelWriter\NPOIWriter.cs" />
-    <Compile Include="Assets\Editor\DataExporter\Generater\ExcelBinaryClassGenerater.cs" />
-    <Compile Include="Assets\Editor\DataExporter\Generater\ExcelBinaryDataGenerater.cs" />
-    <Compile Include="Assets\Editor\DataExporter\Generater\ExcelJsonClassGenerater.cs" />
-    <Compile Include="Assets\Editor\DataExporter\Generater\ExcelJsonDataGenerater.cs" />
-    <Compile Include="Assets\Editor\DataExporter\Generater\ExcelScriptableObjectClassGenerater.cs" />
-    <Compile Include="Assets\Editor\DataExporter\Generater\ExcelScriptableObjectDataGenerater.cs" />
-    <Compile Include="Assets\Editor\DataExporter\Generater\ExcelTextClassGenerater.cs" />
-    <Compile Include="Assets\Editor\DataExporter\Generater\ExcelTextDataGenerater.cs" />
-    <Compile Include="Assets\Editor\DataExporter\Util\EditorWindowUtil.cs" />
-    <Compile Include="Assets\Editor\DataExporter\Util\ExcelExporterUtil.cs" />
-    <Compile Include="Assets\Editor\DataExporter\Util\Factorys.cs" />
-    <Compile Include="Assets\Editor\DataExporter\Util\SupportTypeUtil.cs" />
-    <Compile Include="Assets\Editor\DataExporter\interface\IExcelClassGenerater.cs" />
-    <Compile Include="Assets\Editor\DataExporter\interface\IExcelDataGenerater.cs" />
-    <Compile Include="Assets\Editor\DataExporter\interface\IExcelLoader.cs" />
-    <Compile Include="Assets\Editor\DataExporter\interface\IExcelWriter.cs" />
-    <Compile Include="Assets\Editor\EditorLayoutUtil.cs" />
-    <Compile Include="Assets\Editor\FontTool.cs" />
-    <Compile Include="Assets\Editor\ModelTool\ModelTool.cs" />
-    <Compile Include="Assets\Editor\SVNUtil.cs" />
+    <Compile Include="Assets\Plugins\UnityPackages\JsonNetSample\JsonNetSample.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\BackUp\CfgExporter.txt" />

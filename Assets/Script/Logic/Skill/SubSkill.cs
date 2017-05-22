@@ -31,9 +31,10 @@ public class SubSkill
 
         var skilleffAction = new SkillEffectBehaviour();
         skilleffAction.url = "Prefab/Effect/hero001@atk_1_sfx";
+        skilleffAction.subSkill = this;
         skilleffAction.SetEventController(eventMgr);
         skilleffAction.lifeTime = 3;
-        skillActionList.Add(skillAction);
+        skillActionList.Add(skilleffAction);
         //初始化SkillAction
     }
 

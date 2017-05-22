@@ -79,15 +79,41 @@
     <Reference Include="Mono.Cecil">
       <HintPath>Library\UnityAssemblies\Mono.Cecil.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Assets\Plugins\UnityPackages\JsonNet\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\Event\ComponentEventManager.cs" />
+    <ProjectReference Include="IDK.Plugins.csproj">
+      <Project>{A31A44DB-4CBD-4F54-330C-9557696C5257}</Project>
+      <Name>IDK.Plugins</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Assets\Script\Data\Base\CfgScriptableObjectContainer.cs" />
+    <Compile Include="Assets\Script\Data\Base\ConfigBinaryBase.cs" />
+    <Compile Include="Assets\Script\Data\Base\ConfigBinaryContainer.cs" />
+    <Compile Include="Assets\Script\Data\Base\ConfigBinaryManager.cs" />
+    <Compile Include="Assets\Script\Data\Base\ConfigFactory.cs" />
+    <Compile Include="Assets\Script\Data\Base\ConfigJsonBase.cs" />
+    <Compile Include="Assets\Script\Data\Base\ConfigJsonContainer.cs" />
+    <Compile Include="Assets\Script\Data\Base\ConfigJsonManager.cs" />
+    <Compile Include="Assets\Script\Data\Base\ConfigSOManager.cs" />
+    <Compile Include="Assets\Script\Data\Base\ConfigSoBase.cs" />
+    <Compile Include="Assets\Script\Data\Base\ConfigTextBase.cs" />
+    <Compile Include="Assets\Script\Data\Base\ConfigTextManager.cs" />
+    <Compile Include="Assets\Script\Data\CfgTest.cs" />
+    <Compile Include="Assets\Script\Data\CfgTest1.cs" />
     <Compile Include="Assets\Script\Event\ComponentEvets.cs" />
+    <Compile Include="Assets\Script\Event\EventController.cs" />
     <Compile Include="Assets\Script\Event\EventManager.cs" />
+    <Compile Include="Assets\Script\Event\EventParams.cs" />
     <Compile Include="Assets\Script\Event\Events.cs" />
     <Compile Include="Assets\Script\Logic\Camera\CameraControl.cs" />
     <Compile Include="Assets\Script\Logic\Camera\CameraManager.cs" />
     <Compile Include="Assets\Script\Logic\Camera\ShakeAction.cs" />
+    <Compile Include="Assets\Script\Logic\Effect\Effect.cs" />
+    <Compile Include="Assets\Script\Logic\Effect\EffectManager.cs" />
     <Compile Include="Assets\Script\Logic\Entity\EntityBase.cs" />
     <Compile Include="Assets\Script\Logic\Entity\EntityBaseComponent.cs" />
     <Compile Include="Assets\Script\Logic\Entity\EntityBaseModel.cs" />
@@ -95,18 +121,24 @@
     <Compile Include="Assets\Script\Logic\Entity\EntityMonster.cs" />
     <Compile Include="Assets\Script\Logic\Entity\EntityPlayer.cs" />
     <Compile Include="Assets\Script\Logic\Entity\EntitySelf.cs" />
+    <Compile Include="Assets\Script\Logic\Entity\EntitySprite.cs" />
     <Compile Include="Assets\Script\Logic\EntityComponent\ActionComponent.cs" />
     <Compile Include="Assets\Script\Logic\EntityComponent\ComponentBase.cs" />
+    <Compile Include="Assets\Script\Logic\EntityComponent\EffectComponent.cs" />
     <Compile Include="Assets\Script\Logic\EntityComponent\MoveComponent.cs" />
     <Compile Include="Assets\Script\Logic\EntityComponent\SkillControlComponent.cs" />
     <Compile Include="Assets\Script\Logic\EntityDatas\EntityBaseData.cs" />
+    <Compile Include="Assets\Script\Logic\EntityDatas\EntityFightAttributeData.cs" />
     <Compile Include="Assets\Script\Logic\PlayerOptionController.cs" />
     <Compile Include="Assets\Script\Logic\Scene\SceneBase.cs" />
     <Compile Include="Assets\Script\Logic\Scene\SceneControl.cs" />
     <Compile Include="Assets\Script\Logic\Skill\Skill.cs" />
+    <Compile Include="Assets\Script\Logic\Skill\SkillActionBase.cs" />
+    <Compile Include="Assets\Script\Logic\Skill\SkillUtil.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SubSkill.cs" />
     <Compile Include="Assets\Script\Logic\StateMachine\SMIdle.cs" />
     <Compile Include="Assets\Script\Logic\StateMachine\SMRun.cs" />
+    <Compile Include="Assets\Script\Logic\StateMachine\SMSkill.cs" />
     <Compile Include="Assets\Script\Logic\StateMachine\UnitSMManager.cs" />
     <Compile Include="Assets\Script\Logic\UI\Base\BaseScrollItemView.cs" />
     <Compile Include="Assets\Script\Logic\UI\Base\BaseUIView.cs" />
@@ -135,11 +167,15 @@
     <Compile Include="Assets\Script\Util\EnumDefine.cs" />
     <Compile Include="Assets\Script\Util\Extension.cs" />
     <Compile Include="Assets\Script\Util\FileUtil.cs" />
+    <Compile Include="Assets\Script\Util\JsonConverter\Vector3Converter.cs" />
+    <Compile Include="Assets\Script\Util\StringUtil.cs" />
     <Compile Include="Assets\Script\Util\Util.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Editor\CfgExporter.txt" />
+    <None Include="Assets\BackUp\CfgExporter.txt" />
+    <None Include="Assets\Editor\Lib\EPP\EPPlus.XML" />
     <None Include="Assets\Editor\Lib\NPOI.XML" />
+    <None Include="Assets\Editor\Lib\NPOI\EPPlus.XML" />
     <None Include="Assets\Resources\Font\nums.fnt" />
     <None Include="Assets\Resources\Shader\DiffuseLightmap.shader" />
     <None Include="Assets\Resources\Shader\Mobile-Lightmap-Unlit.shader" />

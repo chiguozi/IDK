@@ -85,10 +85,10 @@ public class PoolManager : MonoBehaviour {
 
     void Awake()
     {
-        EventManager.Regist(Events.SceneEvent.ExitScene, OnChangeScene);
+        EventManager.Regist<int>(Events.SceneEvent.ExitScene, OnChangeScene);
     }
 
-    void OnChangeScene()
+    void OnChangeScene(int id)
     {
         var iter = _poolMap.GetEnumerator();
         while (iter.MoveNext())

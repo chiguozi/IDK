@@ -15,6 +15,8 @@ public class EntitySprite : EntityBase
         InitStateMachine();
     }
 
+    public EntitySprite(EntityBaseData data) : base(data) { }
+
     protected override void AddComponent()
     {
         AddComponent<MoveComponent>();

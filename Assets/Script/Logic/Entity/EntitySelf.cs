@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class EntitySelf : EntityPlayer
 {
+    public EntitySelf(EntityBaseData data) : base(data) { }
 	public void MoveByDirAndSpeedImmediately(float dirX, float dirZ, float speed)
 	{
 		if(HasComponent<MoveComponent>())

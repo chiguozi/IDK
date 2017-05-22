@@ -4,11 +4,13 @@ using System.Collections.Generic;
 
 public partial class EntityBase
 {
-	public EntityBase()
+	public EntityBase(EntityBaseData data)
 	{
+        _entityBaseData = data;
         Init();
         AddComponent();
 		RegistEvent();
+        InitEntityBaseData(data);
     }
 
 	
@@ -27,7 +29,7 @@ public partial class EntityBase
 		_eventCtrl = new EventController();
 	}
 
-    public virtual void InitEntityBaseData(EntityBaseData data)
+    protected virtual void InitEntityBaseData(EntityBaseData data)
     {
         _entityBaseData = data;
         _position = data.initPos;
