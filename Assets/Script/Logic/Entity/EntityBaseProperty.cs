@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public partial class EntityBase
 {
 	protected EntityBaseData _entityBaseData;
-	protected ComponentEventManager  _eventMgr;
+	protected EventController  _eventCtrl;
 	protected Vector3 _position = Vector3.zero;
 	protected Vector3 _eulers = Vector3.zero;
 	protected Vector3 _scale = Vector3.one;

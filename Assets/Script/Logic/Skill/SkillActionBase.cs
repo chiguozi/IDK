@@ -6,11 +6,11 @@ public class SkillBehaviourBase
 {
     public SubSkill subSkill;
     public bool needUpdate = false;
-    protected ComponentEventManager _comEventMgr;
+    protected EventController _comEventCtrl;
 
-    public void SetEventManager(ComponentEventManager eventMgr)
+    public void SetEventController(EventController eventCtrl)
     {
-        _comEventMgr = eventMgr;
+        _comEventCtrl = eventCtrl;
     }
 
     public virtual void Trigger()
@@ -28,20 +28,16 @@ public class SkillAnimationBehaviour : SkillBehaviourBase
 {
     public string clipName;
     public float speed = 1;
-    public float duration = 0.1f;
+    //duration 暂时不配置
+    //public float duration = 0.1f;
     public bool force = true;
     public float normalizeTime = 0;
 
     public override void Trigger()
     {
         base.Trigger();
-        var param = new EventParams();
-        param.sParam1 = clipName;
-        param.fParam1 = speed;
-        param.fParam2 = duration;
-        param.fParam3 = normalizeTime;
-        param.bParam1 = force;
-        _comEventMgr.Send(ComponentEvents.CrossFade, param);
+
+        _comEventCtrl.Send(ComponentEvents.CrossFade, clipName, speed, force, normalizeTime);
     }
 }
 

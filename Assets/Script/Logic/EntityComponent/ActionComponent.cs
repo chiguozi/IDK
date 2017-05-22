@@ -27,7 +27,7 @@ public class ActionComponent : ComponentBase
 	public float curSpeed {get {return _curSpeed;}}
 
 	
-	public void CrossFade(string clipName, float speed = 1, float duration = 0.1f, bool force = false, float normalizeTime = 0)
+	public void CrossFade(string clipName, float speed = 1, bool force = false, float normalizeTime = 0, float duration = 0.1f)
 	{
 		if(!force && _curClipName == clipName)
 		{
@@ -49,15 +49,14 @@ public class ActionComponent : ComponentBase
 	
 	protected override void RegistEvent()
 	{
-		Regist(ComponentEvents.OnModelLoaded, OnModelLoaded);
-		Regist(ComponentEvents.BeginLoadModel, OnBeginLoad);
-        Regist(ComponentEvents.CrossFade, OnCrossFade);
+		Regist<GameObject>(ComponentEvents.OnModelLoaded, OnModelLoaded);
+		Regist<string>(ComponentEvents.BeginLoadModel, OnBeginLoad);
+        Regist<string, float, bool, float>(ComponentEvents.CrossFade, OnCrossFade);
 	}
 	
-    void OnCrossFade(Object obj)
+    void OnCrossFade(string clipName, float speed, bool force, float normailizeTime)
     {
-        var param = obj as EventParams;
-        CrossFade(param.sParam1, param.fParam1, param.fParam2, param.bParam1, param.fParam3);
+        CrossFade(clipName, speed, force, normailizeTime);
     }
 	
 	void InitClipsLength()
@@ -112,11 +111,11 @@ public class ActionComponent : ComponentBase
 		return clipMap[clipName];
 	}
 	
-	void OnModelLoaded(Object obj)
+	void OnModelLoaded(GameObject go)
 	{
-		if(obj == null)
+		if(go == null)
 			return;
-		_animator = (obj as GameObject).GetComponent<Animator>();
+		_animator = go.GetComponent<Animator>();
 		if(_animator != null)
 		{
 			InitClipsLength();
@@ -124,8 +123,8 @@ public class ActionComponent : ComponentBase
 		}
 	}
 	
-	void OnBeginLoad(Object obj)
+	void OnBeginLoad(string url)
 	{
-		_url = (string)obj;
+		_url = url;
 	}
 }

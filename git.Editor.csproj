@@ -192,7 +192,7 @@
     <Compile Include="Assets\Editor\SVNUtil.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Editor\CfgExporter.txt" />
+    <None Include="Assets\BackUp\CfgExporter.txt" />
     <None Include="Assets\Editor\Lib\EPP\EPPlus.XML" />
     <None Include="Assets\Editor\Lib\NPOI.XML" />
     <None Include="Assets\Editor\Lib\NPOI\EPPlus.XML" />

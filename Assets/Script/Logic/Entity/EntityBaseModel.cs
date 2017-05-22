@@ -13,7 +13,7 @@ public partial class EntityBase
 	protected void LoadModel()
 	{
 		//@todo  缓存池
-		_eventMgr.Send(ComponentEvents.BeginLoadModel, _entityBaseData.url);
+		_eventCtrl.Send(ComponentEvents.BeginLoadModel, _entityBaseData.url);
         //AssetBundleManager.Load(_entityData.url, "", OnModelLoaded);
         ResourceManager.LoadResAsset(_entityBaseData.url, OnModelLoaded);
 	}
@@ -35,6 +35,6 @@ public partial class EntityBase
 		SetPositionInternal();
 		SetEulerInternal();
 		SetScaleInternal();
-		_eventMgr.Send(ComponentEvents.OnModelLoaded, model);
+		_eventCtrl.Send(ComponentEvents.OnModelLoaded, model);
 	}
 }

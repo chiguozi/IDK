@@ -18,13 +18,13 @@ public class SubSkill
 
     //存储skillaction的公共属性
 
-    public void Init(ComponentEventManager eventMgr)
+    public void Init(EventController eventMgr)
     {
         delay = 0;
         var skillAction = new SkillAnimationBehaviour();
-        skillAction.SetEventManager(eventMgr);
+        skillAction.SetEventController(eventMgr);
         skillAction.clipName = "atk_1";
-        skillAction.duration = 0.1f;
+        //skillAction.duration = 0.1f;
         skillActionList.Add(skillAction);
         //初始化SkillAction
     }

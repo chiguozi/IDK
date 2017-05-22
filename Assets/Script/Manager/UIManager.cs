@@ -41,12 +41,11 @@ public class UIManager : SingleTon<UIManager>
 	
 	void RegistEvent()
 	{
-		EventManager.Regist(Events.UIEvent.OnWndLoaded, OnWndLoaded);
+		EventManager.Regist<WndBase>(Events.UIEvent.OnWndLoaded, OnWndLoaded);
 	}
 	
-	void OnWndLoaded(object obj)
+	void OnWndLoaded(WndBase wnd)
 	{
-		var wnd = obj as WndBase;
 		wnd.transform.SetParent(_layerMap[wnd.uiLayer], false);
 	}
 

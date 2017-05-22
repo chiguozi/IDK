@@ -88,7 +88,7 @@ public class PoolManager : MonoBehaviour {
         EventManager.Regist(Events.SceneEvent.ExitScene, OnChangeScene);
     }
 
-    void OnChangeScene(object obj)
+    void OnChangeScene()
     {
         var iter = _poolMap.GetEnumerator();
         while (iter.MoveNext())

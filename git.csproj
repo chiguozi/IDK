@@ -101,8 +101,8 @@
     <Compile Include="Assets\Script\Data\Base\ConfigTextManager.cs" />
     <Compile Include="Assets\Script\Data\CfgTest.cs" />
     <Compile Include="Assets\Script\Data\CfgTest1.cs" />
-    <Compile Include="Assets\Script\Event\ComponentEventManager.cs" />
     <Compile Include="Assets\Script\Event\ComponentEvets.cs" />
+    <Compile Include="Assets\Script\Event\EventController.cs" />
     <Compile Include="Assets\Script\Event\EventManager.cs" />
     <Compile Include="Assets\Script\Event\EventParams.cs" />
     <Compile Include="Assets\Script\Event\Events.cs" />
@@ -168,7 +168,7 @@
     <Compile Include="Assets\Script\Util\Util.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Editor\CfgExporter.txt" />
+    <None Include="Assets\BackUp\CfgExporter.txt" />
     <None Include="Assets\Editor\Lib\EPP\EPPlus.XML" />
     <None Include="Assets\Editor\Lib\NPOI.XML" />
     <None Include="Assets\Editor\Lib\NPOI\EPPlus.XML" />

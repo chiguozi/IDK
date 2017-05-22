@@ -6,17 +6,16 @@ public partial class EntityBase
 {
 	public EntityBase()
 	{
-		Init();
-		AddComponent();
+        Init();
+        AddComponent();
 		RegistEvent();
-	}
+    }
 
 	
 	protected virtual void RegistEvent()
 	{
-		//@todo  下移到entityplayer中
-		_eventMgr.Regist(ComponentEvents.UpdatePos, OnUpdatePos);
-        _eventMgr.Regist(ComponentEvents.UpdateAngle, OnUpdateAngle);
+		_eventCtrl.Regist<Vector3>(ComponentEvents.UpdatePos, OnUpdatePos);
+        _eventCtrl.Regist(ComponentEvents.UpdateAngle, OnUpdateAngle);
     }
 
     protected virtual void AddComponent()
@@ -25,16 +24,16 @@ public partial class EntityBase
 	
 	protected virtual void Init()
 	{
-		_eventMgr = new ComponentEventManager();
+		_eventCtrl = new EventController();
 	}
 	
 	public virtual void OnEnterWorld(){}
 	public virtual void OnLeaveWorld(){}
 	
-	public void CrossFade(string clipName, float speed = 1, float duration = 0.1f, bool force = true, float normalizeTime = 0)
+	public void CrossFade(string clipName, float speed = 1,  bool force = true, float normalizeTime = 0, float duration = 0.1f)
 	{
 		if(HasComponent<ActionComponent>())
-			GetComponent<ActionComponent>().CrossFade(clipName, speed, duration, force, normalizeTime);
+			GetComponent<ActionComponent>().CrossFade(clipName, speed,  force, normalizeTime, duration);
 	}
 	
 	
@@ -43,13 +42,13 @@ public partial class EntityBase
 		UpdateComponents(delTime);
 	}
 	
-	protected virtual void OnUpdatePos(object obj)
+	protected virtual void OnUpdatePos(Vector3 pos)
 	{
 		SetPositionInternal();
 	}
 	
 	
-	protected virtual void OnUpdateAngle(object obj)
+	protected virtual void OnUpdateAngle()
 	{
 		SetEulerInternal();
 	}

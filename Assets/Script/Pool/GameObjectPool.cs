@@ -91,7 +91,6 @@ public class GameObjectPool
             item.recycleTime -= Time.unscaledDeltaTime;
             if(item.recycleTime <= 0)
             {
-                Debug.LogError("release");
                 Release(item);
             }
         }

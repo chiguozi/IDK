@@ -24,7 +24,7 @@ public partial class EntityBase
 	{
 		var type = typeof(T);
 		var com = Activator.CreateInstance<T>();
-		com.Init(_eventMgr);
+		com.Init(_eventCtrl);
 		_componentMap.Add(type, com);
 	}
 	

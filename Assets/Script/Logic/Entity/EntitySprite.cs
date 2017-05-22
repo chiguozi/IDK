@@ -25,8 +25,8 @@ public class EntitySprite : EntityBase
     protected override void RegistEvent()
     {
         base.RegistEvent();
-        _eventMgr.Regist(ComponentEvents.OnMoveEnd, OnMoveEnd);
-        _eventMgr.Regist(ComponentEvents.OnSkillEnd, OnSkillEnd);
+        _eventCtrl.Regist(ComponentEvents.OnMoveEnd, OnMoveEnd);
+        _eventCtrl.Regist(ComponentEvents.OnSkillEnd, OnSkillEnd);
     }
 
     public override void InitDatas()
@@ -78,13 +78,13 @@ public class EntitySprite : EntityBase
     }
 
 
-    protected virtual void OnMoveEnd(object obj)
+    protected virtual void OnMoveEnd()
     {
         //暂时处理
         SendSMEvent(UnitStateEvent.ClearState);
     }
 
-    protected virtual void OnSkillEnd(object obj)
+    protected virtual void OnSkillEnd()
     {
         //暂时处理
         SendSMEvent(UnitStateEvent.ClearState);

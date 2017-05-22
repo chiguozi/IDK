@@ -14,21 +14,21 @@ public class SceneControl : ControlBase
     public override void Init()
     {
         base.Init();
-        EventManager.Regist(Events.SceneEvent.EnterScene, OnEnterScene);
+        EventManager.Regist<int>(Events.SceneEvent.EnterScene, OnEnterScene);
         //@todo  如果有主城 则不需要时间通知 切场景时会自动清理
-        EventManager.Regist(Events.SceneEvent.ExitScene, OnExitScene);
+        EventManager.Regist<int>(Events.SceneEvent.ExitScene, OnExitScene);
     }
 
 
-    void OnEnterScene(object obj)
+    void OnEnterScene(int sceneId)
     {
         if (_curScene != null)
         {
             //不判断场景相同， 因为场景中的数据可能不同，模型房缓存池  数据重新加载
-            OnExitScene(obj);
+            OnExitScene(sceneId);
         }
         SceneData data = new SceneData();
-        data.Id = (int)obj;
+        data.Id = sceneId;
         data.sceneType = SceneType.City;
         data.pos = Vector2.zero;
         data.scales = Vector3.one;
@@ -38,9 +38,8 @@ public class SceneControl : ControlBase
         _curScene.LoadScene();
     }
 
-    void OnExitScene(object obj)
+    void OnExitScene(int id)
     {
-        int id = (int)obj;
         bool needCache = id == _curScene.SceneId;
         //是否需要立即卸载掉
         _curScene.Dispose(needCache);
