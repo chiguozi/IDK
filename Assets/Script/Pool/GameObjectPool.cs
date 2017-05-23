@@ -92,6 +92,7 @@ public class GameObjectPool
             if(item.recycleTime <= 0)
             {
                 Release(item);
+                _goPoolItemList.Remove(item);
             }
         }
     }
