@@ -16,6 +16,7 @@ public class SupportTypeUtil
         { "list<float>", "List<float>" },
         { "dictionary<int,int>", "Dictionary<int, int>" },
         { "dictionary<int,string>", "Dictionary<int, string>" },
+        { "list<list<string>>", "List<List<string>>"},
         //{ "dictionary<string, int>", "Dictionary<string, int>" },
         //{ "dictionary<string, string>", "Dictionary<string, string>" },
         { "des", "des" },
@@ -46,6 +47,7 @@ public class SupportTypeUtil
         { "dictionary<int,string>", "PraseDicIntString" },
         { "vector3", "PraseVector3"},
         { "vector2", "PraseVector2"},
+        { "list<list<string>>", "PraseListListString"},
         //{ "dictionary<string, int>", "PraseDicStringInt" },
         //{ "dictionary<string, string>", "PraseDicStringString" },
         { "des", "PraseDes" },
@@ -64,6 +66,7 @@ public class SupportTypeUtil
         { "des", typeof(string) },
         { "vector3", typeof(Vector3)},
         { "vector2", typeof(Vector2)},
+        { "list<list<string>>", typeof(List<List<string>>)},
     };
 
 

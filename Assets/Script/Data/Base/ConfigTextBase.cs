@@ -100,6 +100,13 @@ public class ConfigTextBase
         return value;
     }
 
+    protected List<List<string>> PraseListListString(string value)
+    {
+        List<List<string>> res;
+        StringUtil.TryPraseListListString(value, out res);
+        return res;
+    }
+
     public virtual void Write(int i, string value)
     {
         Debug.LogError(GetType().Name + "未找到第 + " + i + "个字段");

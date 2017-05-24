@@ -66,7 +66,15 @@ public class ExcelContentCell
             return StringUtil.GetCellObjectValue(_fieldTypeName, stringValue);
         }
     }
-    public string stringValue { get { return originCell.stringValue; } }
+    public string stringValue
+    {
+        get
+        {
+            return originCell.stringValue;
+        }
+    }
+
+
 
     public ExcelContentCell(ExcelCell cell)
     {

@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using System;
-using Config.TextConfig;
 
 public class ConfigTextManager
 {
@@ -44,11 +43,11 @@ public class ConfigTextManager
     public void Init()
     {
         _map.Clear();
-        var datas = Resources.LoadAll("DataT");
+        var datas = Resources.LoadAll("Data");
         for(int i = 0; i < datas.Length; i++) 
         {
             string configName = datas[i].name;
-            string content = ( datas[i] as UnityEngine.TextAsset ).text;
+            string content = ( datas[i] as TextAsset ).text;
             DecodeConfigFile(configName, content);
         }
     }
@@ -67,7 +66,7 @@ public class ConfigTextManager
             if (strs.Length == 0 || strs[0] == string.Empty)
                 continue;
             config = ConfigFactory.Get(configName);
-            //字符串末尾多加一个\t导致数组长度多了1
+        
             for (int j = 0; j < strs.Length; j++)
             {
                 config.Write(j, strs[j]);

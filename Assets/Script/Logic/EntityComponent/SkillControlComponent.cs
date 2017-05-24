@@ -14,11 +14,14 @@ public class SkillControlComponent : ComponentBase
     public void SetSkillList(List<int> skillList)
     {
         var skill = new Skill();
-        skill.lifeTime = 0.5f;
-        var subSkill = new SubSkill();
-        subSkill.Init(_eventCtrl, _ownerId);
-        skill.subSkillInfoList.Add(subSkill);
+        skill.Init(1, _ownerId, _eventCtrl);
         skillMap.Add(1, skill);
+        //var skill = new Skill(;
+        //skill.lifeTime = 0.5f;
+        //var subSkill = new SubSkill();
+        //subSkill.Init(_eventCtrl, _ownerId);
+        //skill.subSkillInfoList.Add(subSkill);
+        //skillMap.Add(1, skill);
     }
 
     protected override void RegistEvent()

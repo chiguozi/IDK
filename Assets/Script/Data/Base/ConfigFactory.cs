@@ -1,17 +1,16 @@
-namespace Config.TextConfig
+public class ConfigFactory
 {
-	public class ConfigFactory
+	public static ConfigTextBase Get(string configName)
 	{
-		public static ConfigTextBase Get(string configName)
+		switch(configName)
 		{
-			switch(configName)
-			{
-				case "Test":
-					return new CfgTest();
-				case "Test1":
-					return new CfgTest1();
-			}
-			return null;
+			case "Effect":
+				return new CfgEffect();
+			case "Skill":
+				return new CfgSkill();
+			case "SubSkill":
+				return new CfgSubSkill();
 		}
+		return null;
 	}
 }

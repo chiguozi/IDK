@@ -56,6 +56,20 @@ public class StringUtil
         return value;
     }
 
+    //(1,2,3,4),(1,2,3,4)
+    public static bool TryPraseListListString(string str, out List<List<string>> value)
+    {
+        value = new List<List<string>>();
+        str = str.TrimStart('(').TrimEnd(')');
+        string[] listStr = str.Split(new string[] { "),(" }, StringSplitOptions.RemoveEmptyEntries );
+        for(int i = 0; i < listStr.Length; i++)
+        {
+            string[] values = listStr[i].Split(',');
+            value.Add(new List<string>(values));
+        }
+        return true;
+    }
+
     public static bool TryPraseInt(string str, out int value)
     {
         value = 0;
@@ -217,5 +231,26 @@ public class StringUtil
         vec = new Vector3(x, y);
         return success;
     }
+
+    public static float ParseFloat(string value, float defalut = 0)
+    {
+        float output;
+        if(float.TryParse(value, out output))
+        {
+            return output;
+        }
+        return defalut;
+    }
+
+    public static int ParseInt(string value, int defalut = 0)
+    {
+        int output;
+        if (int.TryParse(value, out output))
+        {
+            return output;
+        }
+        return defalut;
+    }
+
 
 }

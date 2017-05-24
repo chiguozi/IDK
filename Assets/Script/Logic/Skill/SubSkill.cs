@@ -7,35 +7,29 @@ public class SubSkill
     public int id;
     public float delay;
     public uint ownerId;
+    public CfgSubSkill cfg;
     public List<SkillBehaviourBase> skillActionList = new List<SkillBehaviourBase>();
 
     public bool hasTriggered = false;
 
     public List<SkillBehaviourBase> updateActionList = new List<SkillBehaviourBase>();
 
-
-
-
-    //存储skillaction的公共属性
-
-    public void Init(EventController eventMgr, uint playerId)
+    public void Init(EventController eventMgr, uint playerId, List<string> args)
     {
         ownerId = playerId;
-        delay = 0;
-        var skillAction = new SkillAnimationBehaviour();
-        skillAction.subSkill = this;
-        skillAction.SetEventController(eventMgr);
-        skillAction.clipName = "atk_1";
-        //skillAction.duration = 0.1f;
-        skillActionList.Add(skillAction);
-
-        var skilleffAction = new SkillEffectBehaviour();
-        skilleffAction.url = "Prefab/Effect/hero001@atk_1_sfx";
-        skilleffAction.subSkill = this;
-        skilleffAction.SetEventController(eventMgr);
-        skilleffAction.lifeTime = 3;
-        skillActionList.Add(skilleffAction);
-        //初始化SkillAction
+        id = StringUtil.ParseInt(args[0]);
+        delay = StringUtil.ParseFloat(args[1], 0);
+        cfg = ConfigTextManager.Instance.GetConfig<CfgSubSkill>(id);
+        if(cfg == null)
+        {
+            Debug.LogError("找不到子技能 id :" + id);
+            return;
+        }
+        for(int i = 0; i < cfg.skillActionList.Count; i++)
+        {
+            var behaviour = SkillBehaviourFactory.Create(cfg.skillActionList[i], this, eventMgr);
+            skillActionList.Add(behaviour);
+        }
     }
 
     public void Update(float delTime)

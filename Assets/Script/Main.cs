@@ -17,6 +17,7 @@ public class Main : MonoBehaviour
 	{
 		InitMVC();
         UIManager.Instance.Init();
+        ConfigTextManager.Instance.Init();
         EventManager.Send(Events.SceneEvent.EnterScene, 1);
         World.Test();
 	}
