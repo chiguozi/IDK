@@ -40,8 +40,7 @@ public class ActionComponent : ComponentBase
 			ChangeAnimatorSpeed(speed);
 			if(HasState(clipName))
 			{
-                //_animator.CrossFade(_clipNameToHashMap[clipName], duration, 0, normalizeTime);
-                _animator.CrossFade(Animator.StringToHash(clipName), duration, 0, normalizeTime);
+                _animator.CrossFade(_clipNameToHashMap[clipName], duration, 0, normalizeTime);
             }
         }
 		//如果需要可以添加事件
