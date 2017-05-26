@@ -33,21 +33,21 @@ public class SkillBehaviourBase
     public virtual void Setup(List<string> valueList)
     { }
 
-    protected float PraseFloat(List<string> valueList, int index, float def = 0)
+    protected float ParseFloat(List<string> valueList, int index, float def = 0)
     {
         if (index >= valueList.Count)
             return def;
         return StringUtil.ParseFloat(valueList[index], def);
     }
 
-    protected int PraseInt(List<string> valueList, int index, int def = 0)
+    protected int ParseInt(List<string> valueList, int index, int def = 0)
     {
         if (index >= valueList.Count)
             return def;
         return StringUtil.ParseInt(valueList[index], def);
     }
 
-    protected string PraseString(List<string> valueList, int index, string def = "")
+    protected string ParseString(List<string> valueList, int index, string def = "")
     {
         if (index >= valueList.Count)
             return def;

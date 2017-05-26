@@ -47,13 +47,21 @@ public class ExcelContentCell
 {
     public string fieldName;
     string _fieldTypeName;
+    string _stringValue;
+    IType _type;
+
     public string fieldTypeName
     {
         get { return _fieldTypeName; }
         set
         {
-            SupportTypeUtil.TryGetTypeName(value, out _fieldTypeName);
-            fieldType = SupportTypeUtil.TryGetType(value);
+            var type = SupportTypeUtil.GetIType(value);
+            if (type != null)
+            {
+                _fieldTypeName = type.realName;
+                fieldType = type.type;
+                _type = type;
+            }
         }
     }
     public Type fieldType;
@@ -63,22 +71,43 @@ public class ExcelContentCell
     {
         get
         {
-            return StringUtil.GetCellObjectValue(_fieldTypeName, stringValue);
+            if (_type != null)
+            {
+                return _type.GetValue(_stringValue);
+            }
+            else
+                return _stringValue;
         }
     }
     public string stringValue
     {
         get
         {
-            return originCell.stringValue;
+            return _stringValue;
         }
     }
-
-
 
     public ExcelContentCell(ExcelCell cell)
     {
         originCell = cell;
+    }
+
+    bool CheckCell()
+    { return true; }
+
+    public void FormatCell()
+    {
+        string res = originCell.stringValue;
+        if(fieldType != typeof(string))
+            res = ExcelExporterUtil.RemoveWhiteSpaceOutTheWordFull(res);
+        res = ExcelExporterUtil.RemoveWordFirstQuotation(res);
+        _stringValue = res;
+        
+    }
+
+    public bool CheckValid()
+    {
+        return _type == null ? false : _type.CheckValue(_stringValue);
     }
 }
 public class ExcelCell

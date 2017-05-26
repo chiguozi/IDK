@@ -10,9 +10,9 @@ public class SkillEffectBehaviour : SkillBehaviourBase
 
     public override void Setup(List<string> valueList)
     {
-        effectId = PraseInt(valueList, 1, 0);
-        lifeTime = PraseFloat(valueList, 2, 3);
-        effectType = (EffectType)PraseInt(valueList, 3, (int)effectType);
+        effectId = ParseInt(valueList, 1, 0);
+        lifeTime = ParseFloat(valueList, 2, 3);
+        effectType = (EffectType)ParseInt(valueList, 3, (int)effectType);
     }
 
 

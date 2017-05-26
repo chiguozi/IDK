@@ -45,49 +45,46 @@ public class ExcelExporterUtil
     public static string SeverClassOutputPath = "";
 
 
-    //测试使用，正式使用同一个路径
     public static string GetClientClassOutputPath()
     {
-        string subPath = "";
-       return ClientScriptOutputPath + "/" + subPath;
-        //switch (exportType)
+        //string subPath = "";
+        //switch(exportType)
         //{
         //    case ExcelDataExportType.Text:
-        //        subPath = "";
+        //        subPath = "/ConfigT/";
         //        break;
         //    case ExcelDataExportType.Json:
-        //        subPath = "";
+        //        subPath = "/ConfigJ/";
         //        break;
         //    case ExcelDataExportType.Bytes:
-        //        subPath = "";
+        //        subPath = "/ConfigB/";
         //        break;
         //    case ExcelDataExportType.ScriptObject:
-        //        subPath = "";
+        //        subPath = "/ConfigS/";
         //        break;
         //}
-        //return ClientScriptOutputPath + "/" + subPath;
+        return ClientScriptOutputPath + "/";
     }
 
     public static string GetClientDataOutputPath()
     {
-        string subPath = "";
-        return ClientDataOutputPath + "/" +subPath;
+        //string subPath = "";
         //switch (exportType)
         //{
         //    case ExcelDataExportType.Text:
-        //        subPath = "/Data/";
+        //        subPath = "/DataT/";
         //        break;
         //    case ExcelDataExportType.Json:
-        //        subPath = "/Data/";
+        //        subPath = "/DataJ/";
         //        break;
         //    case ExcelDataExportType.Bytes:
-        //        subPath = "/Data/";
+        //        subPath = "/DataB/";
         //        break;
         //    case ExcelDataExportType.ScriptObject:
-        //        subPath = "/Data/";
+        //        subPath = "/DataS/";
         //        break;
         //}
-        //return ClientDataOutputPath + subPath;
+        return ClientDataOutputPath + "/";
     }
 
     public static string GetRelativePath(string fullPath)
@@ -119,31 +116,56 @@ public class ExcelExporterUtil
         return excelName + ".bytes";
     }
 
+    public static void AddCommonSpaceToSb(StringBuilder sb)
+    {
+        sb.AppendLine("using System;");
+        sb.AppendLine("using System.Collections.Generic;");
+        sb.AppendLine("using UnityEngine;");
+        sb.AppendLine();
+    }
+
     public static string GenerateCommonClassStr(string nameSpace, string className, string configBase, ExcelGameData data, bool needSerializable = true)
     {
         List<string> types = data.fieldTypeList;
         List<string> fields = data.fieldNameList;
 
         StringBuilder sb = new StringBuilder();
-        sb.AppendLine("using System;");
-        sb.AppendLine("using System.Collections.Generic;");
-        sb.AppendLine("using UnityEngine;");
-        sb.AppendLine();
+        AddCommonSpaceToSb(sb);
+        AddContentToSb(sb, nameSpace, className, configBase, types, fields, needSerializable);
 
+        return sb.ToString();
+    }
+
+    public static void AddContentToSb(StringBuilder sb, string nameSpace, string className, string configBase, List<string> types, List<string> fields, bool needSerializable)
+    {
         sb.AppendLine("namespace " + nameSpace);
         sb.AppendLine("{");
-        if(needSerializable)
+        if (needSerializable)
             sb.AppendLine("\t[Serializable]");
         sb.AppendLine("\tpublic class " + className + ": " + configBase);
         sb.AppendLine("\t{");
-        for (int i = 1; i < types.Count; i++)
-        {
-            if (Regex.IsMatch(types[i], @"^[a-zA-Z_0-9><,]*$") && Regex.IsMatch(fields[i], @"^[a-zA-Z_0-9]*$"))
-                sb.AppendLine(string.Format("\t\tpublic {0} {1};", types[i], fields[i]));
-        }
+
+        AddFieldsToSb(sb, types, fields);
+
         sb.AppendLine("\t}");
         sb.AppendLine("}");
-        return sb.ToString();
+    }
+
+
+    public static void AddFieldsToSb(StringBuilder sb, List<string> types, List<string> fields)
+    {
+        for (int i = 1; i < types.Count; i++)
+        {
+            var type = SupportTypeUtil.GetIType(types[i]);
+            if (type != null)
+            {
+                if(exportType == ExcelDataExportType.Json && type.isUnityType)
+                {
+                    sb.AppendLine("\t\t" + type.jsonAttributeStr);
+                }
+                sb.AppendLine(string.Format("\t\tpublic {0} {1};", type.realName, fields[i]));
+            }
+        }
     }
 
     public static Type GetDataType(string nameSpace, string className)
@@ -157,5 +179,49 @@ public class ExcelExporterUtil
         return type;
     }
 
+    public static string RemoveWhiteSpaceOutTheWordFull(string content)
+    {
+        content = RemoveWhiteSpaceOutTheWord(content, ',');
+        content = RemoveWhiteSpaceOutTheWord(content, '(');
+        content = RemoveWhiteSpaceOutTheWord(content, ')');
+        return content;
+    }
 
+    static string RemoveWhiteSpaceOutTheWord(string content, char sep)
+    {
+        string[] subs = content.Split(new char[] { sep });
+        for (int i = 0; i < subs.Length; i++)
+        {
+            subs[i] = subs[i].TrimStart(' ', '\t');
+            subs[i] = subs[i].TrimEnd(' ', '\t');
+        }
+        content = string.Join(new string(sep, 1), subs);
+        return content;
+    }
+
+    //需要先移除空白符
+    //@todo  正则
+    public static string RemoveWordFirstQuotation(string content)
+    {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < content.Length; i++)
+        {
+            bool needJump = false;
+            if (content[i] == '"')
+            {
+                //首字符需要去掉
+                if (i == 0)
+                    needJump = true;
+                else if (content[i - 1] == '(' || content[i - 1] == ',')
+                    needJump = true;
+                if (i == content.Length - 1)
+                    needJump = true;
+                else if (content[i + 1] == ')' || content[i + 1] == ',')
+                    needJump = true;
+            }
+            if (!needJump)
+                sb.Append(content[i]);
+        }
+        return sb.ToString();
+    }
 }

@@ -172,7 +172,7 @@ public class CfgExporter
 		if(str.Length == 0)
 			return "\"\"";
 		double res;
-		if(double.TryPrase(str, out res))
+		if(double.TryParse(str, out res))
 			return str;
 		if(str == "true" || str == "false")
 			return str;

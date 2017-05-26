@@ -18,20 +18,17 @@ public class ExcelTextClassGenerater : IExcelClassGenerater
         List<string> types = data.fieldTypeList;
         List<string> fields = data.fieldNameList;
         StringBuilder sb = new StringBuilder();
-        sb.AppendLine("using System;");
-        sb.AppendLine("using System.Collections.Generic;");
-        sb.AppendLine("using UnityEngine;");
-        sb.AppendLine();
-        //sb.AppendLine("namespace Config.TextConfig");
-        //sb.AppendLine("{");
+        ExcelExporterUtil.AddCommonSpaceToSb(sb);
+
         sb.AppendLine("public class " + className + " : ConfigTextBase");
         sb.AppendLine("{");
 
         //跳过ID 字段
         for (int i = 1; i < types.Count; i++)
         {
-            if (Regex.IsMatch(types[i], @"^[a-zA-Z_0-9><,]*$") && Regex.IsMatch(fields[i], @"^[a-zA-Z_0-9]*$"))
-                sb.AppendLine(string.Format("\tpublic {0} {1};", types[i], fields[i]));
+            var type = SupportTypeUtil.GetIType(types[i]);
+            if(type != null)
+                sb.AppendLine(string.Format("\tpublic {0} {1};", type.realName, fields[i]));
         }
 
         sb.AppendLine();
@@ -46,7 +43,7 @@ public class ExcelTextClassGenerater : IExcelClassGenerater
         {
             sb.AppendLine("\t\t\tcase " + i + ":");
             //默认第一个字段名称为ID  先临时处理
-            sb.AppendLine("\t\t\t\t" + (i == 0 ? "ID" : fields[i]) + " = " + SupportTypeUtil.GetTypePraseFuncName(types[i]) + "(value);");
+            sb.AppendLine("\t\t\t\t" + (i == 0 ? "ID" : fields[i]) + " = " + SupportTypeUtil.GetTypeParseFuncName(types[i]) + "(value);");
             sb.AppendLine("\t\t\t\tbreak;");
         }
 
@@ -56,12 +53,11 @@ public class ExcelTextClassGenerater : IExcelClassGenerater
         sb.AppendLine("\t\t}");
         sb.AppendLine("\t}");
         sb.AppendLine("}");
-        //sb.AppendLine("}");
 
         File.WriteAllText(savePath + fileName, sb.ToString());
     }
 
-    public static void GenerateClientClassFactory(string dataPath, string savePath)
+    public static void GenerateClientClassFactory(string dataPath, string savePath, bool empty)
     {
         var files = Directory.GetFiles(dataPath, "*.bytes");
         List<string> classNameList = new List<string>();
@@ -72,26 +68,30 @@ public class ExcelTextClassGenerater : IExcelClassGenerater
             classNameList.Add(fileName);
         }
         StringBuilder sb = new StringBuilder();
-        //sb.AppendLine("namespace Config.TextConfig");
-        //sb.AppendLine("{");
-        sb.AppendLine("public class " + ExcelExporterUtil.ConfigFactoryName);
+        sb.AppendLine("namespace Config.TextConfig");
         sb.AppendLine("{");
-        sb.AppendLine("\tpublic static ConfigTextBase Get(string configName)");
+        sb.AppendLine("\tpublic class " + ExcelExporterUtil.ConfigFactoryName);
         sb.AppendLine("\t{");
-        sb.AppendLine("\t\tswitch(configName)");
+        sb.AppendLine("\t\tpublic static ConfigTextBase Get(string configName)");
         sb.AppendLine("\t\t{");
-
-        for (int i = 0; i < classNameList.Count; i++)
+        if(!empty)
         {
-            sb.AppendLine("\t\t\tcase \"" + classNameList[i] + "\":");
-            sb.AppendLine("\t\t\t\treturn new " + ExcelExporterUtil.ClientClassPre + classNameList[i] + "();");
+            sb.AppendLine("\t\t\tswitch(configName)");
+            sb.AppendLine("\t\t\t{");
+
+            for (int i = 0; i < classNameList.Count; i++)
+            {
+                sb.AppendLine("\t\t\t\tcase \"" + classNameList[i] + "\":");
+                sb.AppendLine("\t\t\t\t\treturn new " + ExcelExporterUtil.ClientClassPre + classNameList[i] + "();");
+            }
+
+            sb.AppendLine("\t\t\t}");
         }
 
+        sb.AppendLine("\t\t\treturn null;");
         sb.AppendLine("\t\t}");
-        sb.AppendLine("\t\treturn null;");
         sb.AppendLine("\t}");
         sb.AppendLine("}");
-        //sb.AppendLine("}");
         File.WriteAllText(Path.Combine(savePath, ExcelExporterUtil.ConfigFactoryName) + ExcelExporterUtil.ClientClassExt, sb.ToString());
     }
 

@@ -55,16 +55,15 @@ public class ExcelGameData
         fieldTypeList.Add(type);
     }
 
-    public void AddCell(int row, ExcelCell cell)
+    public bool AddCell(int row, ExcelCell cell)
     {
         if (row >= cellList.Count)
             cellList.Add(new List<ExcelContentCell>());
         var contentCell = new ExcelContentCell(cell);
         contentCell.fieldName = fieldNameList[cellList[row].Count];
         contentCell.fieldTypeName = fieldTypeList[cellList[row].Count];
+        contentCell.FormatCell();
         cellList[row].Add(contentCell);
-        //if (row >= cellList.Count)
-        //    cellList.Add(new List<ExcelCell>());
-        //cellList[row].Add(cell);
+        return contentCell.CheckValid();
     }
 }

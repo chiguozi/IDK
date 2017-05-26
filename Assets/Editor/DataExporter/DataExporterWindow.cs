@@ -4,10 +4,10 @@ using UnityEngine;
 using UnityEditor;
 using System.Text;
 using UnityEditor.Callbacks;
+using System.IO;
 
 public class DataExporterWindow : EditorWindow
-{
-
+{ 
     [MenuItem("Excel/ExcelExportWindow")]
     static void Open()
     {
@@ -22,7 +22,7 @@ public class DataExporterWindow : EditorWindow
         WriteStringField("_excelPath");
         WriteStringField("_clientDataOutputPath");
         WriteStringField("_clientScriptOutputPath");
-        EditorPrefs.SetInt("_exportType", (int)_exportType);
+        PlayerPrefs.SetInt("_exportType", (int)_exportType);
     }
 
     void ReadConfig()
@@ -31,19 +31,19 @@ public class DataExporterWindow : EditorWindow
         ReadStringConfig("_excelPath");
         ReadStringConfig("_clientDataOutputPath");
         ReadStringConfig("_clientScriptOutputPath");
-        if (EditorPrefs.HasKey("_exportType"))
+        if (PlayerPrefs.HasKey("_exportType"))
         {
-            _exportType = (ExcelDataExportType)EditorPrefs.GetInt("_exportType");
+            _exportType = (ExcelDataExportType)PlayerPrefs.GetInt("_exportType");
             ExcelExporterUtil.exportType = _exportType;
         }
     }
 
     void ReadStringConfig(string fieldName)
     {
-        if (EditorPrefs.HasKey(fieldName))
+        if (PlayerPrefs.HasKey(fieldName))
             this.GetType()
                 .GetField(fieldName, System.Reflection.BindingFlags.SetField | System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic)
-                .SetValue(this, EditorPrefs.GetString(fieldName));
+                .SetValue(this, PlayerPrefs.GetString(fieldName));
     }
 
     void WriteStringField(string fieldName)
@@ -51,7 +51,7 @@ public class DataExporterWindow : EditorWindow
         var fieldInfo = this.GetType().GetField(fieldName, System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.GetField | System.Reflection.BindingFlags.Instance);
         string value = fieldInfo.GetValue(this).ToString();
         if (!string.IsNullOrEmpty(value))
-            EditorPrefs.SetString(fieldName, value);
+            PlayerPrefs.SetString(fieldName, value);
     }
 
     //静态变量不能使用SerializeField序列化
@@ -114,7 +114,7 @@ public class DataExporterWindow : EditorWindow
         {
             _exportType = type;
             ExcelExporterUtil.exportType = type;
-            EditorPrefs.SetInt("_exportType", (int)_exportType);
+            PlayerPrefs.SetInt("_exportType", (int)_exportType);
         }
 
 
@@ -123,6 +123,7 @@ public class DataExporterWindow : EditorWindow
 
         bool genData = GUILayout.Button("生成配置配置文件");
         bool genClass = GUILayout.Button("生成客户端类文件");
+        bool cleanClient = GUILayout.Button("清理客户端类和数据");
 
         if (_selectFiles.Count > 0)
         {
@@ -145,6 +146,11 @@ public class DataExporterWindow : EditorWindow
                 return;
             }
             GenerateSelectedData();
+        }
+
+        if(cleanClient)
+        {
+            CleanClient();
         }
 
         #region RefreshPaths
@@ -178,6 +184,28 @@ public class DataExporterWindow : EditorWindow
         #endregion
     }
 
+    void CleanClient()
+    {
+        var files = Directory.GetFiles(ExcelExporterUtil.GetClientClassOutputPath());
+        for(int i = 0; i < files.Length; i++)
+        {
+            var fileName = Path.GetFileName(files[i]);
+            if(fileName.StartsWith("Cfg") && fileName.EndsWith(".cs"))
+                File.Delete(files[i]);
+        }
+
+        files = Directory.GetFiles(ExcelExporterUtil.GetClientDataOutputPath());
+        for (int i = 0; i < files.Length; i++)
+        {
+            var fileName = Path.GetFileName(files[i]);
+            if(fileName.EndsWith(".bytes"))
+                File.Delete(files[i]);
+        }
+        ExcelTextClassGenerater.GenerateClientClassFactory(ExcelExporterUtil.GetClientDataOutputPath(), ExcelExporterUtil.GetClientClassOutputPath() + "Base/", true);
+
+        AssetDatabase.Refresh();
+    }
+
     void GenerateSelectedScript()
     {
         if(_selectFiles.Count == 0)
@@ -207,7 +235,7 @@ public class DataExporterWindow : EditorWindow
         if(ExcelExporterUtil.exportType == ExcelDataExportType.Text)
         {
             //必须有这个文件
-            ExcelTextClassGenerater.GenerateClientClassFactory(ExcelExporterUtil.GetClientDataOutputPath() , ExcelExporterUtil.GetClientClassOutputPath() + "/Base/");
+            ExcelTextClassGenerater.GenerateClientClassFactory(ExcelExporterUtil.GetClientDataOutputPath() , ExcelExporterUtil.GetClientClassOutputPath() + "Base/", false);
         }
         AssetDatabase.Refresh();
     }
