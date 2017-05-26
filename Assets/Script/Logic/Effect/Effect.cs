@@ -21,6 +21,32 @@ public class Effect
     Vector3 _eulers;
     uint _ownerId;
 
+    public Vector3 position
+    {
+        get { return _pos; }
+        set
+        {
+            _pos = value;
+            if(_transform != null)
+            {
+                _transform.position = _pos;
+            }
+        }
+    }
+
+    public Vector3 eulers
+    {
+        get { return _eulers; }
+        set
+        {
+            _eulers = value;
+            if(_transform != null)
+            {
+                _transform.eulerAngles = _eulers;
+            }
+        }
+    }
+
     //@todo 判断人物死亡后需不需要立即销毁特效
     public uint ownerId { get { return _ownerId; } }
 

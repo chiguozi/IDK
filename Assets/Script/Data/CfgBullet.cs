@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CfgEffect : ConfigTextBase
+public class CfgBullet : ConfigTextBase
 {
 	public string url;
-	public Vector3 posOffset;
-	public Vector3 eulerOffset;
-	public string bonePath;
+	public float speed;
+	public int moveType;
+	public float lifeTime;
 
 
 	public override void Write(int i, string value)
@@ -21,13 +21,13 @@ public class CfgEffect : ConfigTextBase
 				url = ParseString(value);
 				break;
 			case 2:
-				posOffset = ParseVector3(value);
+				speed = ParseFloat(value);
 				break;
 			case 3:
-				eulerOffset = ParseVector3(value);
+				moveType = ParseInt(value);
 				break;
 			case 4:
-				bonePath = ParseString(value);
+				lifeTime = ParseFloat(value);
 				break;
 			default:
 				UnityEngine.Debug.LogError(GetType().Name + "src i:" + i);

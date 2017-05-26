@@ -6,10 +6,6 @@ public class EffectManager  : SingleTon<EffectManager>
 {
     Dictionary<uint, Effect> _effectMap = new Dictionary<uint, Effect>();
 
-
-    public void Init()
-    { }
-
     public void AddEffect(Effect effect)
     {
         _effectMap.Add(effect.uid, effect);

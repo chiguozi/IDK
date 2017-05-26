@@ -7,4 +7,9 @@ public class SingleTon<T> where T : new()
 	
 	protected SingleTon()
 	{}
+
+    public virtual void Init()
+    {
+
+    }
 }

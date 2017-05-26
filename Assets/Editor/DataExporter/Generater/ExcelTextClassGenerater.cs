@@ -68,28 +68,25 @@ public class ExcelTextClassGenerater : IExcelClassGenerater
             classNameList.Add(fileName);
         }
         StringBuilder sb = new StringBuilder();
-        sb.AppendLine("namespace Config.TextConfig");
+        sb.AppendLine("public class " + ExcelExporterUtil.ConfigFactoryName);
         sb.AppendLine("{");
-        sb.AppendLine("\tpublic class " + ExcelExporterUtil.ConfigFactoryName);
+        sb.AppendLine("\tpublic static ConfigTextBase Get(string configName)");
         sb.AppendLine("\t{");
-        sb.AppendLine("\t\tpublic static ConfigTextBase Get(string configName)");
-        sb.AppendLine("\t\t{");
         if(!empty)
         {
-            sb.AppendLine("\t\t\tswitch(configName)");
-            sb.AppendLine("\t\t\t{");
+            sb.AppendLine("\t\tswitch(configName)");
+            sb.AppendLine("\t\t{");
 
             for (int i = 0; i < classNameList.Count; i++)
             {
-                sb.AppendLine("\t\t\t\tcase \"" + classNameList[i] + "\":");
-                sb.AppendLine("\t\t\t\t\treturn new " + ExcelExporterUtil.ClientClassPre + classNameList[i] + "();");
+                sb.AppendLine("\t\t\tcase \"" + classNameList[i] + "\":");
+                sb.AppendLine("\t\t\t\treturn new " + ExcelExporterUtil.ClientClassPre + classNameList[i] + "();");
             }
 
-            sb.AppendLine("\t\t\t}");
+            sb.AppendLine("\t\t}");
         }
 
-        sb.AppendLine("\t\t\treturn null;");
-        sb.AppendLine("\t\t}");
+        sb.AppendLine("\t\treturn null;");
         sb.AppendLine("\t}");
         sb.AppendLine("}");
         File.WriteAllText(Path.Combine(savePath, ExcelExporterUtil.ConfigFactoryName) + ExcelExporterUtil.ClientClassExt, sb.ToString());

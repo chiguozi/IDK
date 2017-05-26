@@ -7,6 +7,7 @@ public enum SkillBehaviourType
     None,
     Action = 1,
     Effect = 2,
+    Bullet = 3,
 }
 
 
@@ -28,6 +29,9 @@ public class SkillBehaviourFactory
                 break;
             case SkillBehaviourType.Effect:
                 behaviour = new SkillEffectBehaviour();
+                break;
+            case SkillBehaviourType.Bullet:
+                behaviour = new SkillBulletBehaviour();
                 break;
         }
         if(behaviour != null)

@@ -27,5 +27,10 @@ public static class Events
         public const string OnSceneLoaded = "OnSceneLoaded";
     }
 
+    static public class FightEvent
+    {
+        public const string AddBullet = "AddBullet";
+        public const string RemoveBullet = "RemoveBullet";
+    }
 	
 }

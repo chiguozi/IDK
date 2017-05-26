@@ -16,11 +16,18 @@ public class Main : MonoBehaviour
 	void Init()
 	{
 		InitMVC();
-        UIManager.Instance.Init();
-        ConfigTextManager.Instance.Init();
+        InitSingleTons();
         EventManager.Send(Events.SceneEvent.EnterScene, 1);
         World.Test();
 	}
+
+    void InitSingleTons()
+    {
+        BulletManager.Instance.Init();
+        UIManager.Instance.Init();
+        ConfigTextManager.Instance.Init();
+        EffectManager.Instance.Init();
+    }
 
 	void InitMVC()
 	{
@@ -41,6 +48,7 @@ public class Main : MonoBehaviour
             //Effect.CreateEffect("Prefab/Effect/hero001@atk_1_sfx", World.ThePlayer.position, World.ThePlayer.eulers, World.ThePlayer.uid, 3);
         }
         EffectManager.Instance.Update(Time.deltaTime);
+        BulletManager.Instance.Update(Time.deltaTime);
         World.Update(Time.deltaTime);
 	}
 }

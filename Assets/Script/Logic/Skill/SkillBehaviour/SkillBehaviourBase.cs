@@ -54,6 +54,12 @@ public class SkillBehaviourBase
         return valueList[index];
     }
 
+    protected Vector3 ParseVector3(List<string> valueList, int index, Vector3 def = default(Vector3))
+    {
+        if (index >= valueList.Count)
+            return def;
+        return StringUtil.ParseVector3(valueList[index], def);
+    }
 
 }
 

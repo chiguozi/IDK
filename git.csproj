@@ -99,6 +99,7 @@
     <Compile Include="Assets\Script\Data\Base\ConfigSoBase.cs" />
     <Compile Include="Assets\Script\Data\Base\ConfigTextBase.cs" />
     <Compile Include="Assets\Script\Data\Base\ConfigTextManager.cs" />
+    <Compile Include="Assets\Script\Data\CfgBullet.cs" />
     <Compile Include="Assets\Script\Data\CfgEffect.cs" />
     <Compile Include="Assets\Script\Data\CfgSkill.cs" />
     <Compile Include="Assets\Script\Data\CfgSubSkill.cs" />
@@ -136,6 +137,7 @@
     <Compile Include="Assets\Script\Logic\Skill\SkillBehaviour\SkillActionBehaviour.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SkillBehaviour\SkillBehaviourBase.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SkillBehaviour\SkillBehaviourFactory.cs" />
+    <Compile Include="Assets\Script\Logic\Skill\SkillBehaviour\SkillBulletBehaviour.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SkillBehaviour\SkillEffectBehaviour.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SkillUtil.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SubSkill.cs" />

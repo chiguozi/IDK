@@ -267,4 +267,13 @@ public class StringUtil
         return defalut;
     }
 
+    public static Vector3 ParseVector3(string str, Vector3 def = default(Vector3))
+    {
+        Vector3 v;
+        if (StringUtil.TryParseVector3(str, out v))
+            return v;
+        return def;
+
+    }
+
 }
