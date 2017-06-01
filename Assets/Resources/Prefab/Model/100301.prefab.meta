@@ -1,8 +1,9 @@
 fileFormatVersion: 2
 guid: 7850eb468c6552c4fb36499a08da58b2
-timeCreated: 1491726939
+timeCreated: 1496310091
 licenseType: Pro
 NativeFormatImporter:
+  mainObjectFileID: 100100000
   userData: 
   assetBundleName: prefab/model/100301
   assetBundleVariant: 

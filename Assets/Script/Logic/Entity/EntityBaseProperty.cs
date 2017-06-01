@@ -32,6 +32,16 @@ public partial class EntityBase
             return _entityBaseData.uid;
         }
     }
+
+    public int campId
+    {
+        get
+        {
+            if (_entityBaseData == null)
+                return 1;
+            return _entityBaseData.campId;
+        }
+    }
 	
 
 

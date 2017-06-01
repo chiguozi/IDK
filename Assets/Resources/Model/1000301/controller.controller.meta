@@ -1,8 +1,9 @@
 fileFormatVersion: 2
 guid: 51a179206a2a98942868a3fff0a2f4a1
-timeCreated: 1491726939
+timeCreated: 1496310091
 licenseType: Pro
 NativeFormatImporter:
+  mainObjectFileID: 9100000
   userData: 
   assetBundleName: model/1000301/controller.controller
   assetBundleVariant: 

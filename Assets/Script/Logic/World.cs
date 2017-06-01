@@ -77,5 +77,13 @@ public class World
         CameraControl.Instance.Init();
         CameraControl.Instance.InitCamera();
         CameraControl.Instance.SetFocus(World.ThePlayer.transform, 0);
+
+
+        data = new EntityBaseData();
+        data.url = "Prefab/Model/100301";
+        data.entityType = EntityType.Player;
+        data.initPos = new Vector3(-44, 0, -14);
+        data.uid = Util.GetClientUid();
+        AddEntityToWorld(data);
     }
 }

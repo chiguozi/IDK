@@ -194,7 +194,7 @@ public class ModelTool
         for (int i = 0; i < clipList.Count; i++)
         {
             var state = controller.AddMotion(clipList[i]);
-            if (clipList[i].name.Contains("idle"))
+            if (clipList[i].name.Contains("idle") || clipList[i].name.Contains("Idle"))
                 controller.layers[0].stateMachine.defaultState = state;
         }
         return controller;

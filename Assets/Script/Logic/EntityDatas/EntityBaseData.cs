@@ -9,4 +9,7 @@ public class EntityBaseData
 	public string name;
 	public Vector3 initScale = Vector3.one;
 	public EntityType entityType = EntityType.Base;
+
+    public int campId = 1;
+    public int careerId = 1;
 }

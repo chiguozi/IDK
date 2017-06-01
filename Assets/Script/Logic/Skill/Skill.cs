@@ -23,6 +23,7 @@ public class Skill
             Debug.LogError("找不到技能Id : " + skillId);
             return;
         }
+        lifeTime = cfg.lifeTime;
         for(int i = 0; i < cfg.subSkillList.Count; i++)
         {
             SubSkill sub = new SubSkill();
@@ -41,7 +42,7 @@ public class Skill
         {
             subSkillInfoList[i].Release();
         }
-        lifeTime = 1.3f;
+        lifeTime = cfg.lifeTime;
     }
     public void Update(float delTime)
     {
