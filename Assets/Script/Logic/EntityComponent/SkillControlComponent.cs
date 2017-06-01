@@ -48,6 +48,14 @@ public class SkillControlComponent : ComponentBase
         currentSubSkillList = skill.subSkillInfoList;  
     }
 
+    uint FindTarget(CfgSkill skillCfg)
+    {
+        //范围、类型、阵营 返回可能列表
+        //排序  类型，血量，位置
+        return 1;
+    }
+
+
     public void StopSkill()
     { }
 
