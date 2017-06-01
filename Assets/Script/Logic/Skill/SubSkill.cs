@@ -6,13 +6,17 @@ public class SubSkill
 {
     public int id;
     public float delay;
-    public uint ownerId;
     public CfgSubSkill cfg;
     public List<SkillBehaviourBase> skillActionList = new List<SkillBehaviourBase>();
 
     public bool hasTriggered = false;
 
     public List<SkillBehaviourBase> updateActionList = new List<SkillBehaviourBase>();
+
+    public uint ownerId;
+    public uint attackedId;
+    public Vector3 selectedPos;
+    public Vector3 selectedEuler;
 
     public void Init(EventController eventMgr, uint playerId, List<string> args)
     {

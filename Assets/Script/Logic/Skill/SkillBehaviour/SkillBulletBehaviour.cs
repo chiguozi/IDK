@@ -11,9 +11,9 @@ public class SkillBulletBehaviour : SkillBehaviourBase
     public override void Setup(List<string> valueList)
     {
         base.Setup(valueList);
-        _bulletId = ParseInt(valueList, 1);
-        _eulerOffset = ParseVector3(valueList, 2, Vector3.zero);
-        _posOffset = ParseVector3(valueList, 3, Vector3.zero);
+        _bulletId = StringUtil.ParseIntFromList(valueList, 1);
+        _eulerOffset = StringUtil.ParseVector3FromList(valueList, 2, Vector3.zero);
+        _posOffset = StringUtil.ParseVector3FromList(valueList, 3, Vector3.zero);
     }
 
 

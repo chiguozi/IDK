@@ -21,10 +21,10 @@ public class SkillActionBehaviour : SkillBehaviourBase
 
     public override void Setup(List<string> valueList)
     {
-        clipName = ParseString(valueList, 1);
-        speed = ParseFloat(valueList, 2, speed);
-        force = ParseInt(valueList, 3, 0) == 1;
-        normalizeTime = ParseFloat(valueList, 4, normalizeTime);
+        clipName = StringUtil.ParseStringFromList(valueList, 1);
+        speed = StringUtil.ParseFloatFromList(valueList, 2, speed);
+        force = StringUtil.ParseIntFromList(valueList, 3, 0) == 1;
+        normalizeTime = StringUtil.ParseFloatFromList(valueList, 4, normalizeTime);
     }
 
   

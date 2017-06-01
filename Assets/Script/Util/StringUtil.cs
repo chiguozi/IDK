@@ -270,10 +270,38 @@ public class StringUtil
     public static Vector3 ParseVector3(string str, Vector3 def = default(Vector3))
     {
         Vector3 v;
-        if (StringUtil.TryParseVector3(str, out v))
+        if (TryParseVector3(str, out v))
             return v;
         return def;
 
+    }
+
+    public static float ParseFloatFromList(List<string> valueList, int index, float def = 0)
+    {
+        if (index >= valueList.Count)
+            return def;
+        return ParseFloat(valueList[index], def);
+    }
+
+    public static int ParseIntFromList(List<string> valueList, int index, int def = 0)
+    {
+        if (index >= valueList.Count)
+            return def;
+        return ParseInt(valueList[index], def);
+    }
+
+    public static string ParseStringFromList(List<string> valueList, int index, string def = "")
+    {
+        if (index >= valueList.Count)
+            return def;
+        return valueList[index];
+    }
+
+    public static Vector3 ParseVector3FromList(List<string> valueList, int index, Vector3 def = default(Vector3))
+    {
+        if (index >= valueList.Count)
+            return def;
+        return ParseVector3(valueList[index], def);
     }
 
 }

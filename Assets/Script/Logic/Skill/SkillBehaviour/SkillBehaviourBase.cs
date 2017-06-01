@@ -33,33 +33,7 @@ public class SkillBehaviourBase
     public virtual void Setup(List<string> valueList)
     { }
 
-    protected float ParseFloat(List<string> valueList, int index, float def = 0)
-    {
-        if (index >= valueList.Count)
-            return def;
-        return StringUtil.ParseFloat(valueList[index], def);
-    }
 
-    protected int ParseInt(List<string> valueList, int index, int def = 0)
-    {
-        if (index >= valueList.Count)
-            return def;
-        return StringUtil.ParseInt(valueList[index], def);
-    }
-
-    protected string ParseString(List<string> valueList, int index, string def = "")
-    {
-        if (index >= valueList.Count)
-            return def;
-        return valueList[index];
-    }
-
-    protected Vector3 ParseVector3(List<string> valueList, int index, Vector3 def = default(Vector3))
-    {
-        if (index >= valueList.Count)
-            return def;
-        return StringUtil.ParseVector3(valueList[index], def);
-    }
 
 }
 
