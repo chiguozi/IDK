@@ -10,6 +10,8 @@ public class CfgSkill : ConfigTextBase
 	public float lifeTime;
 	public int faceTarget;
 	public List<List<string>> subSkillList;
+	public List<string> selectTargetParam;
+	public List<List<string>> sortParam;
 
 
 	public override void Write(int i, string value)
@@ -36,6 +38,12 @@ public class CfgSkill : ConfigTextBase
 				break;
 			case 6:
 				subSkillList = ParseListListString(value);
+				break;
+			case 7:
+				selectTargetParam = ParseListString(value);
+				break;
+			case 8:
+				sortParam = ParseListListString(value);
 				break;
 			default:
 				UnityEngine.Debug.LogError(GetType().Name + "src i:" + i);

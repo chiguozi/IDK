@@ -44,6 +44,14 @@ public partial class EntityBase
     }
 	
 
+    public EntityType entityType
+    {
+        get
+        {
+            return _entityBaseData.entityType;
+        }
+    }
+
 
     public virtual void InitDatas()
     {

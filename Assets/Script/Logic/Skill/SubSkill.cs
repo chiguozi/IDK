@@ -11,12 +11,11 @@ public class SubSkill
 
     public bool hasTriggered = false;
 
+    public Skill skill;
+
     public List<SkillBehaviourBase> updateActionList = new List<SkillBehaviourBase>();
 
     public uint ownerId;
-    public uint attackedId;
-    public Vector3 selectedPos;
-    public Vector3 selectedEuler;
 
     public void Init(EventController eventMgr, uint playerId, List<string> args)
     {

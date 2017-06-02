@@ -44,7 +44,7 @@ public class Main : MonoBehaviour
         UIManager.Instance.Update();
         if (Input.inputString == "@")
         {
-            World.ThePlayer.UseSkill();
+            World.ThePlayer.UseSkill(1);
             //Effect.CreateEffect("Prefab/Effect/hero001@atk_1_sfx", World.ThePlayer.position, World.ThePlayer.eulers, World.ThePlayer.uid, 3);
         }
         EffectManager.Instance.Update(Time.deltaTime);

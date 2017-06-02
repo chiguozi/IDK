@@ -8,6 +8,7 @@ public class EntitySprite : EntityBase
 {
     public EntityFightAttributeData attributeData;
     protected UnitSMManager _smMgr;
+    protected EntitySortHelper _sortHelper;
 
     protected override void Init()
     {
@@ -16,6 +17,8 @@ public class EntitySprite : EntityBase
     }
 
     public EntitySprite(EntityBaseData data) : base(data) { }
+
+    public int HP { get { return attributeData.hp; } }
 
     protected override void AddComponent()
     {
@@ -116,10 +119,84 @@ public class EntitySprite : EntityBase
     }
 
 
-    public virtual void UseSkill()
+    public virtual void UseSkill(int skillId)
     {
+        if (!CheckCanUseSkill(skillId))
+            return;
         SendSMEvent(UnitStateEvent.UseSkill);
-        GetComponent<SkillControlComponent>().UseSkill(1);
+        uint targetId = SelectTarget(skillId);
+        GetComponent<SkillControlComponent>().UseSkill(skillId, targetId);
+    }
+
+    uint SelectTarget(int skillId)
+    {
+        var cfg = ConfigTextManager.Instance.GetConfig<CfgSkill>(skillId);
+        if (cfg == null)
+            return 0;
+
+        var args = cfg.selectTargetParam;
+        if (args.Count == 0)
+            return 0;
+
+        SelectTargetType selectType = (SelectTargetType)StringUtil.ParseIntFromList(args, 0, 1);
+        if (selectType == SelectTargetType.None)
+            return 0;
+
+        var targetList = SelectTargetByParams(args);
+        if (targetList.Count == 0)
+            return 0;
+
+        //统一排序，放置多次排序
+        if (_sortHelper == null)
+            _sortHelper = new EntitySortHelper();
+        _sortHelper.Init(this, cfg.sortParam);
+        _sortHelper.SortList(targetList);
+
+        return targetList[0].uid;
+    }
+
+    List<EntityBase> SelectTargetByParams(List<string> args)
+    {
+        List<EntityBase> entityList = new List<EntityBase>();
+        float range = StringUtil.ParseFloatFromList(args, 1, 0);
+        //player + monster
+        int targetType = StringUtil.ParseIntFromList(args, 2, 6);
+        //敌方
+        int campType = StringUtil.ParseIntFromList(args, 3, 2);
+
+        var entites = World.entites;
+        var iter = entites.GetEnumerator();
+        while(iter.MoveNext())
+        {
+            var entity = iter.Current.Value;
+            if (!CheckTargetType(targetType, entity))
+                continue;
+            if (!CheckCampType(campType, entity))
+                continue;
+            if (!CheckEntityDistance(range, entity))
+                continue;
+        }
+        return entityList;
+    }
+
+    bool CheckEntityDistance(float range, EntityBase entity)
+    {
+        if (range == 0)
+            return false;
+        var sqrDis = ( entity.position - position ).XZSqrMagnitude();
+        return sqrDis < range * range;
+    }
+
+    bool CheckTargetType(int targetType, EntityBase entity)
+    {
+        return ((int)entity.entityType & targetType) > 0;
+    }
+
+
+    bool CheckCampType(int campType, EntityBase entity)
+    {
+        var type = Util.GetTargetCampType(this, entity);
+        return ( (int)type & campType ) > 0;
     }
 
     bool CheckCanUseSkill(int skillId)
@@ -128,5 +205,7 @@ public class EntitySprite : EntityBase
             return false;
         return GetComponent<SkillControlComponent>().CheckCanUseSkill(skillId);
     }
+
+
 
 }

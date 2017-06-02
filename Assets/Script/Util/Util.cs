@@ -28,4 +28,16 @@ public class Util
         _globalUid++;
         return _globalUid;
     }
+
+    //@todo  移到别的位置
+    public static CampType GetTargetCampType(EntityBase self, EntityBase other)
+    {
+        //0是中立
+        if (other.campId == 0)
+            return CampType.Neutrality;
+        if (other.campId == self.campId)
+            return CampType.Friend;
+
+        return CampType.Enemy;
+    }
 }

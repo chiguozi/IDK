@@ -122,6 +122,7 @@
     <Compile Include="Assets\Script\Logic\Entity\EntityMonster.cs" />
     <Compile Include="Assets\Script\Logic\Entity\EntityPlayer.cs" />
     <Compile Include="Assets\Script\Logic\Entity\EntitySelf.cs" />
+    <Compile Include="Assets\Script\Logic\Entity\EntitySortHelper.cs" />
     <Compile Include="Assets\Script\Logic\Entity\EntitySprite.cs" />
     <Compile Include="Assets\Script\Logic\EntityComponent\ActionComponent.cs" />
     <Compile Include="Assets\Script\Logic\EntityComponent\ComponentBase.cs" />

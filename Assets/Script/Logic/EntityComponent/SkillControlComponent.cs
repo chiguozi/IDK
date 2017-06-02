@@ -31,7 +31,7 @@ public class SkillControlComponent : ComponentBase
     }
 
 
-    public void UseSkill(int skillId)
+    public void UseSkill(int skillId, uint targetId)
     {
         //技能检测放在外面
         Skill skill;
@@ -42,19 +42,12 @@ public class SkillControlComponent : ComponentBase
         }
         if (currentSkill != null)
             StopSkill();
-        //选择目标 朝向
+
+        skill.attackedUid = targetId;
 
         currentSkill = skill;
         currentSubSkillList = skill.subSkillInfoList;  
     }
-
-    uint FindTarget(CfgSkill skillCfg)
-    {
-        //范围、类型、阵营 返回可能列表
-        //排序  类型，血量，位置
-        return 1;
-    }
-
 
     public void StopSkill()
     { }

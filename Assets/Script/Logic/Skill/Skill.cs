@@ -4,11 +4,15 @@ using UnityEngine;
 
 public class Skill
 {
-    //configSkill
     public CfgSkill cfg;
     public int skillId;
     public int skillUid;
     public float currentCd;
+
+    //默认被攻击者 0为空
+    public uint attackedUid;
+    public Vector3 selectedPos;
+    public Vector3 selectedEuler;
 
     public float lifeTime;  //技能时长  暂时还没想到好的方法
 
@@ -27,6 +31,7 @@ public class Skill
         for(int i = 0; i < cfg.subSkillList.Count; i++)
         {
             SubSkill sub = new SubSkill();
+            sub.skill = this;
             sub.Init(com, ownerId, cfg.subSkillList[i]);
             subSkillInfoList.Add(sub);
         }

@@ -2,15 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum SkillBehaviourType
-{
-    None,
-    Action = 1,
-    Effect = 2,
-    Bullet = 3,
-}
-
-
 public class SkillBehaviourFactory
 {
     public static SkillBehaviourBase Create(List<string> args, SubSkill skill, EventController con)
