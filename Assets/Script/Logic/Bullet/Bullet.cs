@@ -43,9 +43,6 @@ public class Bullet
     //存放数据
     SubSkill _subSkill;
 
-    uint _ownerId;
-    uint _defaultTargetId;
-
     //动态
     const float MOVE_CHECK_INTERNAL = 0.05f;
     public uint uid;
@@ -83,7 +80,7 @@ public class Bullet
             return;
         }
         _forward = ( _initEulers);
-        _effect = Effect.CreateEffect(_cfg.url, _initPos + _forward, _forward,_ownerId, -1);
+        _effect = Effect.CreateEffect(_cfg.url, _initPos + _forward, _forward, _subSkill.ownerId, -1);
     }
 
     public void Update(float delTime)

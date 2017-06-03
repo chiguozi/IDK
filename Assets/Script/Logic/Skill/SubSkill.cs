@@ -11,7 +11,7 @@ public class SubSkill
 
     public bool hasTriggered = false;
 
-    public Skill skill;
+    public SkillRuntimeData runtimeData;
 
     public List<SkillBehaviourBase> updateActionList = new List<SkillBehaviourBase>();
 

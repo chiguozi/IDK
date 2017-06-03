@@ -9,6 +9,7 @@ public class EntitySprite : EntityBase
     public EntityFightAttributeData attributeData;
     protected UnitSMManager _smMgr;
     protected EntitySortHelper _sortHelper;
+    protected SkillRuntimeData _skillRuntimeData;
 
     protected override void Init()
     {
@@ -125,7 +126,19 @@ public class EntitySprite : EntityBase
             return;
         SendSMEvent(UnitStateEvent.UseSkill);
         uint targetId = SelectTarget(skillId);
-        GetComponent<SkillControlComponent>().UseSkill(skillId, targetId);
+        if(_skillRuntimeData == null)
+        {
+            _skillRuntimeData = new SkillRuntimeData();
+            _skillRuntimeData.ownerId = uid;
+        }
+
+        _skillRuntimeData.attackedId = targetId;
+        _skillRuntimeData.startPos = position;
+        //targetPos需要特殊处理
+        //_skillRuntimeData.targetPos
+        _skillRuntimeData.euler = eulers;
+
+        GetComponent<SkillControlComponent>().UseSkill(skillId, _skillRuntimeData);
     }
 
     uint SelectTarget(int skillId)

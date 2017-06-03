@@ -21,7 +21,7 @@ public class SkillBulletBehaviour : SkillBehaviourBase
     {
         base.Trigger();
         var owner = GetOwner();
-        var bullet = Bullet.CreateBullet(_bulletId, subSkill, _comEventCtrl, owner.position + _posOffset, Quaternion.Euler( owner.eulers + _eulerOffset) * Vector3.forward);
+        var bullet = Bullet.CreateBullet(_bulletId, subSkill, _comEventCtrl, subSkill.runtimeData.startPos + _posOffset, Quaternion.Euler( subSkill.runtimeData.euler + _eulerOffset) * Vector3.forward);
         bullet.Fire();
     }
 }

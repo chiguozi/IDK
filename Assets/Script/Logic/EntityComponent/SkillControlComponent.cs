@@ -31,7 +31,7 @@ public class SkillControlComponent : ComponentBase
     }
 
 
-    public void UseSkill(int skillId, uint targetId)
+    public void UseSkill(int skillId, SkillRuntimeData runtimeData)
     {
         //技能检测放在外面
         Skill skill;
@@ -43,10 +43,16 @@ public class SkillControlComponent : ComponentBase
         if (currentSkill != null)
             StopSkill();
 
-        skill.attackedUid = targetId;
 
         currentSkill = skill;
         currentSubSkillList = skill.subSkillInfoList;  
+
+        //临时处理
+        for(int i = 0; i < skill.subSkillInfoList.Count; i++)
+        {
+            skill.subSkillInfoList[i].runtimeData = runtimeData;
+        }
+
     }
 
     public void StopSkill()
