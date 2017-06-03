@@ -5,14 +5,14 @@ using UnityEngine;
 public class SkillBulletBehaviour : SkillBehaviourBase
 {
     int _bulletId;
-    Vector3 _eulerOffset;
+    int _angleOffset;
     Vector3 _posOffset;
 
     public override void Setup(List<string> valueList)
     {
         base.Setup(valueList);
         _bulletId = StringUtil.ParseIntFromList(valueList, 1);
-        _eulerOffset = StringUtil.ParseVector3FromList(valueList, 2, Vector3.zero);
+        _angleOffset = StringUtil.ParseIntFromList(valueList, 2, 0);
         _posOffset = StringUtil.ParseVector3FromList(valueList, 3, Vector3.zero);
     }
 
@@ -21,7 +21,9 @@ public class SkillBulletBehaviour : SkillBehaviourBase
     {
         base.Trigger();
         var owner = GetOwner();
-        var bullet = Bullet.CreateBullet(_bulletId, subSkill, _comEventCtrl, subSkill.runtimeData.startPos + _posOffset, Quaternion.Euler( subSkill.runtimeData.euler + _eulerOffset) * Vector3.forward);
+        var eulers = subSkill.runtimeData.euler;
+        eulers.y += _angleOffset;
+        var bullet = Bullet.CreateBullet(_bulletId, subSkill, _comEventCtrl, subSkill.runtimeData.startPos + _posOffset, Quaternion.Euler(eulers) * Vector3.forward);
         bullet.Fire();
     }
 }
