@@ -26,7 +26,7 @@ public class SkillBehaviourBase
 
     protected EntitySprite GetOwner()
     {
-        return World.entites[subSkill.ownerId] as EntitySprite;
+        return World.entites[subSkill.runtimeData.ownerId] as EntitySprite;
     }
 
     //valueList[0]为behaviortype  需要跳过

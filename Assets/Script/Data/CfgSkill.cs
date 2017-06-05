@@ -9,6 +9,7 @@ public class CfgSkill : ConfigTextBase
 	public float skillCd;
 	public float lifeTime;
 	public int faceTarget;
+	public int canUseIfNoTarget;
 	public List<List<string>> subSkillList;
 	public float range;
 	public List<string> selectTargetParam;
@@ -38,15 +39,18 @@ public class CfgSkill : ConfigTextBase
 				faceTarget = ParseInt(value);
 				break;
 			case 6:
-				subSkillList = ParseListListString(value);
+				canUseIfNoTarget = ParseInt(value);
 				break;
 			case 7:
-				range = ParseFloat(value);
+				subSkillList = ParseListListString(value);
 				break;
 			case 8:
-				selectTargetParam = ParseListString(value);
+				range = ParseFloat(value);
 				break;
 			case 9:
+				selectTargetParam = ParseListString(value);
+				break;
+			case 10:
 				sortParam = ParseListListString(value);
 				break;
 			default:

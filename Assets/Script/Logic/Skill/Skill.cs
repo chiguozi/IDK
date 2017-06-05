@@ -31,7 +31,7 @@ public class Skill
         for(int i = 0; i < cfg.subSkillList.Count; i++)
         {
             SubSkill sub = new SubSkill();
-            sub.Init(com, ownerId, cfg.subSkillList[i]);
+            sub.Init(com, cfg.subSkillList[i]);
             subSkillInfoList.Add(sub);
         }
     }

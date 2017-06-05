@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: db9b95b2ae5ac2144bccc68180ac11bb
+guid: 149433306ef65844c9ce9065a3359dd1
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 1
+    enableMipMap: 0
     sRGBTexture: 1
     linearTexture: 0
     fadeOut: 0
@@ -28,7 +28,7 @@ TextureImporter:
     filterMode: -1
     aniso: -1
     mipBias: -1
-    wrapMode: 1
+    wrapMode: -1
   nPOTScale: 1
   lightmap: 0
   compressionQuality: 50
@@ -62,5 +62,5 @@ TextureImporter:
     outline: []
   spritePackingTag: 
   userData: 
-  assetBundleName: effect/sfx_textures/hero_001skill_tt02.png
+  assetBundleName: effect/sfx_texture/light/tx_light_0099.png
   assetBundleVariant: 

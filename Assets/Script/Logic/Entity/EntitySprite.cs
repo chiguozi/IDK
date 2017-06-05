@@ -89,7 +89,6 @@ public class EntitySprite : EntityBase
         }
     }
 
-
     protected virtual void OnMoveEnd()
     {
         //暂时处理
@@ -127,14 +126,26 @@ public class EntitySprite : EntityBase
         CfgSkill cfg = ConfigTextManager.Instance.GetConfig<CfgSkill>(skillId);
         if (cfg == null)
             return;
-        SendSMEvent(UnitStateEvent.UseSkill);
+        //选择目标
         uint targetId = SelectTarget(cfg);
 
+        if(targetId == 0 && cfg.canUseIfNoTarget != 1)
+        {
+            Debug.LogError("没有目标");
+            return;
+        }
+
+        //转向
+        FaceTarget(cfg, targetId);
+        //收集数据
         var skillRuntimeData = CreateRuntimeData(cfg, targetId);
 
         GetComponent<SkillControlComponent>().UseSkill(skillId, skillRuntimeData);
+
+        SendSMEvent(UnitStateEvent.UseSkill);
     }
 
+    //检测面向目标
     void FaceTarget(CfgSkill cfg, uint targetId)
     {
         if (cfg.faceTarget != 1)
@@ -142,7 +153,8 @@ public class EntitySprite : EntityBase
         var entity = World.GetEntity(targetId);
         if (entity == null)
             return;
-
+        var dir = (entity.position - position).normalized;
+        SetAngleByDir(dir.x, dir.z);
     }
 
 
@@ -223,6 +235,7 @@ public class EntitySprite : EntityBase
                 continue;
             if (!CheckEntityDistance(range, entity))
                 continue;
+            entityList.Add(entity);
         }
         return entityList;
     }

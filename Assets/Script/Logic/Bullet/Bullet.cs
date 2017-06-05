@@ -19,9 +19,10 @@ public class Bullet
         bullet._subSkill = subSkill;
         bullet._eventControl = ctrl;
         bullet._position = pos;
-        bullet._euler = eulers.normalized;
+        bullet._eulers = eulers.normalized;
         bullet.uid = Util.GetClientUid();
         bullet._cfg = ConfigTextManager.Instance.GetConfig<CfgBullet>(id);
+        bullet._moveType = (BulletMoveType)bullet._cfg.moveType;
         EventManager.Send(Events.FightEvent.AddBullet, bullet);
         return bullet;
     }
@@ -34,9 +35,6 @@ public class Bullet
     BulletMoveType _moveType = BulletMoveType.Forward;
 
 
-    //传入  offset由上层计算
-    Vector3 _initPos;
-    Vector3 _initEulers;
     EventController _eventControl;
     Effect _effect;
 
@@ -48,10 +46,12 @@ public class Bullet
     public uint uid;
     float _movedInterval = 0;
     float _timeSinceFire = 0;
+
+    EntityBase _defalutTarget;
     //float _sqrMoveDistance = 0;
 
     Vector3 _position;
-    Vector3 _euler;
+    Vector3 _eulers;
     Vector3 _forward;
 
 
@@ -74,13 +74,13 @@ public class Bullet
     {
         get
         {
-            return _euler;
+            return _eulers;
         }
         set
         {
-            _euler = value;
+            _eulers = value;
             if (_effect != null)
-                _effect.eulers = _euler;
+                _effect.eulers = _eulers;
         }
     }
 
@@ -91,8 +91,16 @@ public class Bullet
             Debug.LogError("找到不CfgBullet :" + _id);
             return;
         }
-        _forward = _euler;
-        _effect = Effect.CreateEffect(_cfg.url, _position + _forward, _forward, _subSkill.ownerId, -1);
+
+        //放着感觉怪怪的 做成配置？
+        if (_moveType == BulletMoveType.Static)
+            _position = _subSkill.runtimeData.targetPos;
+        _defalutTarget = World.GetEntity(_subSkill.runtimeData.attackedId);
+        if (_moveType == BulletMoveType.LockTarget && _defalutTarget == null)
+            _moveType = BulletMoveType.Forward;
+
+        _forward = Quaternion.Euler(_eulers) * Vector3.forward;
+        _effect = Effect.CreateEffect(_cfg.url, _position, _eulers, _subSkill.runtimeData.ownerId, -1);
     }
 
     public void Update(float delTime)
@@ -119,12 +127,39 @@ public class Bullet
         {
             MoveForward(MOVE_CHECK_INTERNAL);
         }
+        else if(_moveType == BulletMoveType.LockTarget)
+        {
+            MoveByTarget(MOVE_CHECK_INTERNAL);
+        }
     }
 
 
     protected void MoveForward(float interval)
     {
        position = position + _forward * _cfg.speed * interval;
+    }
+
+    protected void MoveByTarget(float interval)
+    {
+        if(_defalutTarget == null)
+        {
+            _moveType = BulletMoveType.Forward;
+            MoveForward(interval);
+            return;
+        }
+        var distance = ( _defalutTarget.position - position ).XZMagnitude();
+        if(distance < _cfg.speed * interval)
+        {
+            position = _defalutTarget.position;
+            return;
+        }
+
+        //@todo 角速度
+        //有角速度不能使用from * (1f - factor) + to * factor方式  需要先计算角度
+        eulers = Quaternion.LookRotation(_defalutTarget.position - position).eulerAngles;
+        var factor = ( _cfg.speed * interval ) / distance;
+        position = position * ( 1 - factor ) + _defalutTarget.position *  factor ;
+     
     }
 
     public virtual void Release()

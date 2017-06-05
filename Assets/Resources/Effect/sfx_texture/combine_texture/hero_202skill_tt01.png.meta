@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 149433306ef65844c9ce9065a3359dd1
+guid: ab9779fd13dcdfe41af4faa8f75f73df
 TextureImporter:
   fileIDToRecycleName: {}
   serializedVersion: 4
@@ -62,5 +62,5 @@ TextureImporter:
     outline: []
   spritePackingTag: 
   userData: 
-  assetBundleName: effect/sfx_textures/light/tx_light_0099.png
+  assetBundleName: effect/sfx_texture/combine_texture/hero_202skill_tt01.png
   assetBundleVariant: 

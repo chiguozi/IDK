@@ -1,6 +1,7 @@
 fileFormatVersion: 2
 guid: c9c4321864786d2409111fcb5f3526d5
 NativeFormatImporter:
+  mainObjectFileID: -1
   userData: 
-  assetBundleName: effect/sfx_textures/hero_001skill_tt01_alpha.mat
+  assetBundleName: effect/sfx_texture/hero_001skill_tt01_alpha.mat
   assetBundleVariant: 

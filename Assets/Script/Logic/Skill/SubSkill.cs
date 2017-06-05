@@ -15,11 +15,8 @@ public class SubSkill
 
     List<SkillBehaviourBase> _updateActionList = new List<SkillBehaviourBase>();
 
-    public uint ownerId;
-
-    public void Init(EventController eventMgr, uint playerId, List<string> args)
+    public void Init(EventController eventMgr, List<string> args)
     {
-        ownerId = playerId;
         id = StringUtil.ParseInt(args[0]);
         _delay = StringUtil.ParseFloat(args[1], 0);
         cfg = ConfigTextManager.Instance.GetConfig<CfgSubSkill>(id);
