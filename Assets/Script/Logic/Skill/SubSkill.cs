@@ -5,15 +5,15 @@ using UnityEngine;
 public class SubSkill
 {
     public int id;
-    public float delay;
+    float _delay;
     public CfgSubSkill cfg;
-    public List<SkillBehaviourBase> skillActionList = new List<SkillBehaviourBase>();
+    List<SkillBehaviourBase> _skillActionList = new List<SkillBehaviourBase>();
 
-    public bool hasTriggered = false;
+    bool _hasTriggered = false;
 
     public SkillRuntimeData runtimeData;
 
-    public List<SkillBehaviourBase> updateActionList = new List<SkillBehaviourBase>();
+    List<SkillBehaviourBase> _updateActionList = new List<SkillBehaviourBase>();
 
     public uint ownerId;
 
@@ -21,7 +21,7 @@ public class SubSkill
     {
         ownerId = playerId;
         id = StringUtil.ParseInt(args[0]);
-        delay = StringUtil.ParseFloat(args[1], 0);
+        _delay = StringUtil.ParseFloat(args[1], 0);
         cfg = ConfigTextManager.Instance.GetConfig<CfgSubSkill>(id);
         if(cfg == null)
         {
@@ -31,22 +31,22 @@ public class SubSkill
         for(int i = 0; i < cfg.skillActionList.Count; i++)
         {
             var behaviour = SkillBehaviourFactory.Create(cfg.skillActionList[i], this, eventMgr);
-            skillActionList.Add(behaviour);
+            _skillActionList.Add(behaviour);
         }
     }
 
     public void Update(float delTime)
     {
-        if(!hasTriggered && delay >= 0)
+        if(!_hasTriggered && _delay >= 0)
         {
-            delay -= delTime;
-            if(delay <= 0)
+            _delay -= delTime;
+            if(_delay <= 0)
             {
-                hasTriggered = true;
+                _hasTriggered = true;
                 Trigger();
             }
         }
-        if (!hasTriggered)
+        if (!_hasTriggered)
             return;
         UpdateSkillActions();
     }
@@ -54,28 +54,28 @@ public class SubSkill
     //重用使用
     public void Release()
     {
-        updateActionList.Clear();
-        hasTriggered = false;
+        _updateActionList.Clear();
+        _hasTriggered = false;
         //skillActionList.Clear();
-        delay = 0;
+        _delay = 0;
         id = 0;
     }
 
     void Trigger()
     {
-        for(int i = 0; i < skillActionList.Count; i++)
+        for(int i = 0; i < _skillActionList.Count; i++)
         {
-            skillActionList[i].Trigger();
-            if (skillActionList[i].needUpdate)
-                updateActionList.Add(skillActionList[i]);
+            _skillActionList[i].Trigger();
+            if (_skillActionList[i].needUpdate)
+                _updateActionList.Add(_skillActionList[i]);
         }
     }
     
     void UpdateSkillActions()
     {
-        for(int i = 0; i  < updateActionList.Count; i++)
+        for(int i = 0; i  < _updateActionList.Count; i++)
         {
-            updateActionList[i].Update();
+            _updateActionList[i].Update();
         }
     }
 

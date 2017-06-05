@@ -45,8 +45,9 @@ public class SkillControlComponent : ComponentBase
 
 
         currentSkill = skill;
-        currentSubSkillList = skill.subSkillInfoList;  
+        currentSubSkillList = skill.subSkillInfoList;
 
+        currentSkill.lifeTime = currentSkill.cfg.lifeTime;
         //临时处理
         for(int i = 0; i < skill.subSkillInfoList.Count; i++)
         {

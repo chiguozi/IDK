@@ -63,6 +63,14 @@ public class World
 		}
 	}
 	
+    static public EntityBase GetEntity(uint targetId)
+    {
+        if (targetId == 0)
+            return null;
+        EntityBase target = null;
+        entites.TryGetValue(targetId, out target);
+        return target;
+    }
 
 
 

@@ -18,8 +18,8 @@ public class Bullet
         bullet._id = id;
         bullet._subSkill = subSkill;
         bullet._eventControl = ctrl;
-        bullet._initPos = pos;
-        bullet._initEulers = eulers;
+        bullet._position = pos;
+        bullet._euler = eulers.normalized;
         bullet.uid = Util.GetClientUid();
         bullet._cfg = ConfigTextManager.Instance.GetConfig<CfgBullet>(id);
         EventManager.Send(Events.FightEvent.AddBullet, bullet);
@@ -46,19 +46,27 @@ public class Bullet
     //动态
     const float MOVE_CHECK_INTERNAL = 0.05f;
     public uint uid;
-    Vector3 _forward;
     float _movedInterval = 0;
     float _timeSinceFire = 0;
     //float _sqrMoveDistance = 0;
+
+    Vector3 _position;
+    Vector3 _euler;
+    Vector3 _forward;
+
 
     //直接使用Effect的位置作为bullet的位置
     public Vector3 position
     {
         get
         {
+            return _position;
+        }
+        set
+        {
+            _position = value;
             if (_effect != null)
-                return _effect.position;
-            return Vector3.zero;
+                _effect.position = position;
         }
     }
 
@@ -66,9 +74,13 @@ public class Bullet
     {
         get
         {
+            return _euler;
+        }
+        set
+        {
+            _euler = value;
             if (_effect != null)
-                return _effect.eulers;
-            return Vector3.zero;
+                _effect.eulers = _euler;
         }
     }
 
@@ -79,8 +91,8 @@ public class Bullet
             Debug.LogError("找到不CfgBullet :" + _id);
             return;
         }
-        _forward = ( _initEulers);
-        _effect = Effect.CreateEffect(_cfg.url, _initPos + _forward, _forward, _subSkill.ownerId, -1);
+        _forward = _euler;
+        _effect = Effect.CreateEffect(_cfg.url, _position + _forward, _forward, _subSkill.ownerId, -1);
     }
 
     public void Update(float delTime)
@@ -112,7 +124,7 @@ public class Bullet
 
     protected void MoveForward(float interval)
     {
-        _effect.position = _effect.position + _forward * _cfg.speed * interval;
+       position = position + _forward * _cfg.speed * interval;
     }
 
     public virtual void Release()

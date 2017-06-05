@@ -9,7 +9,7 @@ public class EntitySprite : EntityBase
     public EntityFightAttributeData attributeData;
     protected UnitSMManager _smMgr;
     protected EntitySortHelper _sortHelper;
-    protected SkillRuntimeData _skillRuntimeData;
+    //protected SkillRuntimeData _skillRuntimeData;
 
     protected override void Init()
     {
@@ -124,29 +124,65 @@ public class EntitySprite : EntityBase
     {
         if (!CheckCanUseSkill(skillId))
             return;
+        CfgSkill cfg = ConfigTextManager.Instance.GetConfig<CfgSkill>(skillId);
+        if (cfg == null)
+            return;
         SendSMEvent(UnitStateEvent.UseSkill);
-        uint targetId = SelectTarget(skillId);
-        if(_skillRuntimeData == null)
-        {
-            _skillRuntimeData = new SkillRuntimeData();
-            _skillRuntimeData.ownerId = uid;
-        }
+        uint targetId = SelectTarget(cfg);
 
-        _skillRuntimeData.attackedId = targetId;
-        _skillRuntimeData.startPos = position;
-        //targetPos需要特殊处理
-        //_skillRuntimeData.targetPos
-        _skillRuntimeData.euler = eulers;
+        var skillRuntimeData = CreateRuntimeData(cfg, targetId);
 
-        GetComponent<SkillControlComponent>().UseSkill(skillId, _skillRuntimeData);
+        GetComponent<SkillControlComponent>().UseSkill(skillId, skillRuntimeData);
     }
 
-    uint SelectTarget(int skillId)
+    void FaceTarget(CfgSkill cfg, uint targetId)
     {
-        var cfg = ConfigTextManager.Instance.GetConfig<CfgSkill>(skillId);
-        if (cfg == null)
-            return 0;
+        if (cfg.faceTarget != 1)
+            return;
+        var entity = World.GetEntity(targetId);
+        if (entity == null)
+            return;
 
+    }
+
+
+    //子弹会延长runtimeData的生命周期，下次使用技能时可能修改数据，所以每次使用技能创建一个单独的runtimedata
+    SkillRuntimeData CreateRuntimeData(CfgSkill cfg, uint targetId)
+    {
+        var skillRuntimeData = new SkillRuntimeData();
+        skillRuntimeData.ownerId = uid;
+        skillRuntimeData.attackedId = targetId;
+        skillRuntimeData.startPos = position;
+        //targetPos需要特殊处理
+        skillRuntimeData.targetPos = GetTargetPos(cfg, targetId);
+        skillRuntimeData.euler = eulers;
+        return skillRuntimeData;
+    }
+
+    /// <summary>
+    /// 获取技能目标点，只对定点子弹有效
+    /// 如果targetId 为0  默认位置为前方range距离的点
+    /// </summary>
+    /// <param name="cfg">技能配置</param>
+    /// <param name="targetId">目标对象id</param>
+    /// <param name="inputPos">todo  支持摇杆指定位置</param>
+    /// <returns></returns>
+    Vector3 GetTargetPos(CfgSkill cfg, uint targetId, Vector3 inputPos = default(Vector3))
+    {
+        var entity = World.GetEntity(targetId);
+        if (entity != null)
+            return entity.position;
+        Vector3 pos = position + forward * cfg.range;
+        return pos;
+    }
+
+    /// <summary>
+    /// 选择目标  支持距离，类型，阵营过滤
+    /// </summary>
+    /// <param name="skillId"></param>
+    /// <returns></returns>
+    uint SelectTarget(CfgSkill cfg)
+    {
         var args = cfg.selectTargetParam;
         if (args.Count == 0)
             return 0;
@@ -155,7 +191,7 @@ public class EntitySprite : EntityBase
         if (selectType == SelectTargetType.None)
             return 0;
 
-        var targetList = SelectTargetByParams(args);
+        var targetList = SelectTargetByParams(cfg.range, args);
         if (targetList.Count == 0)
             return 0;
 
@@ -168,14 +204,13 @@ public class EntitySprite : EntityBase
         return targetList[0].uid;
     }
 
-    List<EntityBase> SelectTargetByParams(List<string> args)
+    List<EntityBase> SelectTargetByParams(float range, List<string> args)
     {
         List<EntityBase> entityList = new List<EntityBase>();
-        float range = StringUtil.ParseFloatFromList(args, 1, 0);
         //player + monster
-        int targetType = StringUtil.ParseIntFromList(args, 2, 6);
+        int targetType = StringUtil.ParseIntFromList(args, 1, 6);
         //敌方
-        int campType = StringUtil.ParseIntFromList(args, 3, 2);
+        int campType = StringUtil.ParseIntFromList(args, 2, 2);
 
         var entites = World.entites;
         var iter = entites.GetEnumerator();

@@ -20,7 +20,6 @@ public class SkillBulletBehaviour : SkillBehaviourBase
     public override void Trigger()
     {
         base.Trigger();
-        var owner = GetOwner();
         var eulers = subSkill.runtimeData.euler;
         eulers.y += _angleOffset;
         var bullet = Bullet.CreateBullet(_bulletId, subSkill, _comEventCtrl, subSkill.runtimeData.startPos + _posOffset, Quaternion.Euler(eulers) * Vector3.forward);
