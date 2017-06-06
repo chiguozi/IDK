@@ -24,6 +24,11 @@ public static class Extension
 	{
 		return a.x * a.x + a.z * a.z;
 	}
+
+    public static float XZDot(this Vector3 a, Vector3 b)
+    {
+        return a.x * b.x + a.z * b.z;
+    }
 	
 	//Vector3是值类型，需要返回Vector3 否则修改无效
 	public static Vector3 CopyXZ(this Vector3 a, Vector3 b)

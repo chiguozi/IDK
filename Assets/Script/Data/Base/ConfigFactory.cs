@@ -6,6 +6,8 @@ public class ConfigFactory
 		{
 			case "Bullet":
 				return new CfgBullet();
+			case "DamageCheck":
+				return new CfgDamageCheck();
 			case "Effect":
 				return new CfgEffect();
 			case "Skill":

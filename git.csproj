@@ -100,6 +100,7 @@
     <Compile Include="Assets\Script\Data\Base\ConfigTextBase.cs" />
     <Compile Include="Assets\Script\Data\Base\ConfigTextManager.cs" />
     <Compile Include="Assets\Script\Data\CfgBullet.cs" />
+    <Compile Include="Assets\Script\Data\CfgDamageCheck.cs" />
     <Compile Include="Assets\Script\Data\CfgEffect.cs" />
     <Compile Include="Assets\Script\Data\CfgSkill.cs" />
     <Compile Include="Assets\Script\Data\CfgSubSkill.cs" />
@@ -108,8 +109,6 @@
     <Compile Include="Assets\Script\Event\EventManager.cs" />
     <Compile Include="Assets\Script\Event\EventParams.cs" />
     <Compile Include="Assets\Script\Event\Events.cs" />
-    <Compile Include="Assets\Script\Logic\Bullet\Bullet.cs" />
-    <Compile Include="Assets\Script\Logic\Bullet\BulletManager.cs" />
     <Compile Include="Assets\Script\Logic\Camera\CameraControl.cs" />
     <Compile Include="Assets\Script\Logic\Camera\CameraManager.cs" />
     <Compile Include="Assets\Script\Logic\Camera\ShakeAction.cs" />
@@ -134,6 +133,9 @@
     <Compile Include="Assets\Script\Logic\PlayerOptionController.cs" />
     <Compile Include="Assets\Script\Logic\Scene\SceneBase.cs" />
     <Compile Include="Assets\Script\Logic\Scene\SceneControl.cs" />
+    <Compile Include="Assets\Script\Logic\Skill\Bullet\Bullet.cs" />
+    <Compile Include="Assets\Script\Logic\Skill\Bullet\BulletManager.cs" />
+    <Compile Include="Assets\Script\Logic\Skill\DamageCheck\DamageChecker.cs" />
     <Compile Include="Assets\Script\Logic\Skill\Skill.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SkillBehaviour\SkillActionBehaviour.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SkillBehaviour\SkillBehaviourBase.cs" />

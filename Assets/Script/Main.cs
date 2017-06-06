@@ -10,7 +10,7 @@ public class Main : MonoBehaviour
 	void Awake()
 	{
 		_instance = this;
-		Init();
+        Init();
 	}
 
 	void Init()

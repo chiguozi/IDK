@@ -47,3 +47,12 @@ public enum SelectTargetType
     //按照参数选择目标
     Normal = 2,
 }
+
+
+//伤害检测范围类型
+public enum DamageRangeType
+{
+    Rect = 1,
+    Circle,
+    Sector,
+}

@@ -92,12 +92,14 @@ public class ExcelContentCell
         originCell = cell;
     }
 
-    bool CheckCell()
-    { return true; }
-
     public void FormatCell()
     {
         string res = originCell.stringValue;
+        if(string.IsNullOrEmpty(res))
+        {
+            _stringValue = string.Empty;
+            return;
+        }
         if(fieldType != typeof(string))
             res = ExcelExporterUtil.RemoveWhiteSpaceOutTheWordFull(res);
         res = ExcelExporterUtil.RemoveWordFirstQuotation(res);
