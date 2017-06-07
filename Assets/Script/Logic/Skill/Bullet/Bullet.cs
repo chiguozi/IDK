@@ -48,6 +48,8 @@ public class Bullet
     float _timeSinceFire = 0;
 
     EntityBase _defalutTarget;
+
+    DamageChecker _damageChecker;
     //float _sqrMoveDistance = 0;
 
     Vector3 _position;
@@ -99,6 +101,9 @@ public class Bullet
         if (_moveType == BulletMoveType.LockTarget && _defalutTarget == null)
             _moveType = BulletMoveType.Forward;
 
+        _damageChecker = new DamageChecker(_cfg.damageCheckId, _subSkill.runtimeData);
+        _damageChecker.OnHitCall = OnHit;
+
         _forward = Quaternion.Euler(_eulers) * Vector3.forward;
         _effect = Effect.CreateEffect(_cfg.url, _position, _eulers, _subSkill.runtimeData.ownerId, -1);
     }
@@ -110,10 +115,11 @@ public class Bullet
         _timeSinceFire += delTime;
         if(_timeSinceFire >= _cfg.lifeTime)
         {
-            EventManager.Send(Events.FightEvent.RemoveBullet, uid);
+            DisposeSelf();
             return;
         }
         Move(delTime);
+        _damageChecker.Update(delTime);
     }
 
     protected virtual void Move(float delTime)
@@ -131,6 +137,7 @@ public class Bullet
         {
             MoveByTarget(MOVE_CHECK_INTERNAL);
         }
+        _damageChecker.UpdatePos(_position);
     }
 
 
@@ -161,6 +168,23 @@ public class Bullet
         position = position * ( 1 - factor ) + _defalutTarget.position *  factor ;
      
     }
+
+    void DisposeSelf()
+    {
+        EventManager.Send(Events.FightEvent.RemoveBullet, uid);
+    }
+
+    void OnHit(List<EntityBase> hitList)
+    {
+        if(_cfg.hitNotDispose == 0)
+        {
+            DisposeSelf();
+        }
+        _subSkill.runtimeData.hitPos = _position;
+        _subSkill.runtimeData.hitEuler = _eulers;
+        _eventControl.Send(ComponentEvents.OnSkillHit, _cfg.damageCheckId, hitList, _subSkill.runtimeData);
+    }
+
 
     public virtual void Release()
     {

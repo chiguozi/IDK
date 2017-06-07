@@ -52,6 +52,14 @@ public partial class EntityBase
         }
     }
 
+    public float radius
+    {
+        get
+        {
+            return _entityBaseData.radius;
+        }
+    }
+
 
     public virtual void InitDatas()
     {

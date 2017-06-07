@@ -27,8 +27,10 @@ public partial class EntityBase
 		var go = GameObject.Instantiate(model) as GameObject;
 		InitModel(go);
 	}
-	
-	protected virtual void InitModel(GameObject model)
+
+
+
+    protected virtual void InitModel(GameObject model)
 	{
 		_gameObject = model;
 		_transform = model.transform;

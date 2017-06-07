@@ -12,4 +12,7 @@ public static class ComponentEvents
     //人物相关特效 buff  近战技能  吟唱技能
     public const string OnAddRoleEffect = "OnAddRoleEffect";
     public const string OnRemoveRoleEffect = "OnRemoveRoleEffect";
+
+    //击中目标
+    public const string OnSkillHit = "OnSkillHit";
 }

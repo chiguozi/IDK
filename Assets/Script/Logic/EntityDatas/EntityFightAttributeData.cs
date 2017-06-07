@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class EntityFightAttributeData
 {
-    public int hp;
+    public int hp = 100;
 }

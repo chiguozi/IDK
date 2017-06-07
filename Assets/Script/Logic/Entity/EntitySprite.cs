@@ -34,6 +34,7 @@ public class EntitySprite : EntityBase
         base.RegistEvent();
         _eventCtrl.Regist(ComponentEvents.OnMoveEnd, OnMoveEnd);
         _eventCtrl.Regist(ComponentEvents.OnSkillEnd, OnSkillEnd);
+        _eventCtrl.Regist<int, List<EntityBase>, SkillRuntimeData>(ComponentEvents.OnSkillHit, OnSkillHit);
     }
 
     public override void InitDatas()
@@ -42,10 +43,7 @@ public class EntitySprite : EntityBase
         attributeData = new EntityFightAttributeData();
     }
 
-    public Transform GetBone(string bone)
-    {
-        return _transform.Find(bone);
-    }
+
 
 
     public void RotateByDirAndSpeed(float x, float z, float speed)
@@ -102,6 +100,11 @@ public class EntitySprite : EntityBase
         //技能结束全局事件？
     }
 
+    protected virtual void OnSkillHit(int damageId, List<EntityBase> hitList, SkillRuntimeData runtimeData)
+    {
+
+    }
+
     protected virtual void InitStateMachine()
     {
         _smMgr = new UnitSMManager(this);
@@ -116,6 +119,11 @@ public class EntitySprite : EntityBase
         {
             _smMgr.ProcessEvent(evt, param);
         }
+    }
+
+    public void Hited()
+    {
+        Debug.LogError("hited");
     }
 
 
@@ -224,40 +232,8 @@ public class EntitySprite : EntityBase
         //敌方
         int campType = StringUtil.ParseIntFromList(args, 2, 2);
 
-        var entites = World.entites;
-        var iter = entites.GetEnumerator();
-        while(iter.MoveNext())
-        {
-            var entity = iter.Current.Value;
-            if (!CheckTargetType(targetType, entity))
-                continue;
-            if (!CheckCampType(campType, entity))
-                continue;
-            if (!CheckEntityDistance(range, entity))
-                continue;
-            entityList.Add(entity);
-        }
-        return entityList;
-    }
-
-    bool CheckEntityDistance(float range, EntityBase entity)
-    {
-        if (range == 0)
-            return false;
-        var sqrDis = ( entity.position - position ).XZSqrMagnitude();
-        return sqrDis < range * range;
-    }
-
-    bool CheckTargetType(int targetType, EntityBase entity)
-    {
-        return ((int)entity.entityType & targetType) > 0;
-    }
-
-
-    bool CheckCampType(int campType, EntityBase entity)
-    {
-        var type = Util.GetTargetCampType(this, entity);
-        return ( (int)type & campType ) > 0;
+        //选择目标默认使用圆形
+        return Util.DefalutSelectTarget(this, targetType, campType, DamageRangeType.Circle, null, range);
     }
 
     bool CheckCanUseSkill(int skillId)

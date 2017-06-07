@@ -29,6 +29,11 @@ public partial class EntityBase
 		_eventCtrl = new EventController();
 	}
 
+    public Transform GetBone(string bone)
+    {
+        return _transform.Find(bone);
+    }
+
     protected virtual void InitEntityBaseData(EntityBaseData data)
     {
         _entityBaseData = data;
@@ -46,7 +51,6 @@ public partial class EntityBase
 		if(HasComponent<ActionComponent>())
 			GetComponent<ActionComponent>().CrossFade(clipName, speed,  force, normalizeTime, duration);
 	}
-	
 	
 	public virtual void Update(float delTime)
 	{

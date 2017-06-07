@@ -16,4 +16,8 @@ public class SkillRuntimeData
 
     //方向
     public Vector3 euler;
+
+    //击中时方向 和 点 子弹用
+    public Vector3 hitPos;
+    public Vector3 hitEuler;
 }

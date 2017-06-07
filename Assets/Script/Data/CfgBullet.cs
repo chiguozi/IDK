@@ -8,6 +8,8 @@ public class CfgBullet : ConfigTextBase
 	public float speed;
 	public int moveType;
 	public float lifeTime;
+	public int damageCheckId;
+	public int hitNotDispose;
 
 
 	public override void Write(int i, string value)
@@ -28,6 +30,12 @@ public class CfgBullet : ConfigTextBase
 				break;
 			case 4:
 				lifeTime = ParseFloat(value);
+				break;
+			case 5:
+				damageCheckId = ParseInt(value);
+				break;
+			case 6:
+				hitNotDispose = ParseInt(value);
 				break;
 			default:
 				UnityEngine.Debug.LogError(GetType().Name + "src i:" + i);

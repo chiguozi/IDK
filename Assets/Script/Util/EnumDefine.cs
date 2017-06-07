@@ -1,7 +1,7 @@
 using System;
 
 [Flags]
-public enum EntityType
+public enum EntityType : byte
 {
 	Base = 0,
     Self = 1,
@@ -24,7 +24,7 @@ public enum RecycleType
 
 //选择目标时阵营类型
 [Flags]
-public enum CampType
+public enum CampType : byte
 {
     Friend = 1,
     Enemy = 2,
@@ -50,7 +50,7 @@ public enum SelectTargetType
 
 
 //伤害检测范围类型
-public enum DamageRangeType
+public enum DamageRangeType 
 {
     Rect = 1,
     Circle,

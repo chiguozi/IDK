@@ -7,6 +7,7 @@ public class CfgDamageCheck : ConfigTextBase
 	public int rangeType;
 	public List<float> rangeParams;
 	public float angleOffset;
+	public Vector3 posOffset;
 	public float delay;
 	public float checkInterval;
 	public float totalTime;
@@ -33,24 +34,27 @@ public class CfgDamageCheck : ConfigTextBase
 				angleOffset = ParseFloat(value);
 				break;
 			case 4:
-				delay = ParseFloat(value);
+				posOffset = ParseVector3(value);
 				break;
 			case 5:
-				checkInterval = ParseFloat(value);
+				delay = ParseFloat(value);
 				break;
 			case 6:
-				totalTime = ParseFloat(value);
+				checkInterval = ParseFloat(value);
 				break;
 			case 7:
-				maxHitCount = ParseInt(value);
+				totalTime = ParseFloat(value);
 				break;
 			case 8:
-				entityHitMaxCount = ParseInt(value);
+				maxHitCount = ParseInt(value);
 				break;
 			case 9:
-				targetType = ParseInt(value);
+				entityHitMaxCount = ParseInt(value);
 				break;
 			case 10:
+				targetType = ParseInt(value);
+				break;
+			case 11:
 				campType = ParseInt(value);
 				break;
 			default:
