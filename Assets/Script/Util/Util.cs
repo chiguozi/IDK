@@ -8,7 +8,7 @@ public class Util
 	{
 #if UNITY_EDITOR
 		var list = new List<Renderer>();
-		go.GetComponentsInChildren<Renderer>(true, list);
+		go.GetComponentsInChildren(true, list);
 		for(int i = 0; i < list.Count; i++)
 		{
 			var mats = list[i].sharedMaterials;
