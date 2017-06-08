@@ -19,6 +19,7 @@ public class DamageChecker
 
     EntityBase _owner;
     Vector3 _checkPos;
+    bool _lockTarget = false;
 
     SkillRuntimeData _skillRuntimeData;
     int _campId;
@@ -42,6 +43,7 @@ public class DamageChecker
         {
             Debug.LogError("找不到CfgDamageCheck id:" + cfgId);
         }
+        _lockTarget = _cfg.lockTarget == 1;
         _skillRuntimeData = runtimeData;
         _owner = World.GetEntity(runtimeData.ownerId);
         _campId = _owner.campId;
@@ -99,7 +101,9 @@ public class DamageChecker
         while (iter.MoveNext())
         {
             var entity = iter.Current.Value;
-
+            //锁定目标 ，没有目标时 不会产生伤害（如果需要，再添加配置变量）
+            if (_lockTarget && entity.uid != _skillRuntimeData.attackedId)
+                continue;
             if (!Util.CheckHP(entity as EntitySprite))
                 continue;
             if (!Util.CheckTargetType(_cfg.targetType, entity))

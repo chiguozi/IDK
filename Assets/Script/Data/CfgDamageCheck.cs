@@ -15,6 +15,7 @@ public class CfgDamageCheck : ConfigTextBase
 	public int entityHitMaxCount;
 	public int targetType;
 	public int campType;
+	public int lockTarget;
 
 
 	public override void Write(int i, string value)
@@ -56,6 +57,9 @@ public class CfgDamageCheck : ConfigTextBase
 				break;
 			case 11:
 				campType = ParseInt(value);
+				break;
+			case 12:
+				lockTarget = ParseInt(value);
 				break;
 			default:
 				UnityEngine.Debug.LogError(GetType().Name + "src i:" + i);
