@@ -30,6 +30,20 @@ public class Util
         return _globalUid;
     }
 
+    public static float GetFloatFromList(List<float> list, int index, float def = 0)
+    {
+        if (list.Count <= index)
+            return def;
+        return list[index];
+    }
+
+    public static int GetIntFromList(List<int> list, int index, int def = 0)
+    {
+        if (list.Count <= index)
+            return def;
+        return list[index];
+    }
+
     /// <summary>
     /// 根据类型，阵营，检测范围过滤entity
     /// </summary>

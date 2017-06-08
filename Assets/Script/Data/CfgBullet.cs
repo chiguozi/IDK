@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class CfgBullet : ConfigTextBase
 {
+	public int bulletType;
 	public string url;
 	public float speed;
-	public int moveType;
 	public float lifeTime;
 	public int damageCheckId;
-	public int hitNotDispose;
+	public List<float> argList;
 
 
 	public override void Write(int i, string value)
@@ -20,13 +20,13 @@ public class CfgBullet : ConfigTextBase
 				ID = ParseInt(value);
 				break;
 			case 1:
-				url = ParseString(value);
+				bulletType = ParseInt(value);
 				break;
 			case 2:
-				speed = ParseFloat(value);
+				url = ParseString(value);
 				break;
 			case 3:
-				moveType = ParseInt(value);
+				speed = ParseFloat(value);
 				break;
 			case 4:
 				lifeTime = ParseFloat(value);
@@ -35,7 +35,7 @@ public class CfgBullet : ConfigTextBase
 				damageCheckId = ParseInt(value);
 				break;
 			case 6:
-				hitNotDispose = ParseInt(value);
+				argList = ParseListFloat(value);
 				break;
 			default:
 				UnityEngine.Debug.LogError(GetType().Name + "src i:" + i);

@@ -43,7 +43,10 @@ public class EntitySprite : EntityBase
         attributeData = new EntityFightAttributeData();
     }
 
-
+    public virtual bool IsDead()
+    {
+        return false;
+    }
 
 
     public void RotateByDirAndSpeed(float x, float z, float speed)
@@ -226,7 +229,6 @@ public class EntitySprite : EntityBase
 
     List<EntityBase> SelectTargetByParams(float range, List<string> args)
     {
-        List<EntityBase> entityList = new List<EntityBase>();
         //player + monster
         int targetType = StringUtil.ParseIntFromList(args, 1, 6);
         //敌方

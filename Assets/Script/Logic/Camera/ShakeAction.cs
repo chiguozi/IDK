@@ -84,9 +84,9 @@ public class ShakeAction
 		
 		float decay = v * pow;
 		
-		float x = UnityEngine.Random.Range(-_randomOffset.x, _randomOffset.x) + _offset.x * decay;
-		float y = UnityEngine.Random.Range(-_randomOffset.y, _randomOffset.y) + _offset.y * decay;
-		float z = UnityEngine.Random.Range(-_randomOffset.z, _randomOffset.z) + (_offset.z + _zoom) * decay;
+		float x = Random.Range(-_randomOffset.x, _randomOffset.x) + _offset.x * decay;
+		float y = Random.Range(-_randomOffset.y, _randomOffset.y) + _offset.y * decay;
+		float z = Random.Range(-_randomOffset.z, _randomOffset.z) + (_offset.z + _zoom) * decay;
 		return x * _right + y * _up + z * _forward;
 	}
 }

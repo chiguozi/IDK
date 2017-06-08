@@ -6,11 +6,13 @@ public enum EntityActionType
 {
     //添加buff
     AddBuff = 1, 
-    //创建子弹
-    CreateBullet = 2,
-
+    //替换技能
+    //做成buff? 2017-6-8 13:40:42
+    ChangeSkill = 2,
 }
 
+//技能击中后的效果函数集合
+//依赖于DamageChecker 2017-6-8 13:41:39
 public class EntityActionCenter
 {
 
@@ -20,8 +22,11 @@ public class EntityActionCenter
     {
     }
 
-    void CreateBulletAction(List<string> args)
-    { }
+
+    void ChangeSkillAction(List<string> args)
+    {
+
+    }
 
 
 }

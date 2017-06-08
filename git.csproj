@@ -137,6 +137,10 @@
     <Compile Include="Assets\Script\Logic\Scene\SceneControl.cs" />
     <Compile Include="Assets\Script\Logic\Skill\Bullet\Bullet.cs" />
     <Compile Include="Assets\Script\Logic\Skill\Bullet\BulletManager.cs" />
+    <Compile Include="Assets\Script\Logic\Skill\Bullet\ForwardLineBullet.cs" />
+    <Compile Include="Assets\Script\Logic\Skill\Bullet\LockTargetBullet.cs" />
+    <Compile Include="Assets\Script\Logic\Skill\Bullet\RoundTripBullet.cs" />
+    <Compile Include="Assets\Script\Logic\Skill\Bullet\StaticBullet.cs" />
     <Compile Include="Assets\Script\Logic\Skill\DamageCheck\DamageChecker.cs" />
     <Compile Include="Assets\Script\Logic\Skill\Skill.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SkillBehaviour\SkillActionBehaviour.cs" />
