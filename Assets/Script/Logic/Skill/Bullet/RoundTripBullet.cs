@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 public class RoundTripBullet : Bullet
 {
@@ -87,6 +85,7 @@ public class RoundTripBullet : Bullet
             _forward = -_forward;
             eulers = -eulers;
         }
+        ReplaceChecker(_backDamageCheckerId);
     }
 
     protected override void OnHit(List<EntityBase> hitList)

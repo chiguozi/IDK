@@ -50,7 +50,6 @@ public class Bullet
 
     //配置
     //@todo _speed 做成公式
-    //float _maxDistance;
     protected int _id;
     protected CfgBullet _cfg; 
 
@@ -62,11 +61,10 @@ public class Bullet
     protected SubSkill _subSkill;
 
     //动态
-    const float MOVE_CHECK_INTERNAL = 0.05f;
+    //const float MOVE_CHECK_INTERNAL = 0.05f;
     public uint uid;
-    float _movedInterval = 0;
+    //float _movedInterval = 0;
     float _timeSinceFire = 0;
-
 
     DamageChecker _damageChecker;
 
@@ -135,13 +133,15 @@ public class Bullet
             return;
         }
 
-        _movedInterval -= delTime;
-        if (_movedInterval <= 0)
-        {
-            _movedInterval += MOVE_CHECK_INTERNAL;
-            OnMove(MOVE_CHECK_INTERNAL);
-            _damageChecker.UpdatePos(_position);
-        }
+        //_movedInterval -= delTime;
+        //if (_movedInterval <= 0)
+        //{
+        //    _movedInterval = MOVE_CHECK_INTERNAL;
+        //    OnMove(_movedInterval);
+        //    _damageChecker.UpdatePos(_position);
+        //}
+        OnMove(delTime);
+        _damageChecker.UpdatePos(_position);
 
         _damageChecker.Update(delTime);
     }
@@ -177,7 +177,6 @@ public class Bullet
         eulers = Quaternion.LookRotation(target.position - position).eulerAngles;
         var factor = ( _cfg.speed * interval ) / distance;
         position = position * ( 1 - factor ) + target.position *  factor ;
-     
     }
 
     protected void DisposeSelf()
@@ -188,7 +187,7 @@ public class Bullet
     void HitTarget(List<EntityBase> hitList)
     {
         OnHit(hitList);
-        //受击变现会用到？ 2017-6-8 14:34:07
+        //受击效果会用到？ 2017-6-8 14:34:07
         _subSkill.runtimeData.hitPos = _position;
         _subSkill.runtimeData.hitEuler = _eulers;
         _eventControl.Send(ComponentEvents.OnSkillHit, _cfg.damageCheckId, hitList, _subSkill.runtimeData);
