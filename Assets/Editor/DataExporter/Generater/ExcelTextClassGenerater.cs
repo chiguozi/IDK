@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using System.Text;
 using System.IO;
-using System.Text.RegularExpressions;
 
 //不写成静态类
 //@todo  添加模板方式
