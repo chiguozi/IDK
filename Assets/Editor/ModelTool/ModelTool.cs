@@ -143,6 +143,9 @@ public class ModelTool
         string folderPath = EditorPath.GetFolderPath(path);
         var newClip = new AnimationClip();
 
+        //格式化Clip
+        FormatAnimationClip(newClip);
+
         EditorUtility.CopySerialized(clip, newClip);
         if (!AssetDatabase.IsValidFolder(folderPath + EditorPath.AnimationFolderPath))
         {
@@ -203,5 +206,53 @@ public class ModelTool
     static GameObject CreatePrefab(string path, GameObject go)
     {
         return PrefabUtility.CreatePrefab(path, go, ReplacePrefabOptions.ReplaceNameBased);
+    }
+
+
+    [MenuItem("Assets/Test")]
+    static void Test()
+    {
+        var obj = Selection.GetFiltered<AnimationClip>(SelectionMode.TopLevel);
+        FormatAnimationClip(obj[0]);
+    }
+
+    //https://answer.uwa4d.com/question/593955b6c42dc04f4d8f7341/%E5%A6%82%E4%BD%95%E9%99%8D%E4%BD%8E%E5%8A%A8%E7%94%BB%E6%96%87%E4%BB%B6%E7%9A%84%E7%B2%BE%E5%BA%A6
+    //优化AnimationClip
+    static void FormatAnimationClip(AnimationClip theAnimation)
+    {
+        try
+        {
+            //去除scale曲线
+            foreach (EditorCurveBinding theCurveBinding in AnimationUtility.GetCurveBindings(theAnimation))
+            {
+                string name = theCurveBinding.propertyName.ToLower();
+                if (name.Contains("scale"))
+                {
+                    AnimationUtility.SetEditorCurve(theAnimation, theCurveBinding, null);
+                }
+                var curve = AnimationUtility.GetEditorCurve(theAnimation, theCurveBinding);
+                if (curve == null || curve.keys == null)
+                {
+                    //Debug.LogWarning(string.Format("AnimationClipCurveData {0} don't have curve; Animation name {1} ", curveDate, animationPath));
+                    continue;
+                }
+                Keyframe key;
+                Keyframe[] keyFrames = curve.keys;
+                for (int i = 0; i < keyFrames.Length; i++)
+                {
+                    key = keyFrames[i];
+                    key.value = float.Parse(key.value.ToString("f3"));
+                    key.inTangent = float.Parse(key.inTangent.ToString("f3"));
+                    key.outTangent = float.Parse(key.outTangent.ToString("f3"));
+                    keyFrames[i] = key;
+                }
+                curve.keys = keyFrames;
+                AnimationUtility.SetEditorCurve(theAnimation, theCurveBinding, curve);
+            }
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogError(string.Format("CompressAnimationClip Failed !!! animationPath : {0} error: {1}", theAnimation.name, e));
+        }
     }
 }

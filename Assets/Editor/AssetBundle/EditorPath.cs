@@ -103,6 +103,16 @@ public class EditorPath
         return assetPath.StartsWith(ModelPath);
     }
 
+    public static bool CheckIsScenePath(string assetPath)
+    {
+        return assetPath.StartsWith(ScenePath);
+    }
+
+    public static bool CheckIsEffectPath(string assetPath)
+    {
+        return assetPath.StartsWith(EffectPath);
+    }
+
     public static string GetAnimationFilePath(string path, string fileName)
     {
         return path + AnimationFolderPath + "/" + fileName + AnimExt;
