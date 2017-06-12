@@ -10,6 +10,7 @@ public class CfgBullet : ConfigTextBase
 	public float lifeTime;
 	public int damageCheckId;
 	public List<float> argList;
+	public List<List<string>> onHitActions;
 
 
 	public override void Write(int i, string value)
@@ -36,6 +37,9 @@ public class CfgBullet : ConfigTextBase
 				break;
 			case 6:
 				argList = ParseListFloat(value);
+				break;
+			case 7:
+				onHitActions = ParseListListString(value);
 				break;
 			default:
 				UnityEngine.Debug.LogError(GetType().Name + "src i:" + i);

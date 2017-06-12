@@ -11,6 +11,11 @@ public class LockTargetBullet : Bullet
         _target = World.GetEntity(_runtimeData.attackedId) as EntitySprite;
     }
 
+    public void RefreshTarget()
+    {
+        OnStart();
+    }
+
     protected override void OnMove(float interval)
     {
         if (_target == null || _target.IsDead())

@@ -167,6 +167,7 @@
     <Compile Include="Assets\Editor\BMFont\ByteReader.cs" />
     <Compile Include="Assets\Editor\CustomPostProcessor.cs" />
     <Compile Include="Assets\Editor\CustomPostprocesser\BundlePostprocessor.cs" />
+    <Compile Include="Assets\Editor\CustomPostprocesser\ModelPostprocessor.cs" />
     <Compile Include="Assets\Editor\CustomPostprocesser\TexturePostprocessor.cs" />
     <Compile Include="Assets\Editor\DataExporter\Data\Excel.cs" />
     <Compile Include="Assets\Editor\DataExporter\Data\ExcelData.cs" />

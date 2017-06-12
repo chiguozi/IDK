@@ -199,6 +199,8 @@ public class Bullet
     void HitTarget(List<EntityBase> hitList)
     {
         OnHit(hitList);
+
+        BulletActionCenter.ExecuteBulletAction(this, _cfg);
         //受击效果会用到？ 2017-6-8 14:34:07
         _runtimeData.hitPos = _position;
         _runtimeData.hitEuler = _eulers;

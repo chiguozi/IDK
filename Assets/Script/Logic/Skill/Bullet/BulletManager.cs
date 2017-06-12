@@ -6,6 +6,7 @@ public class BulletManager : SingleTon<BulletManager>
 {
     Dictionary<uint, Bullet> _bullteMap = new Dictionary<uint, Bullet>();
     List<uint> _removeList = new List<uint>();
+    List<Bullet> _addList = new List<Bullet>();
 
     public override void Init()
     {
@@ -17,7 +18,8 @@ public class BulletManager : SingleTon<BulletManager>
 
     void AddBullet(Bullet bullet)
     {
-        _bullteMap.Add(bullet.uid, bullet);
+        _addList.Add(bullet);
+        //_bullteMap.Add(bullet.uid, bullet);
     }
     void RemoveBullet(uint uid)
     {
@@ -30,6 +32,16 @@ public class BulletManager : SingleTon<BulletManager>
         while(iter.MoveNext())
         {
             iter.Current.Value.Update(deltaTime);
+        }
+
+        //放置update中添加子弹
+        if(_addList.Count > 0)
+        {
+            for(int i = 0; i < _addList.Count; i++)
+            {
+                _bullteMap.Add(_addList[i].uid, _addList[i]);
+            }
+            _addList.Clear();
         }
 
         if(_removeList.Count > 0)
