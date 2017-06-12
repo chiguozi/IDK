@@ -11,7 +11,7 @@ public enum BulletType
 
 public class Bullet
 {
-    public static Bullet CreateBullet(int id, SubSkill subSkill, EventController ctrl, Vector3 pos, Vector3 eulers)
+    public static Bullet CreateBullet(int id, SkillRuntimeData runtimeData, EventController ctrl, Vector3 pos, Vector3 eulers)
     {
         var cfg = ConfigTextManager.Instance.GetConfig<CfgBullet>(id);
         if (cfg == null)
@@ -37,7 +37,8 @@ public class Bullet
                 break;
         }
         bullet._id = id;
-        bullet._subSkill = subSkill;
+        //subSkill可能被重用 导致引用丢失
+        bullet._runtimeData = runtimeData;
         bullet._eventControl = ctrl;
         bullet._position = pos;
         bullet._eulers = eulers;
@@ -55,10 +56,15 @@ public class Bullet
 
 
     protected EventController _eventControl;
+    public EventController eventControl { get { return _eventControl; } }
     protected Effect _effect;
 
     //存放数据
-    protected SubSkill _subSkill;
+    //protected SubSkill _subSkill;
+
+    protected SkillRuntimeData _runtimeData;
+    public SkillRuntimeData runTimeData { get { return _runtimeData; } }
+
 
     //动态
     //const float MOVE_CHECK_INTERNAL = 0.05f;
@@ -72,6 +78,8 @@ public class Bullet
     protected Vector3 _eulers;
     protected Vector3 _forward;
 
+    //子子弹深度
+    public int childDepth = 0;
 
     //直接使用Effect的位置作为bullet的位置
     public Vector3 position
@@ -112,13 +120,12 @@ public class Bullet
 
         OnStart();
 
-        _damageChecker = new DamageChecker(_cfg.damageCheckId, _subSkill.runtimeData);
+        _damageChecker = new DamageChecker(_cfg.damageCheckId, _runtimeData);
         _damageChecker.OnHitCall = HitTarget;
 
         _forward = Quaternion.Euler(_eulers) * Vector3.forward;
-        _effect = Effect.CreateEffect(_cfg.url, _position, _eulers, _subSkill.runtimeData.ownerId, -1);
+        _effect = Effect.CreateEffect(_cfg.url, _position, _eulers, _runtimeData.ownerId, -1);
     }
-
     public void Update(float delTime)
     {
         if (_effect == null || _cfg == null)
@@ -151,7 +158,7 @@ public class Bullet
     {
         if (checkerId == _cfg.damageCheckId)
             return;
-        _damageChecker = new DamageChecker(checkerId, _subSkill.runtimeData);
+        _damageChecker = new DamageChecker(checkerId, _runtimeData);
         _damageChecker.OnHitCall = HitTarget;
     }
 
@@ -184,13 +191,18 @@ public class Bullet
         EventManager.Send(Events.FightEvent.RemoveBullet, uid);
     }
 
+    public void Dispose()
+    {
+        DisposeSelf();
+    }
+
     void HitTarget(List<EntityBase> hitList)
     {
         OnHit(hitList);
         //受击效果会用到？ 2017-6-8 14:34:07
-        _subSkill.runtimeData.hitPos = _position;
-        _subSkill.runtimeData.hitEuler = _eulers;
-        _eventControl.Send(ComponentEvents.OnSkillHit, _cfg.damageCheckId, hitList, _subSkill.runtimeData);
+        _runtimeData.hitPos = _position;
+        _runtimeData.hitEuler = _eulers;
+        _eventControl.Send(ComponentEvents.OnSkillHit, _cfg.damageCheckId, hitList, _runtimeData);
     }
 
 
@@ -202,6 +214,7 @@ public class Bullet
             _effect.Release();
             _effect = null;
         }
+        childDepth = 0;
     }
 
 

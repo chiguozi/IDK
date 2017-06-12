@@ -2,10 +2,12 @@ using UnityEngine;
 using System.Collections.Generic;
 using Object = System.Object;
 
+//@todo string 转换为 hash
+//SMIdle和 actionend 重复
 public class AnimStateName
 {
-	public const string IDLE = "idle";
-	public const string RUN = "run";
+    public const string IDLE = "idle";
+    public const string RUN = "run";
 }
 
 public class ActionComponent : ComponentBase
@@ -127,4 +129,24 @@ public class ActionComponent : ComponentBase
 	{
 		_url = url;
 	}
+
+
+    float _checkInterval = 0;
+    AnimatorStateInfo _stateInfo;
+    public override void Update(float delTime)
+    {
+        base.Update(delTime);
+        if (_animator == null)
+            return;
+        //_checkInterval += delTime;
+        //if (_checkInterval < 0.1)
+        //    return;
+        //_checkInterval = 0;
+
+        _stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
+        if (_stateInfo.loop == false && _stateInfo.normalizedTime >= 1)
+        {
+            Send(ComponentEvents.OnActionEnd, _curClipName);
+        }
+    }
 }

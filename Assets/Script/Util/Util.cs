@@ -44,6 +44,37 @@ public class Util
         return list[index];
     }
 
+    public static uint SkillSelectTarget(uint id, CfgSkill cfg)
+    {
+        var entity = World.GetEntity(id);
+        return SkillSelectTarget(entity as EntitySprite, cfg);
+    }
+    public static uint SkillSelectTarget(EntitySprite self, CfgSkill cfg)
+    {
+        if (self == null || cfg == null)
+            return 0;
+        var args = cfg.selectTargetParam;
+        if (args.Count == 0)
+            return 0;
+
+        SelectTargetType selectType = (SelectTargetType)StringUtil.ParseIntFromList(args, 0, 1);
+        if (selectType == SelectTargetType.None)
+            return 0;
+
+        //player + monster
+        int targetType = StringUtil.ParseIntFromList(args, 1, 6);
+        //敌方
+        int campType = StringUtil.ParseIntFromList(args, 2, 2);
+
+        var targetList = DefalutSelectTarget(self, targetType, campType, DamageRangeType.Circle, null, cfg.range);
+        if (targetList.Count == 0)
+            return 0;
+
+        EntitySortHelper.SortEntities(self, cfg.sortParam, targetList);
+
+        return targetList[0].uid;
+    }
+
     /// <summary>
     /// 根据类型，阵营，检测范围过滤entity
     /// </summary>

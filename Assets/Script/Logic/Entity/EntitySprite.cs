@@ -8,7 +8,7 @@ public class EntitySprite : EntityBase
 {
     public EntityFightAttributeData attributeData;
     protected UnitSMManager _smMgr;
-    protected EntitySortHelper _sortHelper;
+    //protected EntitySortHelper _sortHelper;
     //protected SkillRuntimeData _skillRuntimeData;
 
     protected override void Init()
@@ -35,6 +35,7 @@ public class EntitySprite : EntityBase
         _eventCtrl.Regist(ComponentEvents.OnMoveEnd, OnMoveEnd);
         _eventCtrl.Regist(ComponentEvents.OnSkillEnd, OnSkillEnd);
         _eventCtrl.Regist<int, List<EntityBase>, SkillRuntimeData>(ComponentEvents.OnSkillHit, OnSkillHit);
+        _eventCtrl.Regist<string>(ComponentEvents.OnActionEnd, OnActionEnd);
     }
 
     public override void InitDatas()
@@ -108,6 +109,11 @@ public class EntitySprite : EntityBase
 
     }
 
+    protected virtual void OnActionEnd(string clipName)
+    {
+        CrossFade(AnimStateName.IDLE, 1, false);
+    }
+
     protected virtual void InitStateMachine()
     {
         _smMgr = new UnitSMManager(this);
@@ -138,7 +144,7 @@ public class EntitySprite : EntityBase
         if (cfg == null)
             return;
         //选择目标
-        uint targetId = SelectTarget(cfg);
+        uint targetId = Util.SkillSelectTarget(this, cfg);
 
         if(targetId == 0 && cfg.canUseIfNoTarget != 1)
         {
@@ -199,48 +205,51 @@ public class EntitySprite : EntityBase
         return pos;
     }
 
-    /// <summary>
-    /// 选择目标  支持距离，类型，阵营过滤
-    /// </summary>
-    /// <param name="skillId"></param>
-    /// <returns></returns>
-    uint SelectTarget(CfgSkill cfg)
-    {
-        var args = cfg.selectTargetParam;
-        if (args.Count == 0)
-            return 0;
+    ///// <summary>
+    ///// 选择目标  支持距离，类型，阵营过滤
+    ///// </summary>
+    ///// <param name="skillId"></param>
+    ///// <returns></returns>
+    //uint SelectTarget(CfgSkill cfg)
+    //{
+    //    var args = cfg.selectTargetParam;
+    //    if (args.Count == 0)
+    //        return 0;
 
-        SelectTargetType selectType = (SelectTargetType)StringUtil.ParseIntFromList(args, 0, 1);
-        if (selectType == SelectTargetType.None)
-            return 0;
+    //    SelectTargetType selectType = (SelectTargetType)StringUtil.ParseIntFromList(args, 0, 1);
+    //    if (selectType == SelectTargetType.None)
+    //        return 0;
 
-        var targetList = SelectTargetByParams(cfg.range, args);
-        if (targetList.Count == 0)
-            return 0;
+    //    var targetList = SelectTargetByParams(cfg.range, args);
+    //    if (targetList.Count == 0)
+    //        return 0;
 
-        //统一排序，放置多次排序
-        if (_sortHelper == null)
-            _sortHelper = new EntitySortHelper();
-        _sortHelper.Init(this, cfg.sortParam);
-        _sortHelper.SortList(targetList);
+    //    ////统一排序，放置多次排序
+    //    //if (_sortHelper == null)
+    //    //    _sortHelper = new EntitySortHelper();
+    //    //_sortHelper.Init(this, cfg.sortParam);
+    //    //_sortHelper.SortList(targetList);
+    //    EntitySortHelper.SortEntities(this, cfg.sortParam, targetList);
 
-        return targetList[0].uid;
-    }
+    //    return targetList[0].uid;
+    //}
 
-    List<EntityBase> SelectTargetByParams(float range, List<string> args)
-    {
-        //player + monster
-        int targetType = StringUtil.ParseIntFromList(args, 1, 6);
-        //敌方
-        int campType = StringUtil.ParseIntFromList(args, 2, 2);
+    //List<EntityBase> SelectTargetByParams(float range, List<string> args)
+    //{
+    //    //player + monster
+    //    int targetType = StringUtil.ParseIntFromList(args, 1, 6);
+    //    //敌方
+    //    int campType = StringUtil.ParseIntFromList(args, 2, 2);
 
-        //选择目标默认使用圆形
-        return Util.DefalutSelectTarget(this, targetType, campType, DamageRangeType.Circle, null, range);
-    }
+    //    //选择目标默认使用圆形
+    //    return Util.DefalutSelectTarget(this, targetType, campType, DamageRangeType.Circle, null, range);
+    //}
 
     bool CheckCanUseSkill(int skillId)
     {
         if (!HasComponent<SkillControlComponent>())
+            return false;
+        if (_smMgr.GetCurrentState() == UnitState.Skill || _smMgr.GetCurrentState() == UnitState.Die)
             return false;
         return GetComponent<SkillControlComponent>().CheckCanUseSkill(skillId);
     }

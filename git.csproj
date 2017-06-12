@@ -114,7 +114,6 @@
     <Compile Include="Assets\Script\Logic\Camera\ShakeAction.cs" />
     <Compile Include="Assets\Script\Logic\Effect\Effect.cs" />
     <Compile Include="Assets\Script\Logic\Effect\EffectManager.cs" />
-    <Compile Include="Assets\Script\Logic\Entity\EnittyActionDataSet.cs" />
     <Compile Include="Assets\Script\Logic\Entity\EntityActionCenter.cs" />
     <Compile Include="Assets\Script\Logic\Entity\EntityBase.cs" />
     <Compile Include="Assets\Script\Logic\Entity\EntityBaseComponent.cs" />
@@ -136,6 +135,7 @@
     <Compile Include="Assets\Script\Logic\Scene\SceneBase.cs" />
     <Compile Include="Assets\Script\Logic\Scene\SceneControl.cs" />
     <Compile Include="Assets\Script\Logic\Skill\Bullet\Bullet.cs" />
+    <Compile Include="Assets\Script\Logic\Skill\Bullet\BulletActionCenter.cs" />
     <Compile Include="Assets\Script\Logic\Skill\Bullet\BulletManager.cs" />
     <Compile Include="Assets\Script\Logic\Skill\Bullet\ForwardLineBullet.cs" />
     <Compile Include="Assets\Script\Logic\Skill\Bullet\LockTargetBullet.cs" />

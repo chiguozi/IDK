@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EntitySortHelper
 {
-    EntityBase _target;
-    List<List<string>> _args;
-    int SortHp(EntitySprite e1, EntitySprite e2)
+    static EntityBase _target;
+    static List<List<string>> _args;
+    static int SortHp(EntitySprite e1, EntitySprite e2)
     {
         int res = 0;
         if (e1 == null && e2 != null)
@@ -20,7 +20,7 @@ public class EntitySortHelper
         return res;
     }
 
-    int SortDistance(EntityBase e1, EntityBase e2)
+    static int SortDistance(EntityBase e1, EntityBase e2)
     {
         var sqrDis1 = ( e1.position - _target.position ).XZMagnitude();
         var sqrDis2 = ( e2.position - _target.position ).XZMagnitude();
@@ -28,14 +28,14 @@ public class EntitySortHelper
         return res;
     }
 
-    int SortEntityType(EntityBase e1, EntityBase e2, List<EntityType> typeList)
+    static int SortEntityType(EntityBase e1, EntityBase e2, List<EntityType> typeList)
     {
         int index1 = typeList.IndexOf(e1.entityType);
         int index2 = typeList.IndexOf(e2.entityType);
         return -index1.CompareTo(index2);
     }
 
-    int SortEntityCamp(EntityBase e1, EntityBase e2, List<CampType> campList)
+    static int SortEntityCamp(EntityBase e1, EntityBase e2, List<CampType> campList)
     {
         int index1 = campList.IndexOf(Util.GetTargetCampType(_target, e1));
         int index2 = campList.IndexOf(Util.GetTargetCampType(_target, e2));
@@ -43,19 +43,26 @@ public class EntitySortHelper
     }
 
 
-    public void Init(EntityBase target, List<List<string>> args)
+    //static public void Init(EntityBase target, List<List<string>> args)
+    //{
+    //    _target = target;
+    //    _args = args;
+    //}
+
+    //static public void SortList(List<EntityBase> sortList)
+    //{
+    //    sortList.Sort(SortFunc);
+    //}
+
+    public static void SortEntities(EntityBase target, List<List<string>> args, List<EntityBase> sortList)
     {
         _target = target;
         _args = args;
-    }
-
-    public void SortList(List<EntityBase> sortList)
-    {
         sortList.Sort(SortFunc);
     }
 
 
-    int SortFunc(EntityBase e1, EntityBase e2)
+    static int SortFunc(EntityBase e1, EntityBase e2)
     {
         for(int i = 0; i < _args.Count; i++)
         {
@@ -66,7 +73,7 @@ public class EntitySortHelper
         return 0;
     }
 
-    int SortByParams(EntityBase e1, EntityBase e2, List<string> args)
+    static int SortByParams(EntityBase e1, EntityBase e2, List<string> args)
     {
         int type = StringUtil.ParseIntFromList(args, 0, 0);
         int reverse = 1;

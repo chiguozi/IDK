@@ -8,7 +8,7 @@ public class LockTargetBullet : Bullet
 
     protected override void OnStart()
     {
-        _target = World.GetEntity(_subSkill.runtimeData.attackedId) as EntitySprite;
+        _target = World.GetEntity(_runtimeData.attackedId) as EntitySprite;
     }
 
     protected override void OnMove(float interval)

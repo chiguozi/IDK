@@ -66,4 +66,13 @@ public class SMRun : UnitSMBase
 			change = UnitStateChangeEvent.Clear;
 		}
 	}
+
+
+    public override UnitState state
+    {
+        get
+        {
+            return UnitState.Run;
+        }
+    }
 }

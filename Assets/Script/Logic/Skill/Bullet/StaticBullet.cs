@@ -8,7 +8,7 @@ public class StaticBullet : Bullet
     protected override void OnStart()
     {
         base.OnStart();
-        _position = _subSkill.runtimeData.targetPos;
+        _position = _runtimeData.targetPos;
     }
 
     protected override void OnMove(float interval)

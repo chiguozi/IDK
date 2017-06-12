@@ -15,4 +15,7 @@ public static class ComponentEvents
 
     //击中目标
     public const string OnSkillHit = "OnSkillHit";
+
+    //非循环动作播放完成
+    public const string OnActionEnd = "OnActionEnd";
 }

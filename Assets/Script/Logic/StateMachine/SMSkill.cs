@@ -17,4 +17,12 @@ public class SMSkill : UnitSMBase
             change = UnitStateChangeEvent.Exit;
         }
     }
+
+    public override UnitState state
+    {
+        get
+        {
+            return UnitState.Skill;
+        }
+    }
 }

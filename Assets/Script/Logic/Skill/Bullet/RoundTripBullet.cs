@@ -51,7 +51,7 @@ public class RoundTripBullet : Bullet
 
     protected override void OnStart()
     {
-        _selfEntity = World.GetEntity(_subSkill.runtimeData.ownerId) as EntitySprite;
+        _selfEntity = World.GetEntity(_runtimeData.ownerId) as EntitySprite;
     }
 
 
