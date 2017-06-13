@@ -16,16 +16,38 @@ public enum EntityActionType
 public class EntityActionCenter
 {
 
-    public EntitySprite centerOwner;
 
-    void AddBuffAction(List<string> args)
+    static void AddBuffAction(EntitySprite self , List<string> args)
     {
     }
 
 
-    void ChangeSkillAction(List<string> args)
+    static void ChangeSkillAction(EntitySprite self, List<string> args)
     {
 
+    }
+
+    public static void ExecuteEntityAction(EntitySprite self, List<List<string>> actions)
+    {
+        if (actions.Count == 0)
+        {
+            return;
+        }
+        for (int i = 0; i < actions.Count; i++)
+        {
+            if (actions[i] == null || actions[i].Count == 0)
+                continue;
+            var type = (EntityActionType)StringUtil.ParseIntFromList(actions[i], 0, 1);
+            switch (type)
+            {
+                case EntityActionType.AddBuff:
+                    AddBuffAction(self, actions[i]);
+                    break;
+                case EntityActionType.ChangeSkill:
+                    ChangeSkillAction(self, actions[i]);
+                    break;
+            }
+        }
     }
 
 

@@ -8,6 +8,7 @@ public class AnimStateName
 {
     public const string IDLE = "idle";
     public const string RUN = "run";
+    public const string HIT = "hit";
 }
 
 public class ActionComponent : ComponentBase

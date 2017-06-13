@@ -106,7 +106,8 @@ public class EntitySprite : EntityBase
 
     protected virtual void OnSkillHit(int damageId, List<EntityBase> hitList, SkillRuntimeData runtimeData)
     {
-
+        //打中目标后效果回调
+        //效果放在cfgDamage中
     }
 
     protected virtual void OnActionEnd(string clipName)
@@ -130,9 +131,9 @@ public class EntitySprite : EntityBase
         }
     }
 
-    public void Hited()
+    public void Hited(SkillRuntimeData runtimeData)
     {
-        Debug.LogError("hited");
+        CrossFade(AnimStateName.HIT, 1, false);
     }
 
 

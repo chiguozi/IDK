@@ -16,6 +16,11 @@ public class BulletActionCenter
     //暂时不区分子子弹数量和子子弹深度，假定子弹只能伤害一次
     public static void CreateBulletAction(Bullet parent, List<string> args)
     {
+        if (parent.childDepth >= 8)
+        {
+            Debug.LogError("子弹层数太深");
+            return;
+        }
         int bulletId = StringUtil.ParseIntFromList(args, 1, 0);
         int maxChildDepth = StringUtil.ParseIntFromList(args, 4, 0);
         //判断子弹最大深度  这样自己可以创建自己 2017-6-12 17:28:54
@@ -35,6 +40,12 @@ public class BulletActionCenter
     //弹射子弹
     public static void ChangeTargetAction(Bullet bullet, List<string> args)
     {
+        if (bullet.childDepth >= 8)
+        {
+            bullet.Dispose();
+            Debug.LogError("子弹层数太深");
+            return;
+        }
         LockTargetBullet lockBullet = bullet as LockTargetBullet;
         if(lockBullet == null)
         {
@@ -62,30 +73,24 @@ public class BulletActionCenter
         lockBullet.RefreshTarget();
     }
 
-    public static void ExecuteBulletAction(Bullet bullet, CfgBullet cfg)
+    public static void ExecuteBulletAction(Bullet bullet, List<List<string>> actions)
     {
-        if(bullet.childDepth >= 8)
-        {
-            Debug.LogError("子弹层数太深");
-            return;
-        }
-        //bullet cfg 不应该为空
-        if(cfg.onHitActions.Count == 0)
+        if(actions.Count == 0)
         {
             return;
         }
-        for(int i = 0; i < cfg.onHitActions.Count; i++)
+        for(int i = 0; i < actions.Count; i++)
         {
-            if (cfg.onHitActions[i] == null || cfg.onHitActions[i].Count == 0)
+            if (actions[i] == null || actions[i].Count == 0)
                 continue;
-            var type =(BulletActionType)StringUtil.ParseIntFromList(cfg.onHitActions[i], 0, 1);
+            var type =(BulletActionType)StringUtil.ParseIntFromList(actions[i], 0, 1);
             switch(type)
             {
                 case BulletActionType.CreateBullet:
-                    CreateBulletAction(bullet, cfg.onHitActions[i]);
+                    CreateBulletAction(bullet, actions[i]);
                     break;
                 case BulletActionType.ChangeTarget:
-                    ChangeTargetAction(bullet, cfg.onHitActions[i]);
+                    ChangeTargetAction(bullet, actions[i]);
                     break;
             }
         }

@@ -80,7 +80,7 @@ public class DamageChecker
         {
             var sp = ( list[i] as EntitySprite );
             if (sp != null)
-                sp.Hited();
+                sp.Hited(_skillRuntimeData);
             if (_cfg.maxHitCount > 0)
                 _hitTotalCount++;
             if (_cfg.entityHitMaxCount > 0)

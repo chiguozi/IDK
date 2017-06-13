@@ -89,7 +89,7 @@ public class World
 
 
         data = new EntityBaseData();
-        data.url = "Prefab/Model/100301";
+        data.url = "Prefab/Model/hero001";
         data.campId = 2;
         data.entityType = EntityType.Player;
         data.initPos = new Vector3(-44, 0, -14);
