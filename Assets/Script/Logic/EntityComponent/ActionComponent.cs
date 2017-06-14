@@ -139,10 +139,10 @@ public class ActionComponent : ComponentBase
         base.Update(delTime);
         if (_animator == null)
             return;
-        //_checkInterval += delTime;
-        //if (_checkInterval < 0.1)
-        //    return;
-        //_checkInterval = 0;
+        _checkInterval += delTime;
+        if (_checkInterval < 0.1)
+            return;
+        _checkInterval = 0;
 
         _stateInfo = _animator.GetCurrentAnimatorStateInfo(0);
         if (_stateInfo.loop == false && _stateInfo.normalizedTime >= 1)

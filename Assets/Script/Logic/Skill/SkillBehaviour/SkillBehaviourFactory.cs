@@ -24,10 +24,14 @@ public class SkillBehaviourFactory
             case SkillBehaviourType.Bullet:
                 behaviour = new SkillBulletBehaviour();
                 break;
+            case SkillBehaviourType.Damage:
+                behaviour = new SkillDamageBehaviour();
+                break;
         }
         if(behaviour != null)
         {
-            behaviour.subSkill = skill;
+            behaviour.subSkillId = skill.id;
+            behaviour.runtimeData = skill.runtimeData;
             behaviour.SetEventController(con);
             behaviour.Setup(args);
         }

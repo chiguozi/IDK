@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class SkillBehaviourBase
 {
-    public SubSkill subSkill;
-    public bool needUpdate = false;
+    //public SubSkill subSkill;
+    public int subSkillId;
+    public SkillRuntimeData runtimeData;
+
+    public virtual bool needUpdate { get { return false; } }
     protected EventController _comEventCtrl;
 
     public void SetEventController(EventController eventCtrl)
@@ -20,13 +23,13 @@ public class SkillBehaviourBase
     }
 
     //伤害检测会使用  @todo  移走
-    public virtual void Update()
+    public virtual void Update(float delTime)
     {
     }
 
     protected EntitySprite GetOwner()
     {
-        return World.entites[subSkill.runtimeData.ownerId] as EntitySprite;
+        return World.entites[runtimeData.ownerId] as EntitySprite;
     }
 
     //valueList[0]为behaviortype  需要跳过

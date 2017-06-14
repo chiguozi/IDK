@@ -147,7 +147,9 @@
     <Compile Include="Assets\Script\Logic\Skill\SkillBehaviour\SkillBehaviourBase.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SkillBehaviour\SkillBehaviourFactory.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SkillBehaviour\SkillBulletBehaviour.cs" />
+    <Compile Include="Assets\Script\Logic\Skill\SkillBehaviour\SkillDamageBehaviour.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SkillBehaviour\SkillEffectBehaviour.cs" />
+    <Compile Include="Assets\Script\Logic\Skill\SkillBehaviour\SkillMoveBehaviour.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SkillRuntimeData.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SkillUtil.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SubSkill.cs" />

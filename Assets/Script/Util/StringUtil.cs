@@ -291,7 +291,6 @@ public class StringUtil
         if (TryParseVector3(str, out v))
             return v;
         return def;
-
     }
 
     public static float ParseFloatFromList(List<string> valueList, int index, float def = 0)

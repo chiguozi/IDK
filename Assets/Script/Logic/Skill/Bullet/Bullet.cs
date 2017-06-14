@@ -11,7 +11,7 @@ public enum BulletType
 
 public class Bullet
 {
-    public static Bullet CreateBullet(int id, SkillRuntimeData runtimeData, EventController ctrl, Vector3 pos, Vector3 eulers)
+    public static Bullet CreateBullet(int id, SkillRuntimeData runtimeData, EventController ctrl, Vector3 pos, Vector3 eulers, int subSkillId)
     {
         var cfg = ConfigTextManager.Instance.GetConfig<CfgBullet>(id);
         if (cfg == null)
@@ -43,6 +43,8 @@ public class Bullet
         bullet._position = pos;
         bullet._eulers = eulers;
         bullet.uid = Util.GetClientUid();
+        //可能会用到
+        bullet._subSkillId = subSkillId;
         bullet._cfg = cfg;
         bullet.ParseArgs(cfg.argList);
         EventManager.Send(Events.FightEvent.AddBullet, bullet);
@@ -59,8 +61,8 @@ public class Bullet
     public EventController eventControl { get { return _eventControl; } }
     protected Effect _effect;
 
-    //存放数据
-    //protected SubSkill _subSkill;
+    protected int _subSkillId;
+    public int subSkillId { get { return _subSkillId; } }
 
     protected SkillRuntimeData _runtimeData;
     public SkillRuntimeData runTimeData { get { return _runtimeData; } }
@@ -140,13 +142,6 @@ public class Bullet
             return;
         }
 
-        //_movedInterval -= delTime;
-        //if (_movedInterval <= 0)
-        //{
-        //    _movedInterval = MOVE_CHECK_INTERNAL;
-        //    OnMove(_movedInterval);
-        //    _damageChecker.UpdatePos(_position);
-        //}
         OnMove(delTime);
         _damageChecker.UpdatePos(_position);
 

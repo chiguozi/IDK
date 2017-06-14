@@ -15,6 +15,8 @@ public class SubSkill
 
     List<SkillBehaviourBase> _updateActionList = new List<SkillBehaviourBase>();
 
+    //@todo 子技能初始化需要重构 2017-6-14 15:35:34
+    //初始化不能包含动态数据   使用的时候初始化？  分步初始化？
     public void Init(EventController eventMgr, List<string> args)
     {
         id = StringUtil.ParseInt(args[0]);
@@ -32,6 +34,15 @@ public class SubSkill
         }
     }
 
+    public void SetRuntimeData(SkillRuntimeData data)
+    {
+        runtimeData = data;
+        for(int i = 0; i < _skillActionList.Count; i++)
+        {
+            _skillActionList[i].runtimeData = data;
+        }
+    }
+
     public void Update(float delTime)
     {
         if(!_hasTriggered && _delay >= 0)
@@ -45,7 +56,7 @@ public class SubSkill
         }
         if (!_hasTriggered)
             return;
-        UpdateSkillActions();
+        UpdateSkillActions(delTime);
     }
 
     //重用使用
@@ -68,11 +79,11 @@ public class SubSkill
         }
     }
     
-    void UpdateSkillActions()
+    void UpdateSkillActions(float delTime)
     {
         for(int i = 0; i  < _updateActionList.Count; i++)
         {
-            _updateActionList[i].Update();
+            _updateActionList[i].Update(delTime);
         }
     }
 

@@ -31,7 +31,7 @@ public class BulletActionCenter
         Vector3 posOffset = StringUtil.ParseVector3FromList(args, 3, Vector3.zero);
         var eulers = parent.eulers;
         eulers.y += angleOffset;
-        var bullet = Bullet.CreateBullet(bulletId, parent.runTimeData, parent.eventControl, parent.position + posOffset, eulers);
+        var bullet = Bullet.CreateBullet(bulletId, parent.runTimeData, parent.eventControl, parent.position + posOffset, eulers, parent.subSkillId);
         bullet.childDepth = ++parent.childDepth;
         bullet.Fire();
     }

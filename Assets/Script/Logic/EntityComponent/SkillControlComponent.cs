@@ -51,7 +51,7 @@ public class SkillControlComponent : ComponentBase
         //临时处理
         for(int i = 0; i < skill.subSkillInfoList.Count; i++)
         {
-            skill.subSkillInfoList[i].runtimeData = runtimeData;
+            skill.subSkillInfoList[i].SetRuntimeData(runtimeData);
         }
 
     }

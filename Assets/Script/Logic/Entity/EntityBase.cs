@@ -7,10 +7,7 @@ public partial class EntityBase
 	public EntityBase(EntityBaseData data)
 	{
         _entityBaseData = data;
-        Init();
-        AddComponent();
-		RegistEvent();
-        InitEntityBaseData(data);
+      
     }
 
 	
@@ -43,7 +40,13 @@ public partial class EntityBase
             GetComponent<MoveComponent>().InitData(data);
     }
 
-    public virtual void OnEnterWorld(){}
+    public virtual void OnEnterWorld()
+    {
+        Init();
+        AddComponent();
+        RegistEvent();
+        InitEntityBaseData(_entityBaseData);
+    }
 	public virtual void OnLeaveWorld(){}
 	
 	public void CrossFade(string clipName, float speed = 1,  bool force = true, float normalizeTime = 0, float duration = 0.1f)

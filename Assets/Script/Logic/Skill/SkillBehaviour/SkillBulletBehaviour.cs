@@ -20,9 +20,9 @@ public class SkillBulletBehaviour : SkillBehaviourBase
     public override void Trigger()
     {
         base.Trigger();
-        var eulers = subSkill.runtimeData.euler;
+        var eulers = runtimeData.euler;
         eulers.y += _angleOffset;
-        var bullet = Bullet.CreateBullet(_bulletId, subSkill.runtimeData, _comEventCtrl, subSkill.runtimeData.startPos + _posOffset, eulers);
+        var bullet = Bullet.CreateBullet(_bulletId, runtimeData, _comEventCtrl, runtimeData.startPos + _posOffset, eulers, subSkillId);
         bullet.Fire();
     }
 }
