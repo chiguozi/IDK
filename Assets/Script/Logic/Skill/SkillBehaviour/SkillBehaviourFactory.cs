@@ -27,11 +27,14 @@ public class SkillBehaviourFactory
             case SkillBehaviourType.Damage:
                 behaviour = new SkillDamageBehaviour();
                 break;
+            case SkillBehaviourType.Move:
+                behaviour = new SkillMoveBehaviour();
+                break;
         }
         if(behaviour != null)
         {
             behaviour.subSkillId = skill.id;
-            behaviour.runtimeData = skill.runtimeData;
+            //behaviour.runtimeData = skill.runtimeData;
             behaviour.SetEventController(con);
             behaviour.Setup(args);
         }

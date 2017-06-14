@@ -40,6 +40,7 @@ public enum SkillBehaviourType
     Bullet = 3,
     //…À∫¶ºÏ≤‚
     Damage = 4,
+    Move = 5,
 }
 
 public enum SelectTargetType

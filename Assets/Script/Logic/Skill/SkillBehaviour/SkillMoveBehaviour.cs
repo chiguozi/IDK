@@ -2,15 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SkillMoveBehaviour : MonoBehaviour {
+public class SkillMoveBehaviour : SkillBehaviourBase
+{
+    int _moveCfgId;
+    public override bool needUpdate
+    {
+        get
+        {
+            return true;
+        }
+    }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    public override void Update(float delTime)
+    {
+
+    }
 }

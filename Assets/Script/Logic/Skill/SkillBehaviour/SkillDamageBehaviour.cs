@@ -32,14 +32,12 @@ public class SkillDamageBehaviour : SkillBehaviourBase
 
     public override void Update(float delTime)
     {
-      
         _checker.UpdatePos(_owner.position);
         _checker.Update(delTime);
     }
 
     void HitTarget(List<EntityBase> targetList)
     {
-        Debug.LogError("hit");
         _comEventCtrl.Send(ComponentEvents.OnSkillHit, _damageId, targetList, runtimeData);
     }
 }

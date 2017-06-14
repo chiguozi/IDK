@@ -11,7 +11,7 @@ public class Main : MonoBehaviour
 	{
 		_instance = this;
         Init();
-	}
+    }
 
 	void Init()
 	{
