@@ -1,15 +1,18 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class World
+public class World : SingleTon<World>, ILoop
 {
-	static Dictionary<uint, EntityBase> _entitesMap = new Dictionary<uint, EntityBase>();
+	Dictionary<uint, EntityBase> _entitesMap = new Dictionary<uint, EntityBase>();
 	
-	public static Dictionary<uint, EntityBase> entites {get {return _entitesMap;}}
+	public Dictionary<uint, EntityBase> entites {get {return _entitesMap;}}
 	
 	public static EntitySelf ThePlayer;
-	
-	static void AddEntityToWorld(EntityBaseData data)
+
+    public void Init() { }
+    public void Dispose() { }
+
+	void AddEntityToWorld(EntityBaseData data)
 	{
 		var entity = CreateEntity(data);
 		if(_entitesMap.ContainsKey(data.uid))
@@ -30,7 +33,7 @@ public class World
 		entity.ShowModel();
 	}
 	
-	static EntityBase CreateEntity(EntityBaseData data)
+	EntityBase CreateEntity(EntityBaseData data)
 	{
 		EntityBase entity;
 		switch(data.entityType)
@@ -54,7 +57,7 @@ public class World
 		return entity;
 	}
 
-    public static void Update(float delTime)
+    public void Update(float delTime)
 	{
 		var iter = _entitesMap.GetEnumerator();
 		while(iter.MoveNext())
@@ -63,13 +66,18 @@ public class World
 		}
 	}
 	
-    static public EntityBase GetEntity(uint targetId)
+    public EntityBase GetEntityById(uint targetId)
     {
         if (targetId == 0)
             return null;
         EntityBase target = null;
         entites.TryGetValue(targetId, out target);
         return target;
+    }
+
+    public static EntityBase GetEntity(uint targetId)
+    {
+        return Instance.GetEntityById(targetId);
     }
 
 
@@ -82,7 +90,7 @@ public class World
         data.campId = 1;
         data.initPos = new Vector3(-44, 0, -14);
         data.uid = Util.GetClientUid();
-        AddEntityToWorld(data);
+        World.Instance.AddEntityToWorld(data);
         CameraControl.Instance.Init();
         CameraControl.Instance.InitCamera();
         CameraControl.Instance.SetFocus(World.ThePlayer.transform, 0);
@@ -94,6 +102,6 @@ public class World
         data.entityType = EntityType.Player;
         data.initPos = new Vector3(-44, 0, -14);
         data.uid = Util.GetClientUid();
-        AddEntityToWorld(data);
+        World.Instance.AddEntityToWorld(data);
     }
 }

@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletManager : SingleTon<BulletManager>
+public class BulletManager : SingleTon<BulletManager>,  ILoop
 {
     Dictionary<uint, Bullet> _bullteMap = new Dictionary<uint, Bullet>();
     List<uint> _removeList = new List<uint>();
     List<Bullet> _addList = new List<Bullet>();
 
-    public override void Init()
+    public void Init()
     {
-        base.Init();
         EventManager.Regist<Bullet>(Events.FightEvent.AddBullet, AddBullet);
         EventManager.Regist<uint>(Events.FightEvent.RemoveBullet, RemoveBullet);
     }
@@ -62,5 +61,10 @@ public class BulletManager : SingleTon<BulletManager>
         var bullet = _bullteMap[uid];
         bullet.Release();
         _bullteMap.Remove(uid);
+    }
+
+    public void Dispose()
+    {
+
     }
 }

@@ -27,7 +27,7 @@ public class UIManager : SingleTon<UIManager>
 	Dictionary<string, Transform> _layerMap = new Dictionary<string, Transform>();
 	Dictionary<string, WndBase> _wndMap = new Dictionary<string, WndBase>();
 	
-	public override void Init()
+	public void Init()
 	{
 		_uiRoot  = GameObject.Find("UI");
 		_canvasTransform = GameObject.Find("UI/MainCanvas").transform;

@@ -107,7 +107,6 @@
     <Compile Include="Assets\Script\Event\ComponentEvets.cs" />
     <Compile Include="Assets\Script\Event\EventController.cs" />
     <Compile Include="Assets\Script\Event\EventManager.cs" />
-    <Compile Include="Assets\Script\Event\EventParams.cs" />
     <Compile Include="Assets\Script\Event\Events.cs" />
     <Compile Include="Assets\Script\Logic\Camera\CameraControl.cs" />
     <Compile Include="Assets\Script\Logic\Camera\CameraManager.cs" />
@@ -173,6 +172,7 @@
     <Compile Include="Assets\Script\MVC\ViewBase.cs" />
     <Compile Include="Assets\Script\MVC\ViewManager.cs" />
     <Compile Include="Assets\Script\Main.cs" />
+    <Compile Include="Assets\Script\Manager\GameLoop.cs" />
     <Compile Include="Assets\Script\Manager\ResourceInfo.cs" />
     <Compile Include="Assets\Script\Manager\ResourceLoadManager.cs" />
     <Compile Include="Assets\Script\Manager\ResourceManager.cs" />

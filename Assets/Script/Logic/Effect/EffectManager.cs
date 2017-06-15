@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EffectManager  : SingleTon<EffectManager>
+public class EffectManager : SingleTon<EffectManager>, ILoop
 {
     Dictionary<uint, Effect> _effectMap = new Dictionary<uint, Effect>();
+
+    public void Init() { }
+
+    public void Dispose() { }
 
     public void AddEffect(Effect effect)
     {
@@ -21,7 +25,7 @@ public class EffectManager  : SingleTon<EffectManager>
     }
 
     List<uint> _removeList = new List<uint>();
-    public void Update(float delTime)
+    public  void Update(float delTime)
     {
         if (_effectMap.Count <= 0)
             return;
