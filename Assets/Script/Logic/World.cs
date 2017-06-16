@@ -5,10 +5,11 @@ public class World : SingleTon<World>, ILoop
 {
 	Dictionary<uint, EntityBase> _entitesMap = new Dictionary<uint, EntityBase>();
 	
-	public Dictionary<uint, EntityBase> entites {get {return _entitesMap;}}
+	//public Dictionary<uint, EntityBase> entites {get {return _entitesMap;}}
 	
 	public static EntitySelf ThePlayer;
 
+    public static Dictionary<uint, EntityBase> entites { get{ return entites; } }
     public void Init() { }
     public void Dispose() { }
 
