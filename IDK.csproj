@@ -110,7 +110,6 @@
     <Compile Include="Assets\Script\Event\ComponentEvets.cs" />
     <Compile Include="Assets\Script\Event\EventController.cs" />
     <Compile Include="Assets\Script\Event\EventManager.cs" />
-    <Compile Include="Assets\Script\Event\EventParams.cs" />
     <Compile Include="Assets\Script\Event\Events.cs" />
     <Compile Include="Assets\Script\Logic\Camera\CameraControl.cs" />
     <Compile Include="Assets\Script\Logic\Camera\CameraManager.cs" />
@@ -150,7 +149,9 @@
     <Compile Include="Assets\Script\Logic\Skill\SkillBehaviour\SkillBehaviourBase.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SkillBehaviour\SkillBehaviourFactory.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SkillBehaviour\SkillBulletBehaviour.cs" />
+    <Compile Include="Assets\Script\Logic\Skill\SkillBehaviour\SkillDamageBehaviour.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SkillBehaviour\SkillEffectBehaviour.cs" />
+    <Compile Include="Assets\Script\Logic\Skill\SkillBehaviour\SkillMoveBehaviour.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SkillRuntimeData.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SkillUtil.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SubSkill.cs" />
@@ -174,6 +175,7 @@
     <Compile Include="Assets\Script\MVC\ViewBase.cs" />
     <Compile Include="Assets\Script\MVC\ViewManager.cs" />
     <Compile Include="Assets\Script\Main.cs" />
+    <Compile Include="Assets\Script\Manager\GameLoop.cs" />
     <Compile Include="Assets\Script\Manager\ResourceInfo.cs" />
     <Compile Include="Assets\Script\Manager\ResourceLoadManager.cs" />
     <Compile Include="Assets\Script\Manager\ResourceManager.cs" />
@@ -183,6 +185,7 @@
     <Compile Include="Assets\Script\Pool\PoolManager.cs" />
     <Compile Include="Assets\Script\SystemConfig.cs" />
     <Compile Include="Assets\Script\Util\AreaCheckUtil.cs" />
+    <Compile Include="Assets\Script\Util\DrawGraphicUtil.cs" />
     <Compile Include="Assets\Script\Util\EnumDefine.cs" />
     <Compile Include="Assets\Script\Util\Extension.cs" />
     <Compile Include="Assets\Script\Util\FileUtil.cs" />
