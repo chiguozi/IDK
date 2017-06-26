@@ -101,8 +101,38 @@ public class MoveComponent2 : ComponentBase
     //方向需要归一化
     public void JoystickMove(float dirX, float dirZ)
     {
+        SetDir(dirX, dirZ);
         _moveDir.x = dirX;
         _moveDir.z = dirZ;
+        SetJoystickPosInternal();
+    }
+
+    public void SetDir(float dirX, float dirZ)
+    {
+        _isRotating = false;
+        var angle = Mathf.Acos(Mathf.Clamp(Vector3.forward.x * dirX + Vector3.forward.z * dirZ, -1, 1)) * Mathf.Rad2Deg;
+        if (dirX < 0)
+        {
+            angle = -angle;
+        }
+        _dstDir.x = dirX;
+        _dstDir.z = dirZ;
+        _forward = _forward.CopyXZ(_dstDir);
+        SetAngleInternal(angle);
+    }
+
+
+
+
+    public override void Update(float delTime)
+    {
+
+        base.Update(delTime);
+    }
+
+
+    void SetJoystickPosInternal()
+    {
         var tmpPos = _speed * _moveDir * Time.deltaTime + _curPos;
         var x = tmpPos.x;
         var z = tmpPos.z;
