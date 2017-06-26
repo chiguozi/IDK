@@ -98,7 +98,7 @@ public class MoveComponent2 : ComponentBase
         return true;
     }
 
-    //方向需要归一化
+    //方向需要归一化  移动方向与朝向相同
     public void JoystickMove(float dirX, float dirZ)
     {
         SetDir(dirX, dirZ);
@@ -107,6 +107,13 @@ public class MoveComponent2 : ComponentBase
         SetJoystickPosInternal();
     }
 
+    public void MoveToPos(float x, float z, float speed)
+    {
+
+    }
+
+
+    //设置当前朝向 dir需要被归一化
     public void SetDir(float dirX, float dirZ)
     {
         _isRotating = false;
@@ -121,6 +128,14 @@ public class MoveComponent2 : ComponentBase
         SetAngleInternal(angle);
     }
 
+    public void StopMove()
+    {
+        if(_isMoving || _wayPoints.Count > 0)
+        {
+            _wayPoints.Clear();
+            _isMoving = false;
+        }
+    }
 
 
 
@@ -130,7 +145,14 @@ public class MoveComponent2 : ComponentBase
         base.Update(delTime);
     }
 
-
+    void UpdateNextMovePosInternal(float x, float z)
+    {
+        _lastPos = _lastPos.CopyXZ(_dstPos);
+        _moveDir.x = x - _curPos.x;
+        _moveDir.z = z - _curPos.z;
+        _distance = _moveDir.XZMagnitude();
+        _moveDir = _moveDir.XZNormalize();
+    }
     void SetJoystickPosInternal()
     {
         var tmpPos = _speed * _moveDir * Time.deltaTime + _curPos;
