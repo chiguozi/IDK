@@ -248,6 +248,7 @@ public class MoveComponent : ComponentBase
 	
 	public override void Update(float delTime)
 	{
+        UpdateAngle(delTime);
 		if(!_isMoving)
 		{
 			return;

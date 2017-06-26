@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class WndJoyStick : WndBase
 {
     const int MOVE_DISTANCE = 100;
-    const float CHECK_INTERVAL = 0.001f;
     RectTransform _bgRt;
     RectTransform _stickRt;
     UIDragEventListener _listener;
@@ -61,12 +60,6 @@ public class WndJoyStick : WndBase
         base.Update();
         if (!_isTouch)
             return;
-        _time -= Time.unscaledDeltaTime;
-        if (_time > 0)
-        {
-            return;
-        }
-        _time = CHECK_INTERVAL;
         EventManager.Send(Events.SelfControlEvent.OnJoyStickMove, _currentPos);
     }
 

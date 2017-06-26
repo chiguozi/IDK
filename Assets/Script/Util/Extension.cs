@@ -38,6 +38,11 @@ public static class Extension
 		return a;
 	}
 	
+    public static Vector3 CloneXZ(this Vector3 a)
+    {
+        return new Vector3(a.x, 0, a.z);
+    }
+
 	public  static Vector3 XZNormalize(this Vector3 a)
 	{
 		var num = Mathf.Sqrt(a.x * a.x + a.z * a.z);
