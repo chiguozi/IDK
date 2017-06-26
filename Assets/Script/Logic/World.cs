@@ -9,7 +9,7 @@ public class World : SingleTon<World>, ILoop
 	
 	public static EntitySelf ThePlayer;
 
-    public static Dictionary<uint, EntityBase> entites { get{ return entites; } }
+    public static Dictionary<uint, EntityBase> entites { get{ return Instance._entitesMap; } }
     public void Init() { }
     public void Dispose() { }
 

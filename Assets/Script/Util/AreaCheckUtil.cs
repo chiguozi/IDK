@@ -6,6 +6,11 @@ public class AreaCheckUtil
 {
     public static  bool CheckTwoCircleIntersection(Vector3 center1, float radius1, Vector3 center2, float radius2)
     {
+        if(SystemConfig.ShowDrawArea)
+        {
+            DrawGraphicUtil.DrawCircle(center1, radius1);
+            DrawGraphicUtil.DrawCircle(center2, radius2, 10);
+        }
         return ( center1 - center2 ).XZSqrMagnitude() < ( radius1 + radius2 ) * ( radius1 + radius2 );
     }
 

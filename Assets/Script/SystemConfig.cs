@@ -32,7 +32,7 @@ public class SystemConfig
 		return string.Format("file:///{0}/{1}", streamPath, bundleUrl);
 	}
 
-
+    public static bool ShowDrawArea = false;
 
 
 }

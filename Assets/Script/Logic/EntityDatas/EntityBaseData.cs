@@ -15,5 +15,5 @@ public class EntityBaseData
     public string url;
     public string name;
     //ÈËÎï°ë¾¶
-    public float radius;
+    public float radius = 1;
 }

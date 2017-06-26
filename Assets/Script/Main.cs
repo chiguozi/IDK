@@ -7,10 +7,13 @@ public class Main : MonoBehaviour
 	static Main _instance;
 	public static Main Instance {get {return _instance;}}
 
+    public bool showDrawArea = false;
+
 	void Awake()
 	{
 		_instance = this;
         Init();
+        SystemConfig.ShowDrawArea = showDrawArea;
     }
 
 	void Init()

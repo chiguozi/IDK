@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class DrawGraphicUtil
 {
-    private const float DURATION = 0.5f;
+    private const float DURATION = 0.1f;
+    static Color DefaultColor = Color.red;
+    public static Color GraphicColor = DefaultColor;
 
     private static List<Vector3> _posList = new List<Vector3>();
 
-    public static void DrawRect(Vector3 centerPoint, Vector3 dir, Vector3 right, float width, float height, Color color)
+    public static void DrawRect(Vector3 centerPoint, Vector3 dir, Vector3 right, float width, float height)
     {
         _posList.Clear();
         dir.Normalize();
@@ -24,10 +26,10 @@ public class DrawGraphicUtil
         _posList.Add(point3);
         _posList.Add(point4);
 
-        DrawPoints(_posList, color);
+        DrawPoints(_posList);
     }
 
-    public static void DrawRect(Vector3 centerPoint, float width, float height, Color color)
+    public static void DrawRect(Vector3 centerPoint, float width, float height)
     {
         _posList.Clear();
 
@@ -46,10 +48,10 @@ public class DrawGraphicUtil
         _posList.Add(point3);
         _posList.Add(point4);
 
-        DrawPoints(_posList, color);
+        DrawPoints(_posList);
     }
 
-    public static void DrawCircle(Vector3 point, float r, Color color)
+    public static void DrawCircle(Vector3 point, float r, float duration = DURATION)
     {
         _posList.Clear();
         Quaternion rotation = new Quaternion();
@@ -61,10 +63,10 @@ public class DrawGraphicUtil
             _posList.Add(rotation * up + point);
         }
 
-        DrawPoints(_posList, color);
+        DrawPoints(_posList);
     }
 
-    public static void DrawSector(Vector3 centerPoint, Vector3 farPoint, float angle, float r, Color color)
+    public static void DrawSector(Vector3 centerPoint, Vector3 farPoint, float angle, float r)
     {
         _posList.Clear();
 
@@ -85,19 +87,19 @@ public class DrawGraphicUtil
                 break;
         }
 
-        DrawPoints(_posList, color);
+        DrawPoints(_posList);
     }
 
-    public static void DrawPoints(List<Vector3> posList, Color color, float duration = 10)
+    public static void DrawPoints(List<Vector3> posList, float duration = DURATION)
     {
         for (int i = 0; i < posList.Count; i++)
         {
             var next = i + 1;
             if (next == posList.Count) next = 0;
 
-            Debug.DrawLine(posList[i], posList[next], color, duration);
+            Debug.DrawLine(posList[i], posList[next], GraphicColor, duration);
+            GraphicColor = DefaultColor;
         }
-
         _posList.Clear();
     }
 }

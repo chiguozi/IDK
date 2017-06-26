@@ -75,7 +75,7 @@ public class BulletActionCenter
 
     public static void ExecuteBulletAction(Bullet bullet, List<List<string>> actions)
     {
-        if(actions.Count == 0)
+        if(actions == null || actions.Count == 0)
         {
             return;
         }

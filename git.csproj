@@ -182,6 +182,7 @@
     <Compile Include="Assets\Script\Pool\PoolManager.cs" />
     <Compile Include="Assets\Script\SystemConfig.cs" />
     <Compile Include="Assets\Script\Util\AreaCheckUtil.cs" />
+    <Compile Include="Assets\Script\Util\DrawGraphicUtil.cs" />
     <Compile Include="Assets\Script\Util\EnumDefine.cs" />
     <Compile Include="Assets\Script\Util\Extension.cs" />
     <Compile Include="Assets\Script\Util\FileUtil.cs" />
