@@ -34,7 +34,7 @@ public class SMRun : UnitSMBase
 			var entity = target as EntityPlayer;
 			if(entity == null)
 				return;
-			entity.MoveByPos(Convert.ToSingle(param[0]), Convert.ToSingle(param[1]),Convert.ToSingle(param[2]));
+			entity.MoveToPos(Convert.ToSingle(param[0]), Convert.ToSingle(param[1]),Convert.ToSingle(param[2]));
 		}
 		else if(evt == UnitStateEvent.MoveByPosList)
 		{

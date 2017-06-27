@@ -64,7 +64,7 @@ public class UnitSMBase
 
     protected bool IsMoveEvt(UnitStateEvent evt)
     {
-        return ( (int)evt & 0xff ) > 0;
+        return ( (int)evt & 0x01f ) > 0;
     }
 
     //状态切换的处理 设置切换方式以及下一个状态

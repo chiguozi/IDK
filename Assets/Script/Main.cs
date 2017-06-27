@@ -53,7 +53,10 @@ public class Main : MonoBehaviour
         UIManager.Instance.Update();
         if (Input.inputString == "@")
         {
-            World.ThePlayer.UseSkill(1);
+            //World.ThePlayer.UseSkill(1);
+            var go = GameObject.Find("GameObject");
+            World.ThePlayer.MoveByTargetAndSpeed(go.transform, 10);
+            //World.ThePlayer.MoveToPos(10, 10, 10);
             //Effect.CreateEffect("Prefab/Effect/hero001@atk_1_sfx", World.ThePlayer.position, World.ThePlayer.eulers, World.ThePlayer.uid, 3);
         }
         GameLoop.Update(Time.deltaTime);

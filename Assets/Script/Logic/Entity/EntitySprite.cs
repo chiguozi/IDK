@@ -49,21 +49,12 @@ public class EntitySprite : EntityBase
         return false;
     }
 
-
-    public void RotateByDirAndSpeed(float x, float z, float speed)
-    {
-        if (HasComponent<MoveComponent>())
-        {
-            GetComponent<MoveComponent>().RotateByDirAndSpeed(x, z, speed);
-        }
-    }
-
     //特殊效果移动
-    public void MoveByPos(float x, float z, float speed)
+    public void MoveToPos(float x, float z, float speed)
     {
         if (HasComponent<MoveComponent>())
         {
-            GetComponent<MoveComponent>().MoveByPosAndSpeed(x, z, speed);
+            GetComponent<MoveComponent>().MoveToPos(x, z, speed);
         }
     }
 
@@ -79,7 +70,7 @@ public class EntitySprite : EntityBase
     {
         if (HasComponent<MoveComponent>())
         {
-            GetComponent<MoveComponent>().MoveByTargetAndSpeed(target, speed, reachDistance, checkInterval);
+            GetComponent<MoveComponent>().MoveToTarget(target);
         }
     }
 
@@ -87,7 +78,7 @@ public class EntitySprite : EntityBase
     {
         if (HasComponent<MoveComponent>())
         {
-            GetComponent<MoveComponent>().SetAngleByDir(dirX, dirZ);
+            GetComponent<MoveComponent>().SetDstAngle(dirX, dirZ);
         }
     }
 

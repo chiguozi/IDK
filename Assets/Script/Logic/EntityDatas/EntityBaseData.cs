@@ -17,7 +17,7 @@ public class EntityBaseData
     //ÈËÎï°ë¾¶
     public float radius = 1;
 
-    public float speed = 3;
+    public float speed = 5;
     public float angleSpeed = 0;
 
 }

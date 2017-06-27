@@ -9,7 +9,7 @@ public class EntitySelf : EntityPlayer
 	{
 		if(HasComponent<MoveComponent>())
 		{
-			GetComponent<MoveComponent>().MoveByDirAndSpeedImmediately(dirX, dirZ, speed);
+			GetComponent<MoveComponent>().JoystickMove(dirX, dirZ);
 		}
 	}
 
