@@ -59,3 +59,18 @@ public enum DamageRangeType
     Circle,
     Sector,
 }
+
+//技能方向类型
+public enum SkillDirectionType
+{
+    //固定方向 如位移技能 前方或者后方 角度offset设置
+    fixedDir = 1,
+    //指定方向， 冲刺技能
+    assginDir,
+    //固定坐标 当前朝向 指定距离  暂时用不到
+    fixedPos,
+    //指定目标点  如闪现
+    assginPos,
+    // 根据目标位置设置方向  位置
+    followTarget,
+}
