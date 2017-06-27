@@ -2,8 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class MoveComponent2 : ComponentBase
 {
+    enum MoveType
+    {
+        MoveToPos,      //直接朝向目标点移动
+        MoveForward,    //向当前朝向移动   角速度不为0时有效
+        MoveByAstar,
+    }
+
+    enum MoveTargetType
+    {
+        None,
+        FollowTarget,
+    }
+
     //默认移动速度
     float _defaultSpeed;
     //默认角速度 0 表示立即转向
@@ -14,7 +28,7 @@ public class MoveComponent2 : ComponentBase
     Vector3 _dstPos = Vector3.zero;
     Vector3 _lastPos = Vector3.zero;
     public Vector3 lastPos { get { return _lastPos; } }
-    //目标朝向
+    //目标朝向  暂时没用
     Vector3 _dstDir = Vector3.zero;
     Vector3 _curEulers = Vector3.zero;
     public Vector3 curEulers { get { return _curEulers; } }
@@ -65,7 +79,7 @@ public class MoveComponent2 : ComponentBase
         _curPos = data.initPos;
         SetDefaultSpeed(data.speed);
         SetDefaultAngleSpeed(data.angleSpeed);
-        SetAngle(data.initEuler.y);
+        SetAngleDirect(data.initEuler.y);
     }
 
 
@@ -83,15 +97,7 @@ public class MoveComponent2 : ComponentBase
         _angleSpeed = angleSpeed;
     }
 
-    //直接设置角度
-    public void SetAngle(float angle)
-    {
-        _isRotating = false;
-        var dir = Quaternion.Euler(0, angle, 0) * Vector3.forward;
-        _dstDir = _dstDir.CopyXZ(dir);
-        _forward = _forward.CopyXZ(dir);
-        SetAngleInternal(angle);
-    }
+
 
     public bool CanWalk(Vector3 pos)
     {
@@ -101,7 +107,7 @@ public class MoveComponent2 : ComponentBase
     //方向需要归一化  移动方向与朝向相同
     public void JoystickMove(float dirX, float dirZ)
     {
-        SetDir(dirX, dirZ);
+        SetDirDirect(dirX, dirZ);
         _moveDir.x = dirX;
         _moveDir.z = dirZ;
         SetJoystickPosInternal();
@@ -112,9 +118,18 @@ public class MoveComponent2 : ComponentBase
 
     }
 
+    //直接设置角度
+    public void SetAngleDirect(float angle)
+    {
+        _isRotating = false;
+        var dir = Quaternion.Euler(0, angle, 0) * Vector3.forward;
+        _dstDir = _dstDir.CopyXZ(dir);
+        _forward = _forward.CopyXZ(dir);
+        SetAngleInternal(angle);
+    }
 
     //设置当前朝向 dir需要被归一化
-    public void SetDir(float dirX, float dirZ)
+    public void SetDirDirect(float dirX, float dirZ)
     {
         _isRotating = false;
         var angle = Mathf.Acos(Mathf.Clamp(Vector3.forward.x * dirX + Vector3.forward.z * dirZ, -1, 1)) * Mathf.Rad2Deg;
@@ -126,6 +141,18 @@ public class MoveComponent2 : ComponentBase
         _dstDir.z = dirZ;
         _forward = _forward.CopyXZ(_dstDir);
         SetAngleInternal(angle);
+    }
+
+    public void SetDstAngle(float angle)
+    {
+        if (hasAngleSpeed() && !Mathf.Approximately(angle, curEulers.y))
+        {
+            _dstEulers.y = angle;
+        }
+        else
+        {
+            SetAngleDirect(angle);
+        }
     }
 
     public void StopMove()
@@ -144,6 +171,17 @@ public class MoveComponent2 : ComponentBase
 
         base.Update(delTime);
     }
+
+    bool hasAngleSpeed()
+    {
+        return _angleSpeed != 0;
+    }
+
+    void SetDstAngleInternal(float angle)
+    {
+
+    }
+
 
     void UpdateNextMovePosInternal(float x, float z)
     {
