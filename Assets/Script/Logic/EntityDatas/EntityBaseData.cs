@@ -17,7 +17,8 @@ public class EntityBaseData
     //人物半径
     public float radius = 1;
 
+    //不算基础属性
     public float speed = 5;
-    public float angleSpeed = 0;
+    public float angleSpeed = 10;
 
 }

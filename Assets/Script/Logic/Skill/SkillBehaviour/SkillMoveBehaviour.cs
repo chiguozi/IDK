@@ -13,6 +13,13 @@ public class SkillMoveBehaviour : SkillBehaviourBase
         }
     }
 
+    public override void Setup(List<string> valueList)
+    {
+        base.Setup(valueList);
+        _moveCfgId = StringUtil.ParseIntFromList(valueList, 1);
+
+    }
+
 
     public override void Update(float delTime)
     {

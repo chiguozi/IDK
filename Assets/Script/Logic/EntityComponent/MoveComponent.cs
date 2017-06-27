@@ -48,12 +48,12 @@ public class MoveComponent : ComponentBase
     }
 
     float _speed;
-    float _angleSpeed = 0;
+    float _angleSpeed = 1;
 
     //距离差
     float _distance;
     //角度差
-    float _angleDistance = 0;
+    float _angleDistance = 10;
 
     //角度符号
     float _angleSymbol = 1;
