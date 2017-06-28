@@ -36,6 +36,7 @@ public class EntitySprite : EntityBase
         _eventCtrl.Regist(ComponentEvents.OnSkillEnd, OnSkillEnd);
         _eventCtrl.Regist<int, List<EntityBase>, SkillRuntimeData>(ComponentEvents.OnSkillHit, OnSkillHit);
         _eventCtrl.Regist<string>(ComponentEvents.OnActionEnd, OnActionEnd);
+        _eventCtrl.Regist<float, float, float>(ComponentEvents.MoveToPos, MoveToPos);
     }
 
     public override void InitDatas()

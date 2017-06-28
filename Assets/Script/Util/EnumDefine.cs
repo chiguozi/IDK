@@ -41,6 +41,7 @@ public enum SkillBehaviourType
     //伤害检测
     Damage = 4,
     Move = 5,
+    Flash = 6,
 }
 
 public enum SelectTargetType
@@ -63,14 +64,10 @@ public enum DamageRangeType
 //技能方向类型
 public enum SkillDirectionType
 {
-    //固定方向 如位移技能 前方或者后方 角度offset设置
-    fixedDir = 1,
-    //指定方向， 冲刺技能
-    assginDir,
-    //固定坐标 当前朝向 指定距离  暂时用不到
-    fixedPos,
-    //指定目标点  如闪现
-    assginPos,
-    // 根据目标位置设置方向  位置
+    //根据方向移动  方向根据技能方向设定   子技能不需要知道是固定方向还是指定方向
+    dir = 1,
+  //根据
+    pos,
+  
     followTarget,
 }

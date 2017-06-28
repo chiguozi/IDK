@@ -102,6 +102,8 @@
     <Compile Include="Assets\Script\Data\CfgBullet.cs" />
     <Compile Include="Assets\Script\Data\CfgDamageCheck.cs" />
     <Compile Include="Assets\Script\Data\CfgEffect.cs" />
+    <Compile Include="Assets\Script\Data\CfgMoveFlash.cs" />
+    <Compile Include="Assets\Script\Data\CfgMoveTransfer.cs" />
     <Compile Include="Assets\Script\Data\CfgSkill.cs" />
     <Compile Include="Assets\Script\Data\CfgSubSkill.cs" />
     <Compile Include="Assets\Script\Event\ComponentEvets.cs" />

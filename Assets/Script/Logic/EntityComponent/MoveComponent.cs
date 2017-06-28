@@ -31,7 +31,7 @@ public class MoveComponent : ComponentBase
     //当前点到目标点
     Vector3 _moveDir = Vector3.zero;
     Vector3 _forward = Vector3.forward;
-    public Vector3 forward { get { return forward; } }
+    public Vector3 forward { get { return _forward; } }
     //目标朝向  
     public Vector3 dstDir { get { return Quaternion.Euler(0, _dstEulers.y, 0) * Vector3.forward; } }
     public Vector3 lastPos { get { return _lastPos; } }
@@ -69,7 +69,7 @@ public class MoveComponent : ComponentBase
     MoveType _moveType = MoveType.MoveToPos;
 
     //距离误差
-    float _distanceDeviation = 0.1f;
+    float _distanceDeviation = 0.0f;
 
     float _checkTargetInterval = 0.2f;
     float _checkTargetTime = 0;
@@ -208,7 +208,7 @@ public class MoveComponent : ComponentBase
 
         if(_moveType == MoveType.MoveToPos)
         {
-            MoveToPosInternal(delTime, true);
+            MoveToPosInternal(delTime);
         }
     }
 
@@ -233,7 +233,7 @@ public class MoveComponent : ComponentBase
         }
     }
 
-    void MoveToPosInternal(float delTime, bool checkWayPoints = true)
+    void MoveToPosInternal(float delTime)
     {
         var moveOffset = _speed * delTime;
         if (moveOffset > _distance)
@@ -245,7 +245,7 @@ public class MoveComponent : ComponentBase
 
         if (_distance <= _distanceDeviation)
         {
-            if (checkWayPoints && _wayPoints.Count > 0)
+            if (_moveTargetType != MoveTargetType.FollowTarget && _wayPoints.Count > 0)
             {
                 CheckNextWayPointsInternal();
             }
@@ -336,6 +336,8 @@ public class MoveComponent : ComponentBase
         _lastPos = _lastPos.CopyXZ(_dstPos);
         _moveDir.x = x - _curPos.x;
         _moveDir.z = z - _curPos.z;
+        _dstPos.x = x;
+        _dstPos.z = z;
         _distance = _moveDir.XZMagnitude();
         _moveDir = _moveDir.XZNormalize();
     }
