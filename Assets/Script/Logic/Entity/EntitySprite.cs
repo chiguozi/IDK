@@ -37,6 +37,7 @@ public class EntitySprite : EntityBase
         _eventCtrl.Regist<int, List<EntityBase>, SkillRuntimeData>(ComponentEvents.OnSkillHit, OnSkillHit);
         _eventCtrl.Regist<string>(ComponentEvents.OnActionEnd, OnActionEnd);
         _eventCtrl.Regist<float, float, float>(ComponentEvents.MoveToPos, MoveToPos);
+        _eventCtrl.Regist<float, float>(ComponentEvents.FlashToPos, FlashToPos);
     }
 
     public override void InitDatas()
@@ -56,6 +57,14 @@ public class EntitySprite : EntityBase
         if (HasComponent<MoveComponent>())
         {
             GetComponent<MoveComponent>().MoveToPos(x, z, speed);
+        }
+    }
+
+    public void FlashToPos(float x, float z)
+    {
+        if (HasComponent<MoveComponent>())
+        {
+            GetComponent<MoveComponent>().FlashToPos(x, z);
         }
     }
 

@@ -128,6 +128,13 @@ public class MoveComponent : ComponentBase
         SetDstAngle(_moveDir.x, _moveDir.z);
     }
 
+    public void FlashToPos(float x, float z)
+    {
+        _curPos.x = x;
+        _curPos.z = z;
+        Send(ComponentEvents.UpdatePos, _curPos);
+    }
+
     public void MoveToTarget(Transform target)
     {
         StopMove();

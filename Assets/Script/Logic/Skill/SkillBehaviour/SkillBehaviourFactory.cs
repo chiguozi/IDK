@@ -30,6 +30,9 @@ public class SkillBehaviourFactory
             case SkillBehaviourType.Move:
                 behaviour = new SkillMoveBehaviour();
                 break;
+            case SkillBehaviourType.Flash:
+                behaviour = new SkillFlashBehaviour();
+                break;
         }
         if(behaviour != null)
         {

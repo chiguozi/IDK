@@ -150,6 +150,7 @@
     <Compile Include="Assets\Script\Logic\Skill\SkillBehaviour\SkillBulletBehaviour.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SkillBehaviour\SkillDamageBehaviour.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SkillBehaviour\SkillEffectBehaviour.cs" />
+    <Compile Include="Assets\Script\Logic\Skill\SkillBehaviour\SkillFlashBehaviour.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SkillBehaviour\SkillMoveBehaviour.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SkillRuntimeData.cs" />
     <Compile Include="Assets\Script\Logic\Skill\SkillUtil.cs" />

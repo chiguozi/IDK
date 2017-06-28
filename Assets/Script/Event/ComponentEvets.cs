@@ -19,5 +19,8 @@ public static class ComponentEvents
     //非循环动作播放完成
     public const string OnActionEnd = "OnActionEnd";
 
+    //移动到位置
     public const string MoveToPos = "MoveToPos";
+    //闪现到位置
+    public const string FlashToPos = "FlashToPos";
 }
